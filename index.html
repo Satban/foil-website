@@ -299,6 +299,147 @@
       line-height: 1.6;
     }
 
+    /* Purpose Section */
+    .purpose {
+      padding: 120px 40px;
+      background: var(--cream-dark);
+    }
+
+    .purpose-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .purpose-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .purpose-header h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    .stat-highlight {
+      color: var(--green);
+      font-size: 1.2em;
+    }
+
+    .purpose-lead {
+      font-size: 19px;
+      color: var(--ink-light);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .purpose-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    .purpose-block h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+
+    .purpose-block p {
+      font-size: 16px;
+      color: var(--ink-light);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .purpose-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .purpose-tagline {
+      font-weight: 600;
+      color: var(--green) !important;
+    }
+
+    .why-matters {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 48px;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+
+    .why-matters h3 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 36px;
+      color: var(--ink);
+    }
+
+    .matters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .matters-card {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .matters-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .matters-card h4 {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .matters-card p {
+      font-size: 15px;
+      color: var(--ink-light);
+      line-height: 1.5;
+    }
+
+    .purpose-mission {
+      text-align: center;
+      padding: 40px;
+      background: var(--green);
+      border-radius: var(--radius);
+      color: var(--white);
+    }
+
+    .purpose-mission h3 {
+      font-size: 20px;
+      color: var(--green-bright);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 600;
+    }
+
+    .purpose-mission p {
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    .mission-tagline {
+      margin-top: 20px !important;
+      font-family: 'Fraunces', serif;
+      font-size: 24px !important;
+      color: var(--white);
+    }
+
     /* Features */
     .features {
       padding: 120px 40px;
@@ -755,6 +896,20 @@
         gap: 48px;
       }
 
+      .purpose-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .matters-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .why-matters {
+        padding: 32px 24px;
+      }
+
       .footer-inner {
         flex-direction: column;
         text-align: center;
@@ -831,7 +986,7 @@
         display: none !important;
       }
 
-      .hero, .problem, .features, .how, .social-proof, .cta {
+      .hero, .problem, .purpose, .features, .how, .social-proof, .cta {
         padding-left: 24px;
         padding-right: 24px;
       }
@@ -860,6 +1015,7 @@
         <span></span>
       </div>
       <ul class="nav-links">
+        <li><a href="/values.html" onclick="closeMenu()">Our Values</a></li>
         <li><a href="#features" onclick="closeMenu()">Features</a></li>
         <li><a href="#how" onclick="closeMenu()">How it works</a></li>
         <li><a href="/blog/" onclick="closeMenu()">Blog</a></li>
