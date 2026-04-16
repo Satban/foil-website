@@ -8,6 +8,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://getfoilapp.com/images/foil_icon.png">
+  <link rel="apple-touch-icon" href="https://getfoilapp.com/images/foil_icon.png">
 
   <!-- Smart App Banner for iOS -->
   <meta name="apple-itunes-app" content="app-id=6759352471">
@@ -17,63 +18,505 @@
   <meta property="og:description" content="You've been invited to join a club. Download Foil to reduce food waste together.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://getfoilapp.com/images/foil_icon.png">
+  <meta property="og:url" content="https://getfoilapp.com/club/">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'foil': {
-              'green': '#2e7d32',
-              'green-dark': '#1b5e20',
-              'green-light': '#4caf50',
-              'cream': '#FAF8F5',
-              'charcoal': '#1a1a1a',
-              'muted': '#6B7280',
-            }
-          },
-          fontFamily: {
-            'display': ['Inter', 'system-ui', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Join a Club on Foil">
+  <meta name="twitter:description" content="Track food waste together with friends, family, or your community.">
+  <meta name="twitter:image" content="https://getfoilapp.com/images/foil_icon.png">
 
-  <!-- Google Fonts -->
+  <!-- Fonts (same as main site) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 
   <style>
-    * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
-
-    .gradient-bg {
-      background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
+    :root {
+      --cream: #ffffff;
+      --cream-dark: #F5F5F5;
+      --ink: #1a1a1a;
+      --ink-light: #4a4a4a;
+      --ink-muted: #7a7a7a;
+      --green: #2D5A3D;
+      --green-light: #4A7C5C;
+      --green-bright: #52B788;
+      --white: #ffffff;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
     }
 
-    .pulse-ring {
-      animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    @keyframes pulse-ring {
-      0% { transform: scale(0.95); opacity: 0.7; }
-      50% { transform: scale(1); opacity: 0.3; }
-      100% { transform: scale(0.95); opacity: 0.7; }
+    h1, h2, h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      color: var(--ink);
     }
 
-    .fade-in {
-      animation: fadeIn 0.5s ease-out;
+    /* Header */
+    header {
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 48px;
+      width: 48px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Main */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+    }
+
+    /* States */
+    .state {
+      display: none;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .state.active {
+      display: block;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .copy-toast {
+    /* Loading */
+    .loading-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      position: relative;
+    }
+
+    .loading-ring {
+      position: absolute;
+      inset: 0;
+      border: 3px solid var(--cream-dark);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      text-align: center;
+      color: var(--ink-muted);
+      font-size: 15px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 40px 32px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .club-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(45, 90, 61, 0.3);
+    }
+
+    .club-icon svg {
+      width: 40px;
+      height: 40px;
+      color: white;
+    }
+
+    .invite-label {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    .club-name {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .member-count {
+      color: var(--ink-muted);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 32px;
+    }
+
+    .member-count svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Code Box */
+    .code-box {
+      background: var(--cream-dark);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+
+    .code-label {
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .code-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .code-value {
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 2px;
+    }
+
+    .copy-btn {
+      background: var(--white);
+      border: none;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--ink-muted);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .copy-btn:hover {
+      background: var(--white);
+      color: var(--green);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .copy-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Opening indicator */
+    .opening-indicator {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--ink-muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .opening-indicator.visible {
+      display: flex;
+    }
+
+    .opening-indicator svg {
+      width: 16px;
+      height: 16px;
+      animation: spin 1s linear infinite;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(45, 90, 61, 0.25);
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45, 90, 61, 0.35);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-hint {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 12px;
+    }
+
+    /* Download Section */
+    .download-section {
+      text-align: center;
+    }
+
+    .download-label {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin-bottom: 16px;
+    }
+
+    .store-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    @media (min-width: 400px) {
+      .store-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .store-btn {
+      transition: transform 0.2s;
+    }
+
+    .store-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .store-btn img {
+      height: 44px;
+    }
+
+    /* Error State */
+    .error-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+      background: #FEE2E2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .error-icon svg {
+      width: 36px;
+      height: 36px;
+      color: #DC2626;
+    }
+
+    .error-title {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .error-message {
+      color: var(--ink-muted);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    /* No Code State */
+    .welcome-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(45, 90, 61, 0.3);
+    }
+
+    .welcome-icon svg {
+      width: 36px;
+      height: 36px;
+      color: white;
+    }
+
+    .welcome-title {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .welcome-message {
+      color: var(--ink-muted);
+      margin-bottom: 32px;
+      font-size: 15px;
+    }
+
+    /* Manual Entry */
+    .manual-entry {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-md);
+      text-align: left;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .code-input {
+      flex: 1;
+      padding: 14px 16px;
+      border: 2px solid #E5E7EB;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .code-input:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+    }
+
+    .code-input.error {
+      border-color: #DC2626;
+    }
+
+    .join-btn {
+      padding: 14px 24px;
+      background: var(--green);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .join-btn:hover {
+      background: var(--green-light);
+    }
+
+    .input-error {
+      display: none;
+      color: #DC2626;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .input-error.visible {
+      display: block;
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+
+    .toast {
+      background: var(--ink);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
       animation: toastIn 0.3s ease-out, toastOut 0.3s ease-in 2.7s forwards;
     }
 
@@ -87,156 +530,161 @@
       to { opacity: 0; transform: translateY(-10px); }
     }
 
-    /* Focus states for accessibility */
-    button:focus-visible, a:focus-visible, input:focus-visible {
-      outline: 2px solid #2e7d32;
+    /* Footer */
+    footer {
+      padding: 24px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      background: var(--cream-dark);
+    }
+
+    .footer-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 24px;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .footer-inner a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-inner a:hover {
+      color: var(--ink);
+    }
+
+    .footer-divider {
+      color: #D1D5DB;
+    }
+
+    /* Focus states */
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--green);
       outline-offset: 2px;
     }
   </style>
 </head>
-<body class="bg-foil-cream min-h-screen flex flex-col">
+<body>
 
   <!-- Header -->
-  <header class="py-4 px-6 border-b border-gray-200/50 bg-white/80 backdrop-blur-sm">
-    <div class="max-w-lg mx-auto flex items-center justify-center">
-      <a href="https://getfoilapp.com" aria-label="Go to Foil homepage">
-        <img src="https://getfoilapp.com/images/foil_icon.png" alt="Foil" class="h-12 w-12 rounded-xl shadow-sm">
+  <header>
+    <div class="header-inner">
+      <a href="https://getfoilapp.com" class="logo" aria-label="Go to Foil homepage">
+        <img src="https://getfoilapp.com/images/foil_icon.png" alt="Foil">
       </a>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="flex-1 flex items-center justify-center px-6 py-12">
-    <div class="max-w-md w-full">
+  <!-- Main -->
+  <main>
+    <div class="container">
 
       <!-- Loading State -->
-      <div id="loading-state" class="text-center">
-        <div class="w-20 h-20 mx-auto mb-6 relative">
-          <div class="absolute inset-0 rounded-full gradient-bg opacity-20 pulse-ring"></div>
-          <div class="absolute inset-2 rounded-full gradient-bg flex items-center justify-center">
-            <svg class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          </div>
+      <div id="state-loading" class="state active">
+        <div class="loading-icon">
+          <div class="loading-ring"></div>
         </div>
-        <p class="text-foil-muted">Loading club info...</p>
+        <p class="loading-text">Loading club details...</p>
       </div>
 
-      <!-- Club Info (hidden by default) -->
-      <div id="club-info" class="hidden fade-in">
-        <!-- Club Card -->
-        <div class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 mb-8 text-center">
-          <!-- Club Icon -->
-          <div class="w-24 h-24 mx-auto mb-6 rounded-2xl gradient-bg flex items-center justify-center shadow-lg">
-            <svg class="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <!-- Club Info State -->
+      <div id="state-club" class="state">
+        <div class="card">
+          <div class="club-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </div>
-
-          <p class="text-sm text-foil-muted mb-2">You're invited to join</p>
-          <h1 id="club-name" class="text-2xl font-bold text-foil-charcoal mb-2">Loading...</h1>
-          <p id="member-count" class="text-foil-muted mb-6">
-            <span class="inline-flex items-center gap-1">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              <span id="member-text">-- members</span>
-            </span>
+          <p class="invite-label">You're invited to join</p>
+          <h1 id="club-name" class="club-name">Club Name</h1>
+          <p class="member-count">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span id="member-text">0 members</span>
           </p>
 
-          <!-- Invite Code Box -->
-          <div class="bg-foil-cream rounded-xl p-4 mb-6">
-            <p class="text-xs text-foil-muted mb-2">Invite Code</p>
-            <div class="flex items-center justify-center gap-3">
-              <code id="invite-code" class="text-2xl font-mono font-bold text-foil-green tracking-wider">------</code>
-              <button id="copy-btn" class="p-2 rounded-lg hover:bg-white transition-colors" title="Copy code" aria-label="Copy invite code to clipboard">
-                <svg class="w-5 h-5 text-foil-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <div class="code-box">
+            <p class="code-label">Invite Code</p>
+            <div class="code-display">
+              <span id="invite-code" class="code-value">------</span>
+              <button id="copy-btn" class="copy-btn" aria-label="Copy invite code">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </button>
             </div>
           </div>
 
-          <!-- Opening App Indicator (hidden by default) -->
-          <div id="opening-app" class="hidden mb-4 text-sm text-foil-muted">
-            <span class="inline-flex items-center gap-2">
-              <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Opening Foil...
-            </span>
+          <div id="opening-indicator" class="opening-indicator">
+            <svg fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25"></circle>
+              <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" opacity="0.75"></path>
+            </svg>
+            <span>Opening Foil...</span>
           </div>
 
-          <!-- Open App Button -->
-          <button id="open-app-btn" class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-xl shadow-lg shadow-foil-green/30 hover:shadow-xl hover:shadow-foil-green/40 transition-all mb-4">
-            Open in Foil App
-          </button>
-
-          <p class="text-xs text-foil-muted">
-            Already have Foil? Tap above to join instantly.
-          </p>
+          <button id="open-app-btn" class="btn-primary">Open in Foil</button>
+          <p class="btn-hint">Already have the app? Tap to join instantly.</p>
         </div>
 
-        <!-- Download Section -->
-        <div id="download-section" class="text-center">
-          <p class="text-sm text-foil-muted mb-4">Don't have Foil yet? Download free:</p>
-          <div id="store-buttons" class="flex flex-col sm:flex-row justify-center gap-3">
-            <!-- Buttons will be populated by JS based on platform -->
-          </div>
+        <div class="download-section">
+          <p class="download-label">Don't have Foil yet? It's free.</p>
+          <div id="store-buttons" class="store-buttons"></div>
         </div>
       </div>
 
-      <!-- Error State (hidden by default) -->
-      <div id="error-state" class="hidden fade-in text-center">
-        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-red-100 flex items-center justify-center">
-          <svg class="w-10 h-10 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <!-- Error State -->
+      <div id="state-error" class="state" style="text-align: center;">
+        <div class="error-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
         </div>
-        <h2 class="text-xl font-bold text-foil-charcoal mb-2">Club Not Found</h2>
-        <p class="text-foil-muted mb-6">This invite link may have expired or the club no longer exists.</p>
-        <a href="https://getfoilapp.com" class="inline-block gradient-bg text-white font-medium py-3 px-6 rounded-xl">
-          Visit Foil
-        </a>
+        <h2 class="error-title">Club Not Found</h2>
+        <p class="error-message">This invite link may have expired or the club no longer exists.</p>
+        <a href="https://getfoilapp.com" class="btn-primary" style="display: inline-block; width: auto; padding: 14px 32px;">Visit Foil</a>
       </div>
 
-      <!-- No Code State (hidden by default) -->
-      <div id="no-code-state" class="hidden fade-in text-center">
-        <div class="w-20 h-20 mx-auto mb-6 rounded-full gradient-bg flex items-center justify-center">
-          <svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <!-- No Code State -->
+      <div id="state-nocode" class="state" style="text-align: center;">
+        <div class="welcome-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         </div>
-        <h2 class="text-xl font-bold text-foil-charcoal mb-2">Join a Club on Foil</h2>
-        <p class="text-foil-muted mb-6">Clubs let you track food waste together with friends, family, or your community.</p>
+        <h2 class="welcome-title">Join a Club</h2>
+        <p class="welcome-message">Clubs let you track food waste together with friends, family, or your community.</p>
 
-        <!-- Manual Code Entry -->
-        <div class="bg-white rounded-2xl p-6 mb-6 text-left">
-          <label for="manual-code-input" class="block text-sm font-medium text-foil-charcoal mb-2">Have an invite code?</label>
-          <div class="flex gap-2">
+        <div class="manual-entry">
+          <label for="code-input" class="input-label">Have an invite code?</label>
+          <div class="input-row">
             <input
               type="text"
-              id="manual-code-input"
-              placeholder="Enter code"
-              class="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-foil-green/50 focus:border-foil-green uppercase font-mono text-center tracking-wider"
+              id="code-input"
+              class="code-input"
+              placeholder="ENTER CODE"
               maxlength="20"
-              pattern="[A-Za-z0-9]+"
               autocomplete="off"
               autocapitalize="characters"
+              spellcheck="false"
             >
-            <button id="manual-join-btn" class="gradient-bg text-white font-medium px-5 py-3 rounded-xl" aria-label="Join club with entered code">
-              Join
-            </button>
+            <button id="join-btn" class="join-btn">Join</button>
           </div>
-          <p id="input-error" class="hidden text-red-500 text-sm mt-2">Please enter a valid code (letters and numbers only)</p>
+          <p id="input-error" class="input-error">Please enter a valid code (letters and numbers only)</p>
         </div>
 
-        <div id="no-code-download" class="text-center">
-          <p class="text-sm text-foil-muted mb-4">Don't have Foil yet?</p>
-          <div id="no-code-store-buttons" class="flex flex-col sm:flex-row justify-center gap-3">
-            <!-- Buttons will be populated by JS based on platform -->
-          </div>
+        <div class="download-section">
+          <p class="download-label">Don't have the app yet?</p>
+          <div id="nocode-store-buttons" class="store-buttons"></div>
         </div>
       </div>
 
@@ -244,335 +692,274 @@
   </main>
 
   <!-- Toast Container -->
-  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50" role="status" aria-live="polite"></div>
+  <div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
 
   <!-- Footer -->
-  <footer class="py-6 px-6 border-t border-gray-200/50 bg-white/50">
-    <div class="max-w-lg mx-auto">
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-foil-muted">
-        <a href="https://getfoilapp.com" class="hover:text-foil-charcoal transition-colors">getfoilapp.com</a>
-        <span class="hidden sm:inline">·</span>
-        <a href="https://satban.github.io/foil-support/" class="hover:text-foil-charcoal transition-colors">Support</a>
-        <span class="hidden sm:inline">·</span>
-        <a href="https://satban.github.io/Foil-privacy/" class="hover:text-foil-charcoal transition-colors">Privacy</a>
-      </div>
+  <footer>
+    <div class="footer-inner">
+      <a href="https://getfoilapp.com">getfoilapp.com</a>
+      <span class="footer-divider">·</span>
+      <a href="https://satban.github.io/foil-support/">Support</a>
+      <span class="footer-divider">·</span>
+      <a href="https://satban.github.io/Foil-privacy/">Privacy</a>
+      <span class="footer-divider">·</span>
+      <a href="mailto:getfoilapp@gmail.com">Contact</a>
     </div>
   </footer>
 
   <script>
-    const SUPABASE_URL = 'https://aqdapnwrsvyjrpiwtwip.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxZGFwbndyc3Z5anJwaXd0d2lwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxMTQ2MjAsImV4cCI6MjA4NDY5MDYyMH0.OkkiXODLlfbSEfLEYzO7sFBTZks2_7gKaKeSd22yV2M';
-    const FETCH_TIMEOUT_MS = 10000;
-    const CODE_PATTERN = /^[A-Za-z0-9]+$/;
-    const MAX_CODE_LENGTH = 20;
+    // Configuration
+    const CONFIG = {
+      SUPABASE_URL: 'https://aqdapnwrsvyjrpiwtwip.supabase.co',
+      SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxZGFwbndyc3Z5anJwaXd0d2lwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxMTQ2MjAsImV4cCI6MjA4NDY5MDYyMH0.OkkiXODLlfbSEfLEYzO7sFBTZks2_7gKaKeSd22yV2M',
+      FETCH_TIMEOUT: 10000,
+      CODE_PATTERN: /^[A-Za-z0-9]+$/,
+      MAX_CODE_LENGTH: 20,
+      APP_STORE_URL: 'https://apps.apple.com/us/app/foil-app/id6759352471',
+      PLAY_STORE_URL: 'https://play.google.com/store/apps/details?id=com.getfoil.app'
+    };
 
     // Platform detection
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    const isMobile = isIOS || isAndroid;
-
-    // Store button HTML
-    const APP_STORE_BUTTON = `
-      <a href="https://apps.apple.com/us/app/foil-app/id6759352471" target="_blank" class="transition-transform hover:scale-105" aria-label="Download on the App Store">
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store" class="h-11">
-      </a>
-    `;
-    const PLAY_STORE_BUTTON = `
-      <a href="https://play.google.com/store/apps/details?id=com.getfoil.app" target="_blank" class="transition-transform hover:scale-105" aria-label="Get it on Google Play">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" class="h-11">
-      </a>
-    `;
+    const platform = {
+      isIOS: /iPhone|iPad|iPod/i.test(navigator.userAgent),
+      isAndroid: /Android/i.test(navigator.userAgent),
+      get isMobile() { return this.isIOS || this.isAndroid; }
+    };
 
     // DOM Elements
-    const loadingState = document.getElementById('loading-state');
-    const clubInfo = document.getElementById('club-info');
-    const errorState = document.getElementById('error-state');
-    const noCodeState = document.getElementById('no-code-state');
-    const clubNameEl = document.getElementById('club-name');
-    const memberTextEl = document.getElementById('member-text');
-    const inviteCodeEl = document.getElementById('invite-code');
-    const copyBtn = document.getElementById('copy-btn');
-    const openAppBtn = document.getElementById('open-app-btn');
-    const openingAppEl = document.getElementById('opening-app');
-    const manualCodeInput = document.getElementById('manual-code-input');
-    const manualJoinBtn = document.getElementById('manual-join-btn');
-    const inputError = document.getElementById('input-error');
-    const toastContainer = document.getElementById('toast-container');
-    const storeButtons = document.getElementById('store-buttons');
-    const noCodeStoreButtons = document.getElementById('no-code-store-buttons');
+    const elements = {
+      states: {
+        loading: document.getElementById('state-loading'),
+        club: document.getElementById('state-club'),
+        error: document.getElementById('state-error'),
+        nocode: document.getElementById('state-nocode')
+      },
+      clubName: document.getElementById('club-name'),
+      memberText: document.getElementById('member-text'),
+      inviteCode: document.getElementById('invite-code'),
+      copyBtn: document.getElementById('copy-btn'),
+      openAppBtn: document.getElementById('open-app-btn'),
+      openingIndicator: document.getElementById('opening-indicator'),
+      storeButtons: document.getElementById('store-buttons'),
+      nocodeStoreButtons: document.getElementById('nocode-store-buttons'),
+      codeInput: document.getElementById('code-input'),
+      joinBtn: document.getElementById('join-btn'),
+      inputError: document.getElementById('input-error'),
+      toastContainer: document.getElementById('toast-container')
+    };
 
     let currentCode = null;
 
-    // Populate store buttons based on platform
-    function populateStoreButtons() {
-      let buttons = '';
-      if (isIOS) {
-        buttons = APP_STORE_BUTTON + PLAY_STORE_BUTTON;
-      } else if (isAndroid) {
-        buttons = PLAY_STORE_BUTTON + APP_STORE_BUTTON;
-      } else {
-        // Desktop: show both, iOS first
-        buttons = APP_STORE_BUTTON + PLAY_STORE_BUTTON;
-      }
-      storeButtons.innerHTML = buttons;
-      noCodeStoreButtons.innerHTML = buttons;
-    }
-
-    // Validate invite code format
+    // Utility functions
     function isValidCode(code) {
-      if (!code || typeof code !== 'string') return false;
-      if (code.length > MAX_CODE_LENGTH) return false;
-      return CODE_PATTERN.test(code);
+      return code &&
+             typeof code === 'string' &&
+             code.length <= CONFIG.MAX_CODE_LENGTH &&
+             CONFIG.CODE_PATTERN.test(code);
     }
 
-    // Extract invite code from URL
     function getInviteCode() {
-      const path = window.location.pathname;
-      // Handle /club/CODE format
-      const match = path.match(/\/club\/([A-Za-z0-9]+)/);
-      if (match) return match[1].toUpperCase();
+      // Try path format: /club/CODE
+      const pathMatch = window.location.pathname.match(/\/club\/([A-Za-z0-9]+)/);
+      if (pathMatch) return pathMatch[1].toUpperCase();
 
-      // Handle query param ?code=CODE
+      // Try query param: ?code=CODE
       const params = new URLSearchParams(window.location.search);
       const code = params.get('code');
-      if (code && code.trim()) return code.trim().toUpperCase();
-
-      return null;
+      return code?.trim()?.toUpperCase() || null;
     }
 
-    // Fetch with timeout
-    async function fetchWithTimeout(url, options, timeout = FETCH_TIMEOUT_MS) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), timeout);
-
-      try {
-        const response = await fetch(url, {
-          ...options,
-          signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-        return response;
-      } catch (error) {
-        clearTimeout(timeoutId);
-        throw error;
-      }
+    // State management
+    function showState(stateName) {
+      Object.entries(elements.states).forEach(([name, el]) => {
+        el.classList.toggle('active', name === stateName);
+      });
     }
 
-    // Fetch club info from Supabase
+    // Store buttons
+    function renderStoreButtons() {
+      const appStoreBtn = `
+        <a href="${CONFIG.APP_STORE_URL}" target="_blank" rel="noopener" class="store-btn" aria-label="Download on the App Store">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
+        </a>
+      `;
+      const playStoreBtn = `
+        <a href="${CONFIG.PLAY_STORE_URL}" target="_blank" rel="noopener" class="store-btn" aria-label="Get it on Google Play">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+        </a>
+      `;
+
+      // Show user's platform first
+      const buttons = platform.isAndroid
+        ? playStoreBtn + appStoreBtn
+        : appStoreBtn + playStoreBtn;
+
+      elements.storeButtons.innerHTML = buttons;
+      elements.nocodeStoreButtons.innerHTML = buttons;
+    }
+
+    // Toast notifications
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      toast.setAttribute('role', 'status');
+      elements.toastContainer.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // API
     async function fetchClubInfo(code) {
-      if (!isValidCode(code)) {
-        return null;
-      }
+      if (!isValidCode(code)) return null;
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), CONFIG.FETCH_TIMEOUT);
 
       try {
-        const response = await fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rpc/get_club_by_invite_code`, {
+        const response = await fetch(`${CONFIG.SUPABASE_URL}/rest/v1/rpc/get_club_by_invite_code`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'apikey': SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            'apikey': CONFIG.SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${CONFIG.SUPABASE_ANON_KEY}`
           },
-          body: JSON.stringify({ code: code })
+          body: JSON.stringify({ code }),
+          signal: controller.signal
         });
 
-        if (!response.ok) {
-          console.error('API returned status:', response.status);
-          return null;
-        }
+        clearTimeout(timeoutId);
+
+        if (!response.ok) return null;
 
         const data = await response.json();
-
-        if (data && Array.isArray(data) && data.length > 0) {
-          return data[0];
-        }
-        return null;
+        return Array.isArray(data) && data.length > 0 ? data[0] : null;
       } catch (error) {
-        if (error.name === 'AbortError') {
-          console.error('Request timed out');
-        } else {
-          console.error('Error fetching club:', error);
-        }
+        clearTimeout(timeoutId);
+        console.error('Fetch error:', error.name === 'AbortError' ? 'Timeout' : error);
         return null;
       }
     }
 
-    // Show states
-    function showLoading() {
-      loadingState.classList.remove('hidden');
-      clubInfo.classList.add('hidden');
-      errorState.classList.add('hidden');
-      noCodeState.classList.add('hidden');
-    }
-
-    function showClubInfo(club, code) {
-      loadingState.classList.add('hidden');
-      clubInfo.classList.remove('hidden');
-      errorState.classList.add('hidden');
-      noCodeState.classList.add('hidden');
-
-      // Safely set text content (XSS safe)
-      clubNameEl.textContent = club.name || 'Unknown Club';
+    // Display club info
+    function displayClubInfo(club, code) {
+      elements.clubName.textContent = club.name || 'Unknown Club';
       const count = typeof club.member_count === 'number' ? club.member_count : 0;
-      memberTextEl.textContent = `${count} ${count === 1 ? 'member' : 'members'}`;
-      inviteCodeEl.textContent = code;
+      elements.memberText.textContent = `${count} ${count === 1 ? 'member' : 'members'}`;
+      elements.inviteCode.textContent = code;
       currentCode = code;
-
-      // Update page title
       document.title = `Join ${club.name || 'Club'} on Foil`;
+      showState('club');
     }
 
-    function showError() {
-      loadingState.classList.add('hidden');
-      clubInfo.classList.add('hidden');
-      errorState.classList.remove('hidden');
-      noCodeState.classList.add('hidden');
-    }
-
-    function showNoCode() {
-      loadingState.classList.add('hidden');
-      clubInfo.classList.add('hidden');
-      errorState.classList.add('hidden');
-      noCodeState.classList.remove('hidden');
-    }
-
-    // Show toast notification
-    function showToast(message) {
-      const toast = document.createElement('div');
-      toast.className = 'copy-toast bg-foil-charcoal text-white px-4 py-2 rounded-lg shadow-lg text-sm';
-      toast.textContent = message;
-      toast.setAttribute('role', 'status');
-      toastContainer.appendChild(toast);
-
-      setTimeout(() => {
-        toast.remove();
-      }, 3000);
-    }
-
-    // Copy code to clipboard
+    // Clipboard
     async function copyCode() {
       if (!currentCode) return;
 
       try {
         await navigator.clipboard.writeText(currentCode);
         showToast('Code copied!');
-      } catch (err) {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = currentCode;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-9999px';
-        document.body.appendChild(textArea);
-        textArea.select();
+      } catch {
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = currentCode;
+        textarea.style.cssText = 'position:fixed;left:-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
         try {
           document.execCommand('copy');
           showToast('Code copied!');
-        } catch (e) {
+        } catch {
           showToast('Failed to copy');
         }
-        document.body.removeChild(textArea);
+        document.body.removeChild(textarea);
       }
     }
 
-    // Open app with deep link
+    // Deep linking
     function openApp() {
       if (!currentCode) return;
 
-      // Show opening indicator
-      openingAppEl.classList.remove('hidden');
-      openAppBtn.disabled = true;
+      elements.openingIndicator.classList.add('visible');
+      elements.openAppBtn.disabled = true;
 
-      // Try custom scheme
       const deepLink = `foil://club/${currentCode}`;
 
-      // Set a timeout to hide the indicator if app doesn't open
-      const fallbackTimeout = setTimeout(() => {
-        openingAppEl.classList.add('hidden');
-        openAppBtn.disabled = false;
-        showToast('App not installed? Download below!');
+      // Fallback if app doesn't open
+      const fallbackTimer = setTimeout(() => {
+        elements.openingIndicator.classList.remove('visible');
+        elements.openAppBtn.disabled = false;
+        showToast('App not installed? Download below.');
       }, 2500);
 
-      // Listen for page visibility change (app opened)
-      const handleVisibilityChange = () => {
+      // Clear timer if app opens (page becomes hidden)
+      const onVisibilityChange = () => {
         if (document.hidden) {
-          clearTimeout(fallbackTimeout);
-          document.removeEventListener('visibilitychange', handleVisibilityChange);
+          clearTimeout(fallbackTimer);
+          document.removeEventListener('visibilitychange', onVisibilityChange);
         }
       };
-      document.addEventListener('visibilitychange', handleVisibilityChange);
+      document.addEventListener('visibilitychange', onVisibilityChange);
 
-      // Try to open the app
       window.location.href = deepLink;
     }
 
-    // Handle manual code entry
+    // Manual join
     function handleManualJoin() {
-      const code = manualCodeInput.value.trim().toUpperCase();
+      const code = elements.codeInput.value.trim().toUpperCase();
 
-      // Validate code format
       if (!isValidCode(code)) {
-        inputError.classList.remove('hidden');
-        manualCodeInput.classList.add('border-red-500');
+        elements.inputError.classList.add('visible');
+        elements.codeInput.classList.add('error');
         return;
       }
 
-      inputError.classList.add('hidden');
-      manualCodeInput.classList.remove('border-red-500');
-
-      // Navigate with query param (safer than path)
+      elements.inputError.classList.remove('visible');
+      elements.codeInput.classList.remove('error');
       window.location.href = `/club/?code=${encodeURIComponent(code)}`;
     }
 
-    // Clear input error on typing
-    manualCodeInput.addEventListener('input', () => {
-      inputError.classList.add('hidden');
-      manualCodeInput.classList.remove('border-red-500');
-    });
-
     // Event listeners
-    copyBtn.addEventListener('click', copyCode);
-    openAppBtn.addEventListener('click', openApp);
-    manualJoinBtn.addEventListener('click', handleManualJoin);
-    manualCodeInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') handleManualJoin();
+    elements.copyBtn.addEventListener('click', copyCode);
+    elements.openAppBtn.addEventListener('click', openApp);
+    elements.joinBtn.addEventListener('click', handleManualJoin);
+    elements.codeInput.addEventListener('keypress', e => e.key === 'Enter' && handleManualJoin());
+    elements.codeInput.addEventListener('input', () => {
+      elements.inputError.classList.remove('visible');
+      elements.codeInput.classList.remove('error');
     });
 
     // Initialize
     async function init() {
-      // Populate store buttons based on platform
-      populateStoreButtons();
+      renderStoreButtons();
 
       const code = getInviteCode();
 
       if (!code) {
-        showNoCode();
+        showState('nocode');
         return;
       }
 
-      // Validate code format before making API call
       if (!isValidCode(code)) {
-        showError();
+        showState('error');
         return;
       }
 
-      showLoading();
+      showState('loading');
 
       const club = await fetchClubInfo(code);
 
       if (club) {
-        showClubInfo(club, code);
+        displayClubInfo(club, code);
 
-        // On mobile, try to open app automatically after a delay
-        if (isMobile) {
-          setTimeout(() => {
-            openApp();
-          }, 800);
+        // Auto-open on mobile after brief delay
+        if (platform.isMobile) {
+          setTimeout(openApp, 800);
         }
       } else {
-        showError();
+        showState('error');
       }
     }
 
-    // Run on page load
     init();
   </script>
 </body>
