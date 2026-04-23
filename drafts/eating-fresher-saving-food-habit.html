@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eating Fresher and Saving Food: A Habit for Life – Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --cream: #ffffff; --ink: #1a1a1a; --ink-light: #4a4a4a; --green: #2D5A3D; --white: #ffffff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Instrument Sans', sans-serif; background: var(--cream); color: var(--ink); font-size: 17px; line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+    .banner { background: linear-gradient(135deg, #2D5A3D, #4A7C5C); color: white; text-align: center; padding: 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .banner h2 { margin: 0 0 12px; font-size: 18px; font-weight: 500; opacity: 0.9; }
+    .banner-actions { display: flex; justify-content: center; gap: 16px; }
+    .banner-actions a { display: inline-block; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 15px; transition: transform 0.2s; }
+    .banner-actions a:hover { transform: translateY(-2px); }
+    .btn-approve { background: white; color: #2D5A3D; }
+    .btn-reject { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; }
+    .btn-revise { background: #fff3e0; color: #e65100; border: 2px solid #ffcc80; }
+    article { max-width: 720px; margin: 0 auto; padding: 140px 40px 80px; }
+    article h1 { font-size: 36px; margin-bottom: 12px; }
+    .byline { font-size: 14px; font-style: italic; color: #7a7a7a; margin-bottom: 24px; }
+    .excerpt { font-size: 18px; color: var(--ink-light); line-height: 1.6; margin-bottom: 32px; }
+    .featured-image { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px; }
+    .content { font-size: 18px; line-height: 1.8; }
+    .content h2 { font-size: 26px; margin: 40px 0 16px; }
+    .content h3 { font-size: 22px; margin: 32px 0 12px; }
+    .content p { margin-bottom: 20px; }
+    .content ul, .content ol { margin: 0 0 20px 24px; }
+    .content li { margin-bottom: 8px; }
+    .social { background: #f8f8f8; padding: 24px; border-radius: 12px; margin-top: 48px; border: 1px solid #e0e0e0; }
+    .social h4 { margin: 0 0 12px; color: #666; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .social p { margin: 0; color: #333; }
+    .cta { background: var(--green); color: white; padding: 40px; border-radius: 16px; text-align: center; margin-top: 48px; }
+    .cta h3 { color: white; margin-bottom: 12px; }
+    .cta p { opacity: 0.9; margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      .banner-actions { flex-direction: column; gap: 10px; }
+      article { padding: 130px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <h2>Draft Preview – Ready for Review</h2>
+    <div class="banner-actions">
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=approve&draft_id=ca047a48-b7aa-477d-9431-8a73c2583ecc&token=TgmLBZ0jF8UK7Vb7KZXJhOcMY7FUGdVydCkr16vymQo" class="btn-approve">✅ Approve</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=revise&draft_id=ca047a48-b7aa-477d-9431-8a73c2583ecc&token=TgmLBZ0jF8UK7Vb7KZXJhOcMY7FUGdVydCkr16vymQo" class="btn-revise">✏️ Request Changes</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=reject&draft_id=ca047a48-b7aa-477d-9431-8a73c2583ecc&token=TgmLBZ0jF8UK7Vb7KZXJhOcMY7FUGdVydCkr16vymQo" class="btn-reject">❌ Reject</a>
+    </div>
+  </div>
+
+  <article>
+    <img src="https://getfoilapp.com/images/blog/eating-fresher-saving-food-habit.jpg" alt="Featured image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px;">
+    <h1>Eating Fresher and Saving Food: A Habit for Life</h1>
+    <p class="byline">Authored by Foil Content Team<br>Helping you waste less, one article at a time</p>
+    <p class="excerpt">Transform your kitchen habits to enjoy fresher meals, save money, and reduce food waste. Start a daily routine that benefits your health and your wallet!</p>
+
+    <div class="content">
+      <h2>Introduction: The Fresh Food Revolution</h2>
+<p>Have you ever opened your fridge to find food lurking in the back, only to realize it’s past its expiration date? You’re not alone! In fact, Americans waste around $1,500 worth of food every year. That’s a staggering amount that weighs on our wallets and contributes to the growing global food waste crisis. But what if I told you that saving food and enjoying fresher meals is as easy as adopting a daily habit? Just like brushing your teeth or hitting the gym, tracking food expiration dates and managing your pantry can be part of a consistent routine that will benefit your family’s health and your finances. Let’s dive into some practical tips on how to make this a lifestyle change!</p>
+
+<h2>Start with Awareness: Understand What You Have</h2>
+<p>Before you can prevent food waste, you need to know what’s in your kitchen. Understanding what you have on hand is the first step towards a fresher, waste-free lifestyle.</p>
+
+<h3>1. Inventory Your Ingredients</h3>
+<ul>
+    <li>Take a few minutes each week to jot down all the items in your fridge, pantry, and freezer.</li>
+    <li>Use an app like Foil to make this process easy! Keep track of what you have and when it will expire.</li>
+    <li>Regularly check for items that are nearing the expiration date and prioritize using them in your meals.</li>
+</ul>
+
+<h2>Plan Your Meals: Intentional Cooking</h2>
+<p>Meal planning is a game-changer. Not only does it help reduce food waste, but it also encourages healthier eating!</p>
+
+<h3>2. Create a Weekly Meal Plan</h3>
+<ul>
+    <li>Choose recipes that incorporate the ingredients you already have to minimize waste.</li>
+    <li>Batch cooking can make weeknight dinners easier and more economical. Cook larger portions and freeze what you don’t eat.</li>
+    <li>Consider theme nights (like Taco Tuesday or Soup Sunday) to narrow your focus and reduce indecision.</li>
+</ul>
+
+<h3>3. Keep a Running List of Ingredients</h3>
+<ul>
+    <li>Keep a notepad on your fridge to jot down items you’re running low on as you cook.</li>
+    <li>Check your list before going grocery shopping to avoid purchasing duplicates.</li>
+</ul>
+
+<h2>Smart Storage: Extend the Life of Your Food</h2>
+<p>How you store your food can significantly impact its shelf life. Proper storage techniques mean you can enjoy your groceries longer!</p>
+
+<h3>4. Use Clear Containers</h3>
+<ul>
+    <li>Store foods in clear containers, labeled with the date you opened or prepared them.</li>
+    <li>This practice helps you see what you have at a glance and encourages you to use what’s oldest first.</li>
+</ul>
+
+<h3>5. Optimize Your Fridge Storage</h3>
+<ul>
+    <li>Remember that the fridge is colder at the back than in the front. Store perishables like meats and dairy in the back, where it’s coldest.</li>
+    <li>Use designated zones: keep fruits and vegetables in their specific drawers to maintain freshness.</li>
+</ul>
+
+<h2>Reduce, Reuse, and Upcycle: Get Creative!</h2>
+<p>Sometimes food that is still safe to eat may not look perfect, but that’s where your creativity can shine!</p>
+
+<h3>6. Embrace Imperfection</h3>
+<ul>
+    <li>Learn to look past bruises and blemishes; you can chop them up for stir-fries or soups!</li>
+    <li>Pulverizing slightly wilted greens for smoothies or homemade pestos is a delicious way to use them up.</li>
+</ul>
+
+<h3>7. Explore Food Preservation</h3>
+<ul>
+    <li>Freeze excess fruits and vegetables before they spoil – this keeps them fresh for future smoothies, sauces, or baked goods.</li>
+    <li>Try pickling or fermenting surplus veggies; they add zest to meals and can last for months!</li>
+</ul>
+
+<h2>Make It a Family Affair: Collective Responsibility</h2>
+<p>Engaging your family in this process not only helps reduce waste but also teaches valuable life skills!</p>
+
+<h3>8. Involve Everyone in Meal Prep</h3>
+<ul>
+    <li>Assign different meal prep tasks to family members based on their age and ability.</li>
+    <li>This fosters a culture of appreciation for food and reduces reluctance around consuming leftovers.</li>
+</ul>
+
+<h3>9. Discuss Food Waste Together</h3>
+<ul>
+    <li>Talk about the importance of reducing food waste as a family, and keep each other accountable.</li>
+    <li>Share fun facts about food waste statistics, like how millions of tons of food end up in landfills every year.</li>
+</ul>
+
+<h2>Conclusion: Make Food Management a Habit</h2>
+<p>By adopting these effective habits around food management, you will find yourself reducing waste, treating your body to fresher meals, and saving a significant amount of money each year! Just like any important lifestyle change, the key is consistency. The more you engage with your food—the more aware you are of expiration dates, the better your planning, and the more you include your family—the more ingrained these habits will become.</p>
+<p>Apps like Foil can make this process even easier by helping you track your ingredients and prioritize what to use first. Remember, saving food isn’t just about your budget; it’s about your health, the environment, and making the most of every grocery trip. Let’s embrace a fresher, waste-free kitchen together!</p>
+
+    </div>
+
+    <div class="social">
+      <h4>Social Media Caption (Facebook & Instagram)</h4>
+      <p>Transform your kitchen habits! Reduce food waste, save money, and eat fresher meals every day. Start making a change today! #FoodWaste #HealthyEating</p>
+    </div>
+
+    <div class="cta">
+      <h3>Ready to reduce your food waste?</h3>
+      <p>Foil helps you track what's in your kitchen and reminds you before things expire.</p>
+    </div>
+  </article>
+</body>
+</html>
