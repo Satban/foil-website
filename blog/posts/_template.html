@@ -10,6 +10,40 @@
   <meta property="og:image" content="{{IMAGE_URL}}" />
   <meta property="og:url" content="{{POST_URL}}" />
   <meta property="og:type" content="article" />
+
+  <!-- Article Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{TITLE}}",
+    "description": "{{EXCERPT}}",
+    "image": "{{IMAGE_URL}}",
+    "author": {
+      "@type": "Organization",
+      "name": "Foil",
+      "url": "https://getfoilapp.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Foil",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://getfoilapp.com/images/logo.png"
+      }
+    },
+    "datePublished": "{{DATE_PUBLISHED}}",
+    "dateModified": "{{DATE_PUBLISHED}}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{POST_URL}}"
+    }
+  }
+  </script>
+
+  <!-- FAQ Schema (if applicable) -->
+  {{FAQ_SCHEMA}}
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
