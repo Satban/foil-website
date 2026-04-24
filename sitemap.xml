@@ -14,6 +14,11 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://getfoilapp.com/blog/posts/fresh-food-habit.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://getfoilapp.com/blog/posts/how-long-does-raw-chicken-last-in-the-fridge.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
