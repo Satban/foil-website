@@ -14,12 +14,22 @@
 
   <!-- Blog posts -->
   <url>
-    <loc>https://getfoilapp.com/blog/posts/your-freezer-is-a-superpower.html</loc>
+    <loc>https://getfoilapp.com/blog/posts/how-long-does-raw-chicken-last-in-the-fridge.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://getfoilapp.com/blog/posts/leftover-legends-food-expiration-tracking.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://getfoilapp.com/blog/posts/meal-planning-made-easy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://getfoilapp.com/blog/posts/reduce-food-waste-at-home.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -34,12 +44,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://getfoilapp.com/blog/posts/leftover-legends-food-expiration-tracking.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://getfoilapp.com/blog/posts/reduce-food-waste-at-home.html</loc>
+    <loc>https://getfoilapp.com/blog/posts/your-freezer-is-a-superpower.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
