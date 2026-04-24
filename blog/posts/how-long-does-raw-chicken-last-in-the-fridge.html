@@ -4,12 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>How Long Does Raw Chicken Last in the Fridge? – Foil Blog</title>
-  <meta name="description" content="Raw chicken can last in the fridge for 1-2 days, according to the USDA. Proper storage is key to keeping it safe and fresh." />
+  <meta name="description" content="Learn how long raw chicken lasts in the fridge (1-2 days) and spot spoilage signs. Follow USDA guidelines to keep your family safe from foodborne illness." />
   <meta property="og:title" content="How Long Does Raw Chicken Last in the Fridge?" />
-  <meta property="og:description" content="Raw chicken can last in the fridge for 1-2 days, according to the USDA. Proper storage is key to keeping it safe and fresh." />
+  <meta property="og:description" content="Learn how long raw chicken lasts in the fridge (1-2 days) and spot spoilage signs. Follow USDA guidelines to keep your family safe from foodborne illness." />
   <meta property="og:image" content="https://getfoilapp.com/images/blog/how-long-does-raw-chicken-last-in-the-fridge.jpg" />
   <meta property="og:url" content="https://getfoilapp.com/blog/posts/how-long-does-raw-chicken-last-in-the-fridge.html" />
   <meta property="og:type" content="article" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Long Does Raw Chicken Last in the Fridge?">
+  <meta name="twitter:description" content="Learn how long raw chicken lasts in the fridge (1-2 days) and spot spoilage signs. Follow USDA guidelines to keep your family safe from foodborne illness.">
+  <meta name="twitter:image" content="https://getfoilapp.com/images/blog/how-long-does-raw-chicken-last-in-the-fridge.jpg">
 
   <!-- Article Schema for SEO -->
   <script type="application/ld+json">
@@ -544,6 +550,158 @@
       text-decoration: none;
     }
 
+    /* Key Takeaways Box */
+    .key-takeaways {
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+      border-left: 4px solid var(--green);
+      border-radius: var(--radius-sm);
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+
+    .key-takeaways h3 {
+      color: var(--green);
+      font-size: 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .key-takeaways h3::before {
+      content: "✨";
+    }
+
+    .key-takeaways ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .key-takeaways li {
+      margin-bottom: 10px;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    .key-takeaways li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Table of Contents */
+    .table-of-contents {
+      background: var(--cream-dark);
+      border-radius: var(--radius-sm);
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+
+    .table-of-contents h3 {
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .table-of-contents h3::before {
+      content: "📑";
+    }
+
+    .table-of-contents ol {
+      margin: 0;
+      padding-left: 20px;
+      counter-reset: toc;
+    }
+
+    .table-of-contents li {
+      margin-bottom: 8px;
+      counter-increment: toc;
+    }
+
+    .table-of-contents li::marker {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .table-of-contents a {
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .table-of-contents a:hover {
+      color: var(--green);
+    }
+
+    .table-of-contents .toc-h3 {
+      margin-left: 16px;
+      font-size: 14px;
+    }
+
+    /* Related Posts */
+    .related-posts {
+      margin: 60px 0;
+      padding-top: 40px;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .related-posts h3 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .related-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .related-post-card {
+      text-decoration: none;
+      color: inherit;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--cream-dark);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .related-post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .related-post-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .related-post-card .related-post-content {
+      padding: 16px;
+    }
+
+    .related-post-card h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .related-posts-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .related-post-card img {
+        height: 160px;
+      }
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       nav { padding: 6px 20px; }
@@ -642,22 +800,39 @@
 
     <img src="https://getfoilapp.com/images/blog/how-long-does-raw-chicken-last-in-the-fridge.jpg" alt="How Long Does Raw Chicken Last in the Fridge?" class="article-hero">
 
+    <div class="key-takeaways">
+      <h3>Key Takeaways</h3>
+      <ul>
+        <li>Raw chicken lasts 1-2 days in the fridge at 40°F or below</li>
+        <li>Freeze for up to 1 year (best quality within 6 months)</li>
+        <li>Watch for grey color, sour smell, or slimy texture</li>
+        <li>Keep out of the danger zone (40-140°F) to prevent bacteria growth</li>
+      </ul>
+    </div>
+
+    <div class="table-of-contents">
+      <h3>In This Article</h3>
+      <ol>
+        <li><a href="#how-long-does-raw-chicken-last-in-the-fridge">How Long Does Raw Chicken Last in the Fridge?</a></li><li><a href="#the-details">The Details</a></li><li><a href="#the-science">The Science</a></li><li><a href="#signs-its-gone-bad">Signs It&#x27;s Gone Bad</a></li><li><a href="#quick-reference">Quick Reference</a></li>
+      </ol>
+    </div>
+
     <div class="article-content">
-      <h2>How Long Does Raw Chicken Last in the Fridge?</h2>
+      <h2 id="how-long-does-raw-chicken-last-in-the-fridge">How Long Does Raw Chicken Last in the Fridge?</h2>
 <p>Raw chicken has a shelf life of about <strong>1 to 2 days</strong> in the refrigerator. If you need to store it longer, consider freezing it instead. This will significantly extend its freshness and safety.</p>
-<h2>The Details</h2>
+<h2 id="the-details">The Details</h2>
 <p>To protect your health (and your taste buds), always store raw chicken at a temperature below <strong>40°F</strong>. Ideally, it should be kept in its original packaging or tightly wrapped to prevent juices from leaking onto other foods. </p>
 <p>Remember, the <strong>USDA</strong> recommends checking the sell-by date (if applicable) and using any raw chicken by that date, or cooking or freezing it as needed. The freezer can keep raw chicken safe for up to <strong>1 year</strong>, but for optimal quality, consume it within <strong>6 months</strong>.</p>
-<h2>The Science</h2>
+<h2 id="the-science">The Science</h2>
 <p>Why is raw chicken only good for such a short time? Bacteria like <strong>Salmonella</strong> and <strong>Campylobacter</strong> can grow rapidly at temperatures between <strong>40°F and 140°F</strong>, known as the “danger zone.” The longer chicken stays in this zone, the greater the risk of foodborne illness. Additionally, natural enzymes in the chicken can lead to spoilage, affecting texture and flavor over time.</p>
-<h2>Signs It's Gone Bad</h2>
+<h2 id="signs-its-gone-bad">Signs It's Gone Bad</h2>
 <p>If you're unsure whether raw chicken has spoiled, look for these signs:</p>
 <ul>
     <li><strong>Color:</strong> Fresh raw chicken should be light pink. If it has turned grey or green, it's time to toss it.</li>
     <li><strong>Smell:</strong> A sour or off odor is a clear sign that bacteria have set in.</li>
     <li><strong>Texture:</strong> Slimy or sticky chicken should not be consumed.</li>
 </ul>
-<h2>Quick Reference</h2>
+<h2 id="quick-reference">Quick Reference</h2>
 <ul>
     <li>Raw chicken lasts in the fridge: <strong>1-2 days</strong></li>
     <li>Freezer shelf life: <strong>up to 1 year</strong></li>
@@ -665,6 +840,28 @@
     <li>Signs of spoilage: Color change, bad smell, slimy texture</li>
 </ul>
 <p>Keeping track of your food's freshness can be a demand, but tools like the Foil app make it easier to manage your food storage and avoid waste.</p>
+    </div>
+
+    <div class="related-posts">
+      <h3>Related Articles</h3>
+      <div class="related-posts-grid">
+        <a href="small-wins-tiny-habits-food-waste.html" class="related-post-card">
+        <img src="../../images/blog/small-wins-tiny-habits-food-waste.jpg" alt="">
+        <div class="related-post-content">
+          <h4>Small Wins: How Tiny Habits Save Big on Food Waste</h4>
+        </div>
+      </a><a href="leftover-legends-food-expiration-tracking.html" class="related-post-card">
+        <img src="../../images/blog/leftover-legends-food-expiration-tracking.jpg" alt="">
+        <div class="related-post-content">
+          <h4>Leftover Legends: How Long Your Fridge Favorites Actually Last</h4>
+        </div>
+      </a><a href="your-freezer-is-a-superpower.html" class="related-post-card">
+        <img src="../../images/blog/your-freezer-is-a-superpower.jpg" alt="">
+        <div class="related-post-content">
+          <h4>Unlock Your Freezer’s Potential: Reduce Waste and Elevate Your Kitchen Skills</h4>
+        </div>
+      </a>
+      </div>
     </div>
 
     <div class="share-links" style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--cream-dark);">

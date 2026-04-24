@@ -4,12 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{TITLE}} – Foil Blog</title>
-  <meta name="description" content="{{EXCERPT}}" />
+  <meta name="description" content="{{META_DESCRIPTION}}" />
   <meta property="og:title" content="{{TITLE}}" />
-  <meta property="og:description" content="{{EXCERPT}}" />
+  <meta property="og:description" content="{{META_DESCRIPTION}}" />
   <meta property="og:image" content="{{IMAGE_URL}}" />
   <meta property="og:url" content="{{POST_URL}}" />
   <meta property="og:type" content="article" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TITLE}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="{{IMAGE_URL}}">
 
   <!-- Article Schema for SEO -->
   <script type="application/ld+json">
@@ -521,6 +527,158 @@
       text-decoration: none;
     }
 
+    /* Key Takeaways Box */
+    .key-takeaways {
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+      border-left: 4px solid var(--green);
+      border-radius: var(--radius-sm);
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+
+    .key-takeaways h3 {
+      color: var(--green);
+      font-size: 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .key-takeaways h3::before {
+      content: "✨";
+    }
+
+    .key-takeaways ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .key-takeaways li {
+      margin-bottom: 10px;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    .key-takeaways li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Table of Contents */
+    .table-of-contents {
+      background: var(--cream-dark);
+      border-radius: var(--radius-sm);
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+
+    .table-of-contents h3 {
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .table-of-contents h3::before {
+      content: "📑";
+    }
+
+    .table-of-contents ol {
+      margin: 0;
+      padding-left: 20px;
+      counter-reset: toc;
+    }
+
+    .table-of-contents li {
+      margin-bottom: 8px;
+      counter-increment: toc;
+    }
+
+    .table-of-contents li::marker {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .table-of-contents a {
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .table-of-contents a:hover {
+      color: var(--green);
+    }
+
+    .table-of-contents .toc-h3 {
+      margin-left: 16px;
+      font-size: 14px;
+    }
+
+    /* Related Posts */
+    .related-posts {
+      margin: 60px 0;
+      padding-top: 40px;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .related-posts h3 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .related-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .related-post-card {
+      text-decoration: none;
+      color: inherit;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--cream-dark);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .related-post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .related-post-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .related-post-card .related-post-content {
+      padding: 16px;
+    }
+
+    .related-post-card h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .related-posts-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .related-post-card img {
+        height: 160px;
+      }
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       nav { padding: 6px 20px; }
@@ -619,9 +777,15 @@
 
     <img src="{{IMAGE_URL}}" alt="{{TITLE}}" class="article-hero">
 
+    {{KEY_TAKEAWAYS}}
+
+    {{TABLE_OF_CONTENTS}}
+
     <div class="article-content">
       {{CONTENT}}
     </div>
+
+    {{RELATED_POSTS}}
 
     <div class="share-links" style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--cream-dark);">
       <span>Share this article:</span>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Make Food Freshness a Daily Habit for Your Family – Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --cream: #ffffff; --ink: #1a1a1a; --ink-light: #4a4a4a; --green: #2D5A3D; --white: #ffffff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Instrument Sans', sans-serif; background: var(--cream); color: var(--ink); font-size: 17px; line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+    .banner { background: linear-gradient(135deg, #2D5A3D, #4A7C5C); color: white; text-align: center; padding: 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .banner h2 { margin: 0 0 12px; font-size: 18px; font-weight: 500; opacity: 0.9; }
+    .banner-actions { display: flex; justify-content: center; gap: 16px; }
+    .banner-actions a { display: inline-block; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 15px; transition: transform 0.2s; }
+    .banner-actions a:hover { transform: translateY(-2px); }
+    .btn-approve { background: white; color: #2D5A3D; }
+    .btn-reject { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; }
+    .btn-revise { background: #fff3e0; color: #e65100; border: 2px solid #ffcc80; }
+    article { max-width: 720px; margin: 0 auto; padding: 140px 40px 80px; }
+    article h1 { font-size: 36px; margin-bottom: 12px; }
+    .byline { font-size: 14px; font-style: italic; color: #7a7a7a; margin-bottom: 24px; }
+    .excerpt { font-size: 18px; color: var(--ink-light); line-height: 1.6; margin-bottom: 32px; }
+    .featured-image { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px; }
+    .content { font-size: 18px; line-height: 1.8; }
+    .content h2 { font-size: 26px; margin: 40px 0 16px; }
+    .content h3 { font-size: 22px; margin: 32px 0 12px; }
+    .content p { margin-bottom: 20px; }
+    .content ul, .content ol { margin: 0 0 20px 24px; }
+    .content li { margin-bottom: 8px; }
+    .social { background: #f8f8f8; padding: 24px; border-radius: 12px; margin-top: 48px; border: 1px solid #e0e0e0; }
+    .social h4 { margin: 0 0 12px; color: #666; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .social p { margin: 0; color: #333; }
+    .key-takeaways { background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border-left: 4px solid #2D5A3D; border-radius: 10px; padding: 24px 28px; margin: 32px 0; }
+    .key-takeaways h3 { color: #2D5A3D; font-size: 18px; margin-bottom: 16px; }
+    .key-takeaways ul { margin: 0; padding-left: 20px; }
+    .key-takeaways li { margin-bottom: 10px; color: #4a4a4a; line-height: 1.6; }
+    .meta-info { background: #fff3e0; padding: 16px 20px; border-radius: 8px; margin-top: 24px; border: 1px solid #ffcc80; }
+    .meta-info h4 { margin: 0 0 8px; color: #e65100; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .meta-info p { margin: 0; color: #333; font-size: 14px; }
+    .cta { background: var(--green); color: white; padding: 40px; border-radius: 16px; text-align: center; margin-top: 48px; }
+    .cta h3 { color: white; margin-bottom: 12px; }
+    .cta p { opacity: 0.9; margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      .banner-actions { flex-direction: column; gap: 10px; }
+      article { padding: 130px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <h2>Draft Preview – Ready for Review</h2>
+    <div class="banner-actions">
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=approve&draft_id=ca047a48-b7aa-477d-9431-8a73c2583ecc&token=0yJ-u9RYFXxiThjjJdaa4N8p4FCeDm6PuCywDx7C2h4" class="btn-approve">✅ Approve</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=revise&draft_id=ca047a48-b7aa-477d-9431-8a73c2583ecc&token=0yJ-u9RYFXxiThjjJdaa4N8p4FCeDm6PuCywDx7C2h4" class="btn-revise">✏️ Request Changes</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=reject&draft_id=ca047a48-b7aa-477d-9431-8a73c2583ecc&token=0yJ-u9RYFXxiThjjJdaa4N8p4FCeDm6PuCywDx7C2h4" class="btn-reject">❌ Reject</a>
+    </div>
+  </div>
+
+  <article>
+    <img src="https://getfoilapp.com/images/blog/food-freshness-habits.jpg?v=1777025931" alt="Featured image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px;">
+    <h1>Make Food Freshness a Daily Habit for Your Family</h1>
+    <p class="byline">Authored by Foil Content Team<br>Helping you waste less, one article at a time</p>
+    <p class="excerpt">Learn how to make saving food and eating fresher a daily habit that benefits your health and wallet.</p>
+
+    <div class="key-takeaways">
+      <h3>✨ Key Takeaways</h3>
+      <ul>
+        <li>Incorporate a 'Fresh Food Day' to regularly check your fridge.</li>
+        <li>Engage your family in meal planning and storage organization.</li>
+        <li>Utilize freezing and portioning for meals to reduce waste.</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h2>You know that moment when you open the fridge and...</h2><p>...you’re greeted by a wilted bag of spinach that seems to have auditioned for a horror movie? Yeah, I feel you. It’s like, when did it go bad? More importantly, why didn’t I notice it earlier? We’ve all been there, but here’s the thing: getting on top of food freshness is a habit you can totally master. Just like rolling out of bed to brush your teeth (seriously, who doesn’t do that?), tracking food expiration is key to a healthier family and an even healthier wallet.</p><h2>Consistency is Key</h2><p>Building a habit takes time, and being mindful about food is no different. Here are some practical approaches that can ease you into this daily routine:</p><ul><li><strong>Designate a Fresh Food Day:</strong> Pick a day each week to assess your fridge. Is that leftover Chinese from last Friday still looking good? Take stock of those hidden mushrooms before they turn into science experiments.</li><li><strong>Engage Your Family:</strong> Make it a family affair! Get everyone involved in meal planning and prepping. Maybe your partner can lead the charge on those vegetables that have been lying low in the crisper drawer.</li><li><strong>Stay Organized:</strong> Use clear storage containers (preferably not the long-forgotten Tupperware at the back of the shelf) and label them with dates. Yes, labeling might feel like a chore, but it boosts your chances of using something before it goes south!</li></ul><h2>One Unexpected Tip</h2><p>Did you know that some fruits actually help other produce stay fresher? Apples emit ethylene gas, which can speed up ripening in other fruits. So if you’ve got a banana that’s trying to hop on the ‘let’s turn brown’ train a little too early, keep it away from your apples! And speaking of bananas, enjoy them at their best by eating them fresh—they’re also great for smoothies or banana bread when they get too brown.</p><p>Another handy tidbit? Freeze excess leftovers in portioned containers. If life gets hectic and you can’t cook, you’ll have a healthy meal ready to roll instead of reaching for the takeout menu.</p><h2>Common Questions</h2><p><strong>What’s the best way to tell if my food has gone bad?</strong><br>Look for changes in color, texture, and smell. When in doubt, trust your instincts; if it looks sketchy, toss it!</p><p><strong>How can I reduce food waste if I only cook for one?</strong><br>Planning smaller meals or using meal prep containers can help batch-cook and store food in manageable portions, reducing chances of waste.</p><p><strong>Is it safe to eat food past its expiration date?</strong><br>Many foods are safe to eat after their expiration date as long as they’ve been stored appropriately and show no signs of spoilage. Always use your senses to guide you!</p><p>By incorporating these simple habits into your routine, you’ll transform food storage from a dreaded task to a supportive practice for your family's health. Daily attention to your food not only cuts down on waste but also elevates your culinary experiences by keeping your meals fresh. Cheers to smaller grocery bills and tastier dishes!</p>
+    </div>
+
+    <div class="social">
+      <h4>Social Media Caption (Facebook & Instagram)</h4>
+      <p>Mastering food freshness isn't just smart—it's a rewarding daily habit for your health and wallet! Check out our tips to get started.</p>
+    </div>
+
+    <div class="meta-info">
+      <h4>SEO Meta Description (125 chars)</h4>
+      <p>Discover practical habits to reduce food waste and keep your meals fresher, saving money and supporting your family's health.</p>
+    </div>
+
+    <div class="cta">
+      <h3>Ready to reduce your food waste?</h3>
+      <p>Foil helps you track what's in your kitchen and reminds you before things expire.</p>
+    </div>
+  </article>
+</body>
+</html>
