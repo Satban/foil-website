@@ -367,7 +367,7 @@
           <input type="password" id="password" required placeholder="Password">
         </div>
         <div id="login-error" class="error-message" style="display: none;"></div>
-        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 12px;">
+        <button type="submit" id="login-btn" class="btn-primary" style="width: 100%; margin-top: 12px;">
           Sign In
         </button>
       </form>
@@ -501,7 +501,15 @@
     const SUPABASE_URL = 'https://aqdapnwrsvyjrpiwtwip.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxZGFwbndyc3Z5anJwaXd0d2lwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxMTQ2MjAsImV4cCI6MjA4NDY5MDYyMH0.OkkiXODLlfbSEfLEYzO7sFBTZks2_7gKaKeSd22yV2M';
 
+    // Check if Supabase library loaded
+    if (!window.supabase) {
+      document.body.innerHTML = '<div style="padding: 40px; text-align: center;"><h2>Error</h2><p>Failed to load Supabase library. Please refresh the page.</p></div>';
+      throw new Error('Supabase library not loaded');
+    }
+
+    console.log('Supabase library loaded, creating client...');
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    console.log('Supabase client created');
 
     let currentUser = null;
     let allCodes = [];
@@ -533,22 +541,40 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const errorEl = document.getElementById('login-error');
+      const loginBtn = document.getElementById('login-btn');
 
       errorEl.style.display = 'none';
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Signing in...';
 
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
+      try {
+        console.log('Attempting login for:', email);
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password
+        });
 
-      if (error) {
-        errorEl.textContent = error.message;
+        if (error) {
+          console.error('Login error:', error);
+          errorEl.textContent = error.message;
+          errorEl.style.display = 'block';
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Sign In';
+          return;
+        }
+
+        console.log('Login successful:', data.user?.email);
+        currentUser = data.user;
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Sign In';
+        showDashboard();
+      } catch (err) {
+        console.error('Unexpected error:', err);
+        errorEl.textContent = 'An unexpected error occurred. Check console for details.';
         errorEl.style.display = 'block';
-        return;
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Sign In';
       }
-
-      currentUser = data.user;
-      showDashboard();
     });
 
     // Logout
@@ -610,7 +636,9 @@
       tableEl.style.display = 'none';
 
       try {
+        console.log('Loading codes...');
         const data = await apiCall('list');
+        console.log('Codes loaded:', data.codes?.length);
         allCodes = data.codes || [];
 
         // Update stats
@@ -622,6 +650,12 @@
         renderCodes();
       } catch (error) {
         console.error('Error loading codes:', error);
+        // If unauthorized, log out and show error
+        if (error.message.includes('Unauthorized') || error.message.includes('Admin')) {
+          alert('Access denied: ' + error.message + '\n\nYou will be logged out.');
+          logout();
+          return;
+        }
         alert('Error loading codes: ' + error.message);
       } finally {
         loadingEl.style.display = 'none';
