@@ -508,7 +508,7 @@
     }
 
     console.log('Supabase library loaded, creating client...');
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     console.log('Supabase client created');
 
     let currentUser = null;
@@ -517,14 +517,14 @@
     // Initialize
     document.addEventListener('DOMContentLoaded', async () => {
       // Check for existing session
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { session } } = await supabaseClient.auth.getSession();
       if (session) {
         currentUser = session.user;
         showDashboard();
       }
 
       // Listen for auth changes
-      supabase.auth.onAuthStateChange((event, session) => {
+      supabaseClient.auth.onAuthStateChange((event, session) => {
         if (session) {
           currentUser = session.user;
           showDashboard();
@@ -549,7 +549,7 @@
 
       try {
         console.log('Attempting login for:', email);
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
           email,
           password
         });
@@ -579,7 +579,7 @@
 
     // Logout
     async function logout() {
-      await supabase.auth.signOut();
+      await supabaseClient.auth.signOut();
       showLogin();
     }
 
@@ -599,7 +599,7 @@
 
     // API helpers
     async function apiCall(action, method = 'GET', body = null) {
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { session } } = await supabaseClient.auth.getSession();
       if (!session) throw new Error('Not authenticated');
 
       const url = `${SUPABASE_URL}/functions/v1/admin-promo-codes?action=${action}`;
