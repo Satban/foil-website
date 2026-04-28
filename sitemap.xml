@@ -14,7 +14,7 @@
 
   <!-- Blog posts -->
   <url>
-    <loc>https://getfoilapp.com/blog/posts/beat-food-price-hike.html</loc>
+    <loc>https://getfoilapp.com/blog/posts/reduce-food-waste-save-money.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -40,6 +40,11 @@
   </url>
   <url>
     <loc>https://getfoilapp.com/blog/posts/reduce-food-waste-at-home.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://getfoilapp.com/blog/posts/reduce-food-waste-save-money.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
