@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Save Money and Food: Beat Rising Grocery Prices with Ease – Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --cream: #ffffff; --ink: #1a1a1a; --ink-light: #4a4a4a; --green: #2D5A3D; --white: #ffffff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Instrument Sans', sans-serif; background: var(--cream); color: var(--ink); font-size: 17px; line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+    .banner { background: linear-gradient(135deg, #2D5A3D, #4A7C5C); color: white; text-align: center; padding: 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .banner h2 { margin: 0 0 12px; font-size: 18px; font-weight: 500; opacity: 0.9; }
+    .banner-actions { display: flex; justify-content: center; gap: 16px; }
+    .banner-actions a { display: inline-block; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 15px; transition: transform 0.2s; }
+    .banner-actions a:hover { transform: translateY(-2px); }
+    .btn-approve { background: white; color: #2D5A3D; }
+    .btn-reject { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; }
+    .btn-revise { background: #fff3e0; color: #e65100; border: 2px solid #ffcc80; }
+    article { max-width: 720px; margin: 0 auto; padding: 140px 40px 80px; }
+    article h1 { font-size: 36px; margin-bottom: 12px; }
+    .byline { font-size: 14px; font-style: italic; color: #7a7a7a; margin-bottom: 24px; }
+    .excerpt { font-size: 18px; color: var(--ink-light); line-height: 1.6; margin-bottom: 32px; }
+    .featured-image { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px; }
+    .content { font-size: 18px; line-height: 1.8; }
+    .content h2 { font-size: 26px; margin: 40px 0 16px; }
+    .content h3 { font-size: 22px; margin: 32px 0 12px; }
+    .content p { margin-bottom: 20px; }
+    .content ul, .content ol { margin: 0 0 20px 24px; }
+    .content li { margin-bottom: 8px; }
+    .social { background: #f8f8f8; padding: 24px; border-radius: 12px; margin-top: 48px; border: 1px solid #e0e0e0; }
+    .social h4 { margin: 0 0 12px; color: #666; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .social p { margin: 0; color: #333; }
+    .key-takeaways { background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border-left: 4px solid #2D5A3D; border-radius: 10px; padding: 24px 28px; margin: 32px 0; }
+    .key-takeaways h3 { color: #2D5A3D; font-size: 18px; margin-bottom: 16px; }
+    .key-takeaways ul { margin: 0; padding-left: 20px; }
+    .key-takeaways li { margin-bottom: 10px; color: #4a4a4a; line-height: 1.6; }
+    .meta-info { background: #fff3e0; padding: 16px 20px; border-radius: 8px; margin-top: 24px; border: 1px solid #ffcc80; }
+    .meta-info h4 { margin: 0 0 8px; color: #e65100; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .meta-info p { margin: 0; color: #333; font-size: 14px; }
+    .cta { background: var(--green); color: white; padding: 40px; border-radius: 16px; text-align: center; margin-top: 48px; }
+    .cta h3 { color: white; margin-bottom: 12px; }
+    .cta p { opacity: 0.9; margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      .banner-actions { flex-direction: column; gap: 10px; }
+      article { padding: 130px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <h2>Draft Preview – Ready for Review</h2>
+    <div class="banner-actions">
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=approve&draft_id=55cb8ad4-c506-4252-a612-1d50ec91e13a&token=Lfyl6Vi-4ka11SOeXucGC1JCOqKEZojwrL4z6UZ2FBg" class="btn-approve">✅ Approve</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=revise&draft_id=55cb8ad4-c506-4252-a612-1d50ec91e13a&token=Lfyl6Vi-4ka11SOeXucGC1JCOqKEZojwrL4z6UZ2FBg" class="btn-revise">✏️ Request Changes</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=reject&draft_id=55cb8ad4-c506-4252-a612-1d50ec91e13a&token=Lfyl6Vi-4ka11SOeXucGC1JCOqKEZojwrL4z6UZ2FBg" class="btn-reject">❌ Reject</a>
+    </div>
+  </div>
+
+  <article>
+    <img src="https://getfoilapp.com/images/blog/reduce-food-waste-save-money.jpg?v=1777373556" alt="Featured image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px;">
+    <h1>Save Money and Food: Beat Rising Grocery Prices with Ease</h1>
+    <p class="byline">Authored by Foil Content Team<br>Helping you waste less, one article at a time</p>
+    <p class="excerpt">Discover practical tips to reduce food waste and save money as grocery prices soar. No more forgotten veggies!</p>
+
+    <div class="key-takeaways">
+      <h3>✨ Key Takeaways</h3>
+      <ul>
+        <li>Plan meals around what you already have to cut costs.</li>
+        <li>Labeling containers helps in managing expiration dates.</li>
+        <li>Freezing food is a smart way to prevent waste.</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h2>When the Fridge Becomes a Time Capsule</h2> <p>You know that moment when you open the fridge and suddenly feel like you’re stepping into a game of Tetris? The leftover pad Thai from two weekends ago is lurking behind a half-eaten tub of guacamole, and the bag of spinach is almost as wilted as your plans to eat healthier this week. It’s a familiar scene for many of us, especially as food prices edge higher and higher. Let’s chat about how we can turn that fridge chaos into a haven for fresh food—while saving some cash in the process.</p> <h2>The Pricey Problem of Food Waste</h2> <p>While I can’t solve the global economy, I can give you some tips on how to keep your grocery budget from doing gymnastics. Did you know that a huge chunk of the food we buy goes straight to the landfill? It’s like tossing money out the window—money that could easily buy you a week’s worth of coffee or your favorite snacks.</p> <p>Here’s a little secret: planning meals around what you already have can be a game changer. Imagine transforming that lonely chicken breast and some old veggies into a hearty stir-fry. Did someone say late-night crunch munchies? Oh wait, that’s me eyeing leftovers!</p> <h2>Smart Strategies for Tracking Those Expiration Dates</h2> <p>Okay, real talk—labeling containers might feel like it’s adding another thing to your to-do list, but trust me, it’s worth it. Here are some practical strategies to avoid food waste, without turning your kitchen into a laboratory:</p> <ul> <li><strong>Know your dates:</strong> Understand the difference between “sell by,” “best by,” and “use by.” Most items are still good for a while after those dates.</li> <li><strong>First in, first out:</strong> Organize your fridge like a pro! Place new groceries in the back and older items up front. It’s like a VIP treatment for your leftovers.</li> <li><strong>The forgotten freezer:</strong> Freezing food can be a lifesaver. Got extra bread? Freeze it! Those browning bananas? Smoothie time!</li> <li><strong>Tech to the rescue:</strong> Download an app (like you know which one I'm talking about!) to keep track of what you have on hand and when it expires. It’s like having a mini food assistant!</li> <li><strong>Embrace the mystery Tupperware:</strong> Sometimes, all you need is creativity. Best lunch ever? Turn that stray quinoa and black beans into a salad and you’ve mastered leftovers.</li> </ul> <p>Now I won’t judge if the container of three-day-old chili looks a little scary—it happens to the best of us! Just remember, wasted food is wasted money, especially when groceries are more precious than gold lately.</p> <h2>Common Questions</h2> <h3>How can I tell if food is still safe to eat?</h3> <p>Use your senses! Check for any off-smells, discoloration, or mold. If everything looks and smells okay, you’re probably good to go.</p> <h3>What should I do with expired foods?</h3> <p>Before you toss it, research if it’s compostable! If not, don’t hesitate to put non-perishables in your local food bank. It’s a win-win!</p> <h3>How can I help my family waste less food?</h3> <p>Involve them in meal planning! Make it a fun family activity where everyone gets to choose a meal for the week. This can encourage them to eat what’s already in the fridge!</p> <p>Ultimately, reducing food waste is not just an eco-friendly endeavor, it’s also a savvy money-saving strategy in these expensive times. Let’s get smart with our groceries and keep that fridge from becoming a food graveyard!</p>
+    </div>
+
+    <div class="social">
+      <h4>Social Media Caption (Facebook & Instagram)</h4>
+      <p>Bite back at rising grocery prices! Discover simple ways to reduce food waste and save money with these practical tips. 🥦💰</p>
+    </div>
+
+    <div class="meta-info">
+      <h4>SEO Meta Description (99 chars)</h4>
+      <p>Learn how to track expiration dates and reduce food waste to save money amid rising grocery prices.</p>
+    </div>
+
+    <div class="cta">
+      <h3>Ready to reduce your food waste?</h3>
+      <p>Foil helps you track what's in your kitchen and reminds you before things expire.</p>
+    </div>
+  </article>
+</body>
+</html>
