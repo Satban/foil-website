@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "CR462Z4VB3.com.getfoil.app",
+        "paths": [
+          "/redeem",
+          "/redeem/*"
+        ]
+      }
+    ]
+  }
+}
