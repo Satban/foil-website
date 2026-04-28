@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redeem Premium - Foil</title>
   <meta name="description" content="Redeem your Foil Premium promo code">
-  <link rel="icon" type="image/png" href="/images/foil-app-icon.png">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="icon" type="image/png" href="/images/foil_icon.png">
   <style>
     * {
       box-sizing: border-box;
@@ -301,14 +300,14 @@
   <div class="card">
     <!-- Loading State -->
     <div id="state-loading" class="state active">
-      <img src="/images/foil-app-icon.png" alt="Foil" class="logo">
+      <img src="/images/foil_icon.png" alt="Foil" class="logo">
       <h1>Validating Code...</h1>
       <div class="spinner"></div>
     </div>
 
     <!-- Enter Code State (when no code in URL) -->
     <div id="state-enter-code" class="state">
-      <img src="/images/foil-app-icon.png" alt="Foil" class="logo">
+      <img src="/images/foil_icon.png" alt="Foil" class="logo">
       <h1>Redeem Premium</h1>
       <p class="subtitle">Enter your promo code to claim free Premium access</p>
 
@@ -325,7 +324,7 @@
 
     <!-- Valid Code - Email Form State -->
     <div id="state-email-form" class="state">
-      <img src="/images/foil-app-icon.png" alt="Foil" class="logo">
+      <img src="/images/foil_icon.png" alt="Foil" class="logo">
       <h1>Claim Your Premium</h1>
 
       <div class="code-display" id="display-code">-</div>
@@ -432,10 +431,24 @@
     const SUPABASE_URL = 'https://aqdapnwrsvyjrpiwtwip.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxZGFwbndyc3Z5anJwaXd0d2lwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxMTQ2MjAsImV4cCI6MjA4NDY5MDYyMH0.OkkiXODLlfbSEfLEYzO7sFBTZks2_7gKaKeSd22yV2M';
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
     let currentCode = null;
     let codeDuration = null;
+
+    // Helper to call Supabase RPC via fetch
+    async function rpc(functionName, params) {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${functionName}`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params)
+      });
+      if (!response.ok) {
+        throw new Error(`RPC error: ${response.status}`);
+      }
+      return response.json();
+    }
 
     // State management
     function showState(stateId) {
@@ -473,11 +486,9 @@
       showState('state-loading');
 
       try {
-        const { data, error } = await supabase.rpc('validate_promo_code', {
+        const data = await rpc('validate_promo_code', {
           p_code: code.trim().toUpperCase()
         });
-
-        if (error) throw error;
 
         if (!data.valid) {
           if (data.error_type === 'expired') {
