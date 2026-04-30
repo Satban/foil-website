@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Foil Admin - Promo Codes</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -732,14 +731,8 @@
       <h3>Bulk Upload Email Grants</h3>
       <form id="bulk-grant-form">
         <div class="form-group">
-          <label for="bulk-grant-file">Upload File (CSV or Excel)</label>
-          <input type="file" id="bulk-grant-file" accept=".csv,.xlsx,.xls" onchange="handleFileUpload(this)">
-          <p class="help-text">CSV or Excel file with emails in the first column</p>
-        </div>
-        <div style="text-align: center; color: #888; margin: 8px 0;">— or —</div>
-        <div class="form-group">
-          <label for="bulk-grant-emails">Paste Email Addresses</label>
-          <textarea id="bulk-grant-emails" placeholder="Enter one email per line"></textarea>
+          <label for="bulk-grant-emails">Email Addresses</label>
+          <textarea id="bulk-grant-emails" required placeholder="Enter one email per line, or paste from CSV"></textarea>
           <p class="help-text">One email per line. Maximum 500 emails per batch.</p>
         </div>
         <div class="form-group">
@@ -1376,59 +1369,6 @@
     function hideBulkGrantModal() {
       document.getElementById('bulk-grant-modal').style.display = 'none';
       document.getElementById('bulk-grant-form').reset();
-    }
-
-    // Handle CSV/Excel file upload
-    function handleFileUpload(input) {
-      const file = input.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-
-      reader.onload = function(e) {
-        try {
-          const data = new Uint8Array(e.target.result);
-          const workbook = XLSX.read(data, { type: 'array' });
-
-          // Get first sheet
-          const sheetName = workbook.SheetNames[0];
-          const sheet = workbook.Sheets[sheetName];
-
-          // Convert to JSON (array of arrays)
-          const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-          // Extract emails from first column
-          const emails = [];
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-          for (const row of rows) {
-            if (row && row[0]) {
-              const value = String(row[0]).trim().toLowerCase();
-              // Skip header row if detected
-              if (value === 'email' || value === 'emails' || value === 'e-mail') continue;
-              // Validate email format
-              if (emailRegex.test(value)) {
-                emails.push(value);
-              }
-            }
-          }
-
-          if (emails.length === 0) {
-            alert('No valid emails found in the file. Make sure emails are in the first column.');
-            return;
-          }
-
-          // Populate textarea with extracted emails
-          document.getElementById('bulk-grant-emails').value = emails.join('\n');
-          alert(`Found ${emails.length} email${emails.length === 1 ? '' : 's'} in the file.`);
-
-        } catch (err) {
-          console.error('File parse error:', err);
-          alert('Error parsing file. Please ensure it is a valid CSV or Excel file.');
-        }
-      };
-
-      reader.readAsArrayBuffer(file);
     }
 
     // Create bulk grants
