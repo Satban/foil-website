@@ -301,6 +301,50 @@
       }
     }
 
+    /* Mobile Menu Panel */
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      z-index: 99;
+      flex-direction: column;
+      gap: 16px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .nav-mobile-menu.open {
+      display: flex;
+    }
+
+    .nav-mobile-menu a {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav-mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
     /* ==========================================================================
        Buttons
        ========================================================================== */
@@ -521,7 +565,11 @@
     @media (max-width: 768px) {
       .flow-steps {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 16px;
+      }
+
+      .flow-step {
+        padding: 24px 20px;
       }
     }
 
@@ -1417,6 +1465,7 @@
         height: 480px;
         border-radius: 36px;
         padding: 10px;
+        margin-bottom: var(--space-md);
       }
 
       .phone-shell::before {
@@ -1428,6 +1477,50 @@
       .phone-screen {
         border-radius: 28px;
         padding: 36px 16px 16px;
+      }
+    }
+
+    /* ==========================================================================
+       Mobile Optimizations
+       ========================================================================== */
+    @media (max-width: 768px) {
+      :root {
+        --space-lg: 32px;
+        --space-xl: 48px;
+        --space-2xl: 64px;
+      }
+
+      .hero-image {
+        padding: 16px;
+      }
+
+      .section {
+        padding: var(--space-lg) 20px;
+      }
+
+      .section-header {
+        margin-bottom: var(--space-lg);
+      }
+
+      .flow .section-header {
+        margin-bottom: var(--space-md);
+      }
+
+      .showcase {
+        padding: var(--space-lg) 0;
+      }
+
+      .showcase-inner {
+        padding: 0 20px;
+        gap: var(--space-lg);
+      }
+
+      .use-cases-wave {
+        padding: var(--space-sm) 0;
+      }
+
+      .moments .section-header {
+        margin-bottom: var(--space-md);
       }
     }
 
@@ -1559,6 +1652,14 @@
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="#how" onclick="toggleMenu()">How it works</a>
+    <a href="#features" onclick="toggleMenu()">Features</a>
+    <a href="/blog" onclick="toggleMenu()">Blog</a>
+    <a href="/values" onclick="toggleMenu()">Our Values</a>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
@@ -1935,7 +2036,7 @@
     // Mobile menu
     function toggleMenu() {
       document.querySelector('.nav-hamburger').classList.toggle('active');
-      // Mobile menu implementation would go here
+      document.getElementById('mobileMenu').classList.toggle('open');
     }
 
     // STUC Animation
