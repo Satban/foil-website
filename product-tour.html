@@ -356,6 +356,14 @@
       pointer-events: none;
     }
 
+    .phone-glow-light {
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
     .phone-screen-fade {
       position: relative;
       width: 100%;
@@ -475,15 +483,10 @@
       font-size: 18px;
     }
 
-    .video-wrapper {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-xl);
-    }
-
-    .video-wrapper video {
-      width: 100%;
-      display: block;
+    .video-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     @media (max-width: 900px) {
@@ -501,9 +504,8 @@
         order: 1;
       }
 
-      .video-wrapper {
+      .video-visual {
         order: 2;
-        border-radius: var(--radius);
       }
     }
 
@@ -910,10 +912,15 @@
           <li><i class="ti ti-check"></i> Better recipe suggestions</li>
         </ul>
       </div>
-      <div class="video-wrapper reveal-right">
-        <video controls playsinline>
-          <source src="videos/partial-usage.mp4" type="video/mp4">
-        </video>
+      <div class="video-visual reveal-right">
+        <div class="phone-mockup phone-mockup-dark video-container">
+          <div class="phone-glow-light"></div>
+          <div class="phone-screen-video">
+            <video id="partial-video" controls playsinline>
+              <source src="videos/partial-usage.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
       </div>
     </div>
   </section>
