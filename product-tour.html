@@ -1073,6 +1073,29 @@
           }, 3500);
         }, index * 800);
       });
+
+      // Auto-mute videos when scrolled out of view
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (!entry.isIntersecting) {
+            // Scrolled out of view - mute and update button state
+            video.muted = true;
+            if (video.id === 'hero-video') {
+              unmuteBtn.classList.remove('unmuted');
+            }
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+
+      // Observe both videos
+      videoObserver.observe(heroVideo);
+      const partialVideo = document.getElementById('partial-video');
+      if (partialVideo) {
+        videoObserver.observe(partialVideo);
+      }
     });
   </script>
 </body>
