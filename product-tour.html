@@ -204,15 +204,10 @@
       font-size: 18px;
     }
 
-    .hero-video {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-xl);
-    }
-
-    .hero-video video {
-      width: 100%;
-      display: block;
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     @media (max-width: 900px) {
@@ -231,9 +226,8 @@
         order: 1;
       }
 
-      .hero-video {
+      .hero-visual {
         order: 2;
-        border-radius: var(--radius);
       }
     }
 
@@ -387,6 +381,22 @@
       opacity: 1;
     }
 
+    .phone-screen-video {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .phone-screen-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 36px;
+    }
+
     @media (min-width: 1100px) {
       .phone-mockup {
         width: 320px;
@@ -405,6 +415,14 @@
       }
 
       .phone-screen-fade img {
+        border-radius: 28px;
+      }
+
+      .phone-screen-video {
+        border-radius: 28px;
+      }
+
+      .phone-screen-video video {
         border-radius: 28px;
       }
     }
@@ -813,14 +831,19 @@
           Explore Features
         </a>
       </div>
-      <div class="hero-video reveal-right video-container">
-        <video id="hero-video" autoplay muted loop playsinline>
-          <source src="videos/onboarding-flow.mp4" type="video/mp4">
-        </video>
-        <button class="unmute-btn" id="unmute-btn" aria-label="Unmute video">
-          <i class="ti ti-volume-off icon-muted"></i>
-          <i class="ti ti-volume icon-unmuted"></i>
-        </button>
+      <div class="hero-visual reveal-right">
+        <div class="phone-mockup video-container">
+          <div class="phone-glow"></div>
+          <div class="phone-screen-video">
+            <video id="hero-video" autoplay muted loop playsinline>
+              <source src="videos/onboarding-flow.mp4" type="video/mp4">
+            </video>
+          </div>
+          <button class="unmute-btn" id="unmute-btn" aria-label="Unmute video">
+            <i class="ti ti-volume-off icon-muted"></i>
+            <i class="ti ti-volume icon-unmuted"></i>
+          </button>
+        </div>
       </div>
     </div>
   </section>
