@@ -10,6 +10,7 @@
   <meta property="og:image" content="https://getfoilapp.com/images/blog/meal-planning-made-easy.jpg" />
   <meta property="og:url" content="https://getfoilapp.com/blog/posts/meal-planning-made-easy.html" />
   <meta property="og:type" content="article" />
+  <link rel="canonical" href="https://getfoilapp.com/blog/posts/meal-planning-made-easy.html" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -21,7 +22,7 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     "headline": "Meal Planning Made Easy: Simplifying Your Week Without the Spreadsheet Stress",
     "description": "Tired of complicated meal plans and wasted food? Discover simple steps to meal planning that will calm your kitchen chaos and cut down on waste!",
     "image": "https://getfoilapp.com/images/blog/meal-planning-made-easy.jpg",
@@ -43,12 +44,31 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://getfoilapp.com/blog/posts/meal-planning-made-easy.html"
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".article-excerpt", ".key-takeaways"]
     }
   }
   </script>
 
-  <!-- FAQ Schema (if applicable) -->
-  
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Meal Plan Without Stress",
+    "description": "Five simple steps to weekly meal planning that reduces waste and saves money.",
+    "image": "https://getfoilapp.com/images/blog/meal-planning-made-easy.jpg",
+    "step": [
+      { "@type": "HowToStep", "name": "Assess what you already have", "text": "Check your fridge and pantry. Note items nearing expiration so you can build the week's meals around them.", "url": "https://getfoilapp.com/blog/posts/meal-planning-made-easy.html#step-1-assess-what-you-already-have" },
+      { "@type": "HowToStep", "name": "Keep it simple", "text": "Choose versatile ingredients that work across multiple meals to keep your grocery list short.", "url": "https://getfoilapp.com/blog/posts/meal-planning-made-easy.html#step-2-keep-it-simple" },
+      { "@type": "HowToStep", "name": "Plan for variety", "text": "Vary spices, sauces, and preparation methods so the same base ingredients feel different each meal.", "url": "https://getfoilapp.com/blog/posts/meal-planning-made-easy.html#step-3-plan-for-variety" },
+      { "@type": "HowToStep", "name": "Anchor your week with themes", "text": "Use theme nights (Taco Tuesday, Pasta Friday) as a starting point so you don't overthink each meal.", "url": "https://getfoilapp.com/blog/posts/meal-planning-made-easy.html#step-4-anchor-your-week-with-themes" },
+      { "@type": "HowToStep", "name": "Prep ahead — but not too much", "text": "Prep a few key ingredients in advance rather than full meals, so the week stays flexible.", "url": "https://getfoilapp.com/blog/posts/meal-planning-made-easy.html#step-5-prep-ahead-but-not-too-much" }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -743,7 +763,7 @@
       </div>
       <ul class="nav-links">
         <li><a href="/#features" onclick="closeMenu()">Features</a></li>
-        <li><a href="/#how-it-works" onclick="closeMenu()">How It Works</a></li>
+        <li><a href="/product-tour.html" onclick="closeMenu()">Product Tour</a></li>
         <li><a href="/blog" class="active" onclick="closeMenu()">Blog</a></li>
       </ul>
     </div>

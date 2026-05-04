@@ -1,0 +1,29 @@
+# Foil
+
+> Foil is an AI-powered food expiration tracker for iOS and Android. Scan a grocery receipt, and Foil identifies each item, sorts it into the right storage location (fridge, freezer, pantry, counter), and tracks when it should be used. Free to download.
+
+Tagline: Know What. Know When.
+
+## Core pages
+
+- [Home](https://getfoilapp.com/): Product overview, how it works (Scan → Know → Use), feature list, App Store / Play Store links
+- [Our Values](https://getfoilapp.com/values.html): Mission and principles — helping households use everything they buy
+- [Blog](https://getfoilapp.com/blog/): Articles on food storage, meal planning, and home organization
+
+## Blog posts
+
+- [How Long Does Cooked Chicken Last in the Fridge?](https://getfoilapp.com/blog/posts/how-long-cooked-chicken-lasts-fridge.html): Storage duration, spoilage signs, freezer guidance for cooked chicken
+- [How Long Does Raw Chicken Last in the Fridge?](https://getfoilapp.com/blog/posts/how-long-does-raw-chicken-last-in-the-fridge.html): Safe storage windows for raw chicken
+- [Fridge Feng Shui: Organization Tips](https://getfoilapp.com/blog/posts/fridge-feng-shui-organization-tips.html): How to arrange a fridge so items get used
+- [Your Freezer Is a Superpower](https://getfoilapp.com/blog/posts/your-freezer-is-a-superpower.html): Using the freezer to extend ingredient life
+- [Wilting Veggies Rescue Recipes](https://getfoilapp.com/blog/posts/wilting-veggies-rescue-recipes.html): What to cook with produce on its last legs
+- [Leftover Legends](https://getfoilapp.com/blog/posts/leftover-legends-food-expiration-tracking.html): Tracking and using leftovers
+- [Meal Planning Made Easy](https://getfoilapp.com/blog/posts/meal-planning-made-easy.html): Planning meals around what you already have
+- [Turn Fresh Food Habits Into a Daily Routine](https://getfoilapp.com/blog/posts/fresh-food-habit.html): Daily habits that keep food fresh
+- [Reduce Food Waste at Home](https://getfoilapp.com/blog/posts/reduce-food-waste-at-home.html): Practical reduction strategies
+- [Reduce Food Waste, Save Money](https://getfoilapp.com/blog/posts/reduce-food-waste-save-money.html): The financial case
+- [Small Wins, Tiny Habits](https://getfoilapp.com/blog/posts/small-wins-tiny-habits-food-waste.html): Habit-stacking for grocery use
+
+## About
+
+Foil is built by an independent developer. Contact: getfoilapp@gmail.com
