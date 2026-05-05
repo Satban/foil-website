@@ -35,7 +35,7 @@
       "name": "Foil",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://getfoilapp.com/images/foil_icon.png"
+        "url": "https://getfoilapp.com/images/logo.png"
       }
     },
     "datePublished": "{{DATE_PUBLISHED}}",
@@ -113,8 +113,10 @@
     }
 
     .nav-logo img {
-      height: 40px;
-      width: auto;
+      height: 68px;
+      width: 68px;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .nav-links {
@@ -734,7 +736,7 @@
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <img src="../../images/foil_wordmark.png" alt="Foil">
+        <img src="../../images/foil_icon.png" alt="Foil">
       </a>
       <div class="hamburger" onclick="toggleMenu()">
         <span></span>
@@ -743,7 +745,7 @@
       </div>
       <ul class="nav-links">
         <li><a href="/#features" onclick="closeMenu()">Features</a></li>
-        <li><a href="/product-tour.html" onclick="closeMenu()">Product Tour</a></li>
+        <li><a href="/#how-it-works" onclick="closeMenu()">How It Works</a></li>
         <li><a href="/blog" class="active" onclick="closeMenu()">Blog</a></li>
       </ul>
     </div>
