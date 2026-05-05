@@ -1,0 +1,59 @@
+name: Protected Files Guard
+
+# Refuses to allow changes to manually-designed pages (index.html, values.html)
+# and the canonical brand assets, regardless of who or what made the commit.
+# This is the last line of defense if the blog agent (or any other automation)
+# tries to overwrite hand-designed files.
+#
+# To override (e.g. you actually do want to update index.html), commit with
+# the literal string "[allow-protected]" anywhere in the commit message.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-protected:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Inspect diff for protected paths
+        run: |
+          # On PR: diff against the base branch
+          # On push: diff against the previous commit
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="origin/${{ github.base_ref }}"
+            git fetch origin "${{ github.base_ref }}"
+            DIFF=$(git diff --name-only "$BASE...HEAD")
+            COMMIT_MSG=$(git log --format=%B "$BASE..HEAD")
+          else
+            DIFF=$(git diff --name-only HEAD~1 HEAD)
+            COMMIT_MSG=$(git log --format=%B -n 1 HEAD)
+          fi
+
+          PROTECTED='^index\.html$|^values\.html$|^images/foil_icon\.png$|^images/foil_logo\.png$|^club/|^components/'
+          BAD=$(echo "$DIFF" | grep -E "$PROTECTED" || true)
+
+          if [ -z "$BAD" ]; then
+            echo "✓ No protected paths touched."
+            exit 0
+          fi
+
+          if echo "$COMMIT_MSG" | grep -qF "[allow-protected]"; then
+            echo "::warning::Protected paths changed but commit message contains [allow-protected]; allowing."
+            echo "$BAD"
+            exit 0
+          fi
+
+          echo "::error::Push touches protected paths without [allow-protected] override:"
+          echo "$BAD"
+          echo ""
+          echo "These files are hand-designed (see CLAUDE.md). To override, include"
+          echo "[allow-protected] in your commit message."
+          exit 1
