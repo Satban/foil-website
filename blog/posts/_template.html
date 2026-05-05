@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{TITLE}} – Foil Blog</title>
   <meta name="description" content="{{META_DESCRIPTION}}" />
+  <link rel="canonical" href="{{POST_URL}}" />
   <meta property="og:title" content="{{TITLE}}" />
   <meta property="og:description" content="{{META_DESCRIPTION}}" />
   <meta property="og:image" content="{{IMAGE_URL}}" />
@@ -17,11 +18,11 @@
   <meta name="twitter:description" content="{{META_DESCRIPTION}}">
   <meta name="twitter:image" content="{{IMAGE_URL}}">
 
-  <!-- Article Schema for SEO -->
+  <!-- BlogPosting Schema for SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     "headline": "{{TITLE}}",
     "description": "{{EXCERPT}}",
     "image": "{{IMAGE_URL}}",
@@ -35,7 +36,7 @@
       "name": "Foil",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://getfoilapp.com/images/logo.png"
+        "url": "https://getfoilapp.com/images/foil_icon.png"
       }
     },
     "datePublished": "{{DATE_PUBLISHED}}",
@@ -43,6 +44,10 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "{{POST_URL}}"
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".article-excerpt", ".key-takeaways", ".quick-reference"]
     }
   }
   </script>
@@ -113,10 +118,8 @@
     }
 
     .nav-logo img {
-      height: 68px;
-      width: 68px;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      height: 40px;
+      width: auto;
     }
 
     .nav-links {
@@ -543,6 +546,45 @@
       text-decoration: none;
     }
 
+    /* Quick-reference table (USDA durations summary) */
+    .quick-reference {
+      margin: 24px 0 28px;
+      overflow-x: auto;
+    }
+    .quick-reference table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid #e8e8e8;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      font-size: 15px;
+    }
+    .quick-reference th,
+    .quick-reference td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .quick-reference th {
+      background: var(--cream-dark);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+    .quick-reference tr:last-child td { border-bottom: none; }
+    .quick-reference td:first-child { font-weight: 600; color: var(--ink); }
+    .quick-reference caption {
+      caption-side: top;
+      text-align: left;
+      font-size: 13px;
+      color: var(--ink-muted);
+      padding: 0 0 6px;
+    }
+
     /* Key Takeaways Box */
     .key-takeaways {
       background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
@@ -736,7 +778,7 @@
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <img src="../../images/foil_icon.png" alt="Foil">
+        <img src="../../images/foil_wordmark.png" alt="Foil">
       </a>
       <div class="hamburger" onclick="toggleMenu()">
         <span></span>

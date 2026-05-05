@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Storage Guide – How Long Does It Last? | Foil</title>
+  <meta name="description" content="USDA-backed reference articles for the foods you actually buy — fridge, freezer, and pantry storage windows plus spoilage signs. A growing library from Foil.">
+  <link rel="canonical" href="https://getfoilapp.com/blog/food-storage/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Foil" />
+  <meta property="og:title" content="Food Storage Guide – How Long Does It Last?" />
+  <meta property="og:description" content="USDA-backed reference articles for the foods you actually buy." />
+  <meta property="og:url" content="https://getfoilapp.com/blog/food-storage/" />
+  <meta property="og:image" content="https://getfoilapp.com/images/hero-lifestyle.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Food Storage Guide – How Long Does It Last?" />
+  <meta name="twitter:description" content="USDA-backed reference articles for the foods you actually buy." />
+  <meta name="twitter:image" content="https://getfoilapp.com/images/hero-lifestyle.png" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://getfoilapp.com/blog/food-storage/",
+    "url": "https://getfoilapp.com/blog/food-storage/",
+    "name": "Food Storage Guide",
+    "description": "USDA-backed reference articles for the foods you actually buy — fridge, freezer, and pantry storage windows plus spoilage signs.",
+    "inLanguage": "en-US",
+    "isPartOf": { "@id": "https://getfoilapp.com/#website" },
+    "publisher": { "@id": "https://getfoilapp.com/#organization" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://getfoilapp.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://getfoilapp.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Food Storage Guide", "item": "https://getfoilapp.com/blog/food-storage/" }
+      ]
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FEFBF6;
+      --bg-alt: #F5F0E8;
+      --text: #1A1A1A;
+      --text-light: #4A4A4A;
+      --text-muted: #8A8A8A;
+      --accent: #1E3D32;
+      --accent-light: #2A5244;
+      --coral: #E8836B;
+      --white: #FFFFFF;
+      --border: rgba(0,0,0,0.08);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; line-height: 1.2; }
+    a { color: var(--accent); }
+
+    /* Top nav */
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 72px; padding: 0 40px; z-index: 100;
+      background: rgba(254, 251, 246, 0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+    }
+    .nav-inner { max-width: 1200px; width: 100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 15px; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      max-width: 1100px; margin: 0 auto;
+      padding: 96px 40px 0;
+      font-size: 13px; color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+
+    /* Hero */
+    .hero {
+      max-width: 1100px; margin: 0 auto;
+      padding: 16px 40px 24px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 60px);
+      letter-spacing: -1.5px;
+      margin-bottom: 14px;
+    }
+    .hero-sub {
+      font-size: 19px; color: var(--text-light);
+      max-width: 720px;
+      margin: 0 auto 16px;
+    }
+    .stats {
+      display: inline-flex; gap: 20px; flex-wrap: wrap;
+      justify-content: center;
+      font-size: 14px; color: var(--text-muted);
+      margin-top: 8px;
+    }
+    .stats span:not(:first-child)::before {
+      content: ""; display: inline-block; width: 4px; height: 4px;
+      border-radius: 50%; background: currentColor;
+      margin-right: 12px; vertical-align: middle; opacity: 0.4;
+    }
+
+    /* About strip */
+    .about-strip {
+      max-width: 1100px; margin: 32px auto 0;
+      padding: 24px 40px;
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .about-strip strong { color: var(--text); }
+
+    /* Categories */
+    .grid-section {
+      max-width: 1100px; margin: 48px auto 0;
+      padding: 0 40px;
+    }
+    .category {
+      margin-bottom: 40px;
+    }
+    .category-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .category-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .category-count {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+    }
+    .article-card {
+      display: block;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+    .article-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .article-title {
+      font-size: 18px;
+      font-weight: 600;
+      font-family: 'Fraunces', serif;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .article-summary {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .article-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Coming soon section */
+    .coming-soon-section {
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .coming-soon-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+    .coming-soon-list {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .coming-soon-pill {
+      background: var(--bg-alt);
+      border: 1px dashed var(--border);
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* CTA */
+    .cta-band {
+      max-width: 1100px; margin: 56px auto;
+      padding: 36px 40px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .cta-band h2 {
+      color: var(--white);
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .cta-band p { color: rgba(255,255,255,0.85); margin-bottom: 20px; }
+    .cta-buttons { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .cta-btn {
+      background: var(--white);
+      color: var(--accent);
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); }
+
+    /* Footer */
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.55);
+      padding: 40px; text-align: center;
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 8px; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .topnav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .breadcrumb, .hero, .grid-section { padding-left: 20px; padding-right: 20px; }
+      .cta-band { padding: 28px 24px; margin-left: 20px; margin-right: 20px; }
+      .about-strip { margin-left: 20px; margin-right: 20px; padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav" aria-label="Main">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/foil_wordmark.png" alt="Foil">
+      </a>
+      <ul class="nav-links">
+        <li><a href="/values.html">Our Values</a></li>
+        <li><a href="/product-tour.html">Product Tour</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a> &rsaquo; <a href="/blog/">Blog</a> &rsaquo; Food Storage Guide
+  </nav>
+
+  <header class="hero">
+    <h1>How long does it last?</h1>
+    <p class="hero-sub">USDA-backed reference articles for the foods you actually buy — fridge, freezer, and counter storage windows, plus spoilage signs.</p>
+    <div class="stats" id="stats">
+      <span>Loading...</span>
+    </div>
+  </header>
+
+  <div class="about-strip">
+    <strong>About this guide:</strong> Each article tackles one specific question — direct answer first, then storage tips, the science behind it, and signs of spoilage. Sources cited per article; durations follow USDA Food Safety and Inspection Service guidance.
+  </div>
+
+  <main id="grid-root" class="grid-section" aria-live="polite">
+    <div class="loading">Loading articles...</div>
+  </main>
+
+  <div class="cta-band">
+    <h2>Track every grocery automatically</h2>
+    <p>Scan a receipt and Foil tracks expiration dates for everything you bought, with reminders before items go bad.</p>
+    <div class="cta-buttons">
+      <a href="https://apps.apple.com/us/app/foil-app/id6759352471" class="cta-btn">Download for iOS</a>
+      <a href="https://play.google.com/store/apps/details?id=com.getfoil.app" class="cta-btn">Get on Google Play</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Foil &middot; <a href="/">Home</a> &middot; <a href="/blog/">Blog</a> &middot; <a href="/values.html">Values</a> &middot; <a href="mailto:getfoilapp@gmail.com">Contact</a></p>
+  </footer>
+
+  <script>
+    (async function () {
+      const root = document.getElementById('grid-root');
+      const statsEl = document.getElementById('stats');
+      try {
+        const res = await fetch('/blog/food-storage/articles.json', { cache: 'no-cache' });
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        const cats = data.categories || [];
+
+        const withArticles = cats.filter(c => c.articles && c.articles.length);
+        const empty = cats.filter(c => !c.articles || !c.articles.length);
+        const totalArticles = withArticles.reduce((sum, c) => sum + c.articles.length, 0);
+
+        statsEl.innerHTML =
+          `<span>${totalArticles} article${totalArticles === 1 ? '' : 's'} published</span>` +
+          `<span>${cats.length} categories</span>` +
+          `<span>Sources: USDA, FDA</span>`;
+
+        const escapeHtml = s => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+
+        const sections = [];
+
+        if (withArticles.length) {
+          for (const cat of withArticles) {
+            const cards = cat.articles.map(a => `
+              <a href="${escapeHtml(a.url)}" class="article-card">
+                <div class="article-title">${escapeHtml(a.title)}</div>
+                ${a.summary ? `<p class="article-summary">${escapeHtml(a.summary)}</p>` : ''}
+                <span class="article-cta">Read &rarr;</span>
+              </a>
+            `).join('');
+            sections.push(`
+              <div class="category">
+                <div class="category-heading">
+                  <h2 class="category-name">${escapeHtml(cat.name)}</h2>
+                  <span class="category-count">${cat.articles.length} article${cat.articles.length === 1 ? '' : 's'}</span>
+                </div>
+                <div class="article-grid">${cards}</div>
+              </div>
+            `);
+          }
+        } else {
+          sections.push('<div class="loading">No articles published yet — check back soon.</div>');
+        }
+
+        if (empty.length) {
+          const pills = empty.map(c => `<span class="coming-soon-pill">${escapeHtml(c.name)}</span>`).join('');
+          sections.push(`
+            <div class="coming-soon-section">
+              <h2 class="coming-soon-heading">Categories coming soon</h2>
+              <div class="coming-soon-list">${pills}</div>
+            </div>
+          `);
+        }
+
+        root.innerHTML = sections.join('');
+      } catch (e) {
+        root.innerHTML = '<div class="loading">Couldn&rsquo;t load the article list. <a href="/blog/">Browse all blog posts</a> instead.</div>';
+      }
+    })();
+  </script>
+
+</body>
+</html>

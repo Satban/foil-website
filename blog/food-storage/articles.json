@@ -1,0 +1,43 @@
+{
+  "_comment": "Manifest of published reference articles, grouped by category. The blog agent appends to a category's 'articles' array when it publishes an SEO reference post. Categories mirror blog-agent/seo_topics.json so the index page can show 'coming soon' for empty groups.",
+  "categories": [
+    {
+      "name": "Proteins - Chicken",
+      "articles": [
+        {
+          "title": "How Long Does Raw Chicken Last in the Fridge?",
+          "url": "/blog/posts/how-long-does-raw-chicken-last-in-the-fridge.html",
+          "summary": "USDA-based fridge and freezer windows for raw chicken, plus spoilage signs."
+        },
+        {
+          "title": "How to Tell if Cooked Chicken is Still Good to Eat",
+          "url": "/blog/posts/how-long-cooked-chicken-lasts-fridge.html",
+          "summary": "How long cooked chicken keeps and how to spot spoilage."
+        }
+      ]
+    },
+    { "name": "Proteins - Beef", "articles": [] },
+    { "name": "Proteins - Pork", "articles": [] },
+    { "name": "Proteins - Seafood", "articles": [] },
+    { "name": "Proteins - Deli & Processed", "articles": [] },
+    { "name": "Eggs", "articles": [] },
+    { "name": "Dairy - Milk & Cream", "articles": [] },
+    { "name": "Dairy - Cheese", "articles": [] },
+    { "name": "Dairy - Yogurt & Butter", "articles": [] },
+    { "name": "Produce - Fruits", "articles": [] },
+    { "name": "Produce - Vegetables", "articles": [] },
+    { "name": "Produce - Herbs", "articles": [] },
+    { "name": "Cooked Foods - Rice & Grains", "articles": [] },
+    { "name": "Cooked Foods - Soups & Stews", "articles": [] },
+    { "name": "Cooked Foods - Leftovers", "articles": [] },
+    { "name": "Bread & Baked Goods", "articles": [] },
+    { "name": "Condiments & Sauces", "articles": [] },
+    { "name": "Pantry Staples", "articles": [] },
+    { "name": "Beverages", "articles": [] },
+    { "name": "Baby Food & Special", "articles": [] },
+    { "name": "Freezer Guidelines", "articles": [] },
+    { "name": "Food Safety Concepts", "articles": [] },
+    { "name": "Meal Prep & Storage", "articles": [] },
+    { "name": "Seasonal & Specialty", "articles": [] }
+  ]
+}
