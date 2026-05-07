@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-itunes-app" content="app-id=6759352471">
+  <title>Support – Foil</title>
+  <meta name="description" content="Get help with Foil. Frequently asked questions, contact info, account management, and troubleshooting.">
+  <link rel="canonical" href="https://getfoilapp.com/support/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Foil" />
+  <meta property="og:title" content="Support – Foil" />
+  <meta property="og:description" content="Get help with Foil. FAQs, contact, account management, troubleshooting." />
+  <meta property="og:url" content="https://getfoilapp.com/support/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --bg: #FEFBF6;
+      --bg-alt: #F5F0E8;
+      --text: #1A1A1A;
+      --text-light: #4A4A4A;
+      --text-muted: #8A8A8A;
+      --accent: #1E3D32;
+      --accent-light: #2A5244;
+      --coral: #E8836B;
+      --white: #FFFFFF;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --nav-height: 72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.15; letter-spacing: -0.5px; }
+    a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: var(--accent-light); }
+
+    /* Nav */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-height); background: rgba(254, 251, 246, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .nav-inner { max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-center { display: flex; align-items: center; gap: 36px; }
+    .nav-link { font-size: 15px; font-weight: 500; color: var(--text-light); text-decoration: none; }
+    .nav-link:hover, .nav-link.active { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-badge { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--accent); color: var(--white); border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; }
+    .nav-badge:hover { background: var(--accent-light); color: var(--white); }
+    .nav-badge svg { width: 18px; height: 18px; }
+    .nav-badge span { display: none; }
+    @media (min-width: 900px) { .nav-badge span { display: inline; } }
+    @media (max-width: 768px) { .nav-inner { padding: 0 20px; } .nav-center { display: none; } }
+
+    /* Page hero */
+    .page-hero { padding: calc(var(--nav-height) + 80px) 40px 48px; max-width: 800px; margin: 0 auto; text-align: center; }
+    .page-hero h1 { font-size: clamp(36px, 5vw, 56px); margin-bottom: 16px; }
+    .page-hero p { font-size: 19px; color: var(--text-light); }
+
+    /* Doc layout */
+    .doc { max-width: 760px; margin: 0 auto; padding: 24px 40px 96px; }
+    .doc h2 { font-size: 28px; margin-top: 56px; margin-bottom: 16px; }
+    .doc h2:first-child { margin-top: 0; }
+    .doc h3 { font-size: 21px; font-weight: 600; margin-top: 36px; margin-bottom: 12px; font-family: var(--font-sans); letter-spacing: 0; }
+    .doc p { margin-bottom: 16px; color: var(--text-light); }
+    .doc ul, .doc ol { margin: 0 0 16px 24px; color: var(--text-light); }
+    .doc li { margin-bottom: 8px; }
+    .doc strong { color: var(--text); font-weight: 600; }
+
+    /* TOC */
+    .toc { background: var(--white); border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 48px; box-shadow: var(--shadow-sm); }
+    .toc h3 { margin-top: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 600; }
+    .toc ul { list-style: none; margin: 12px 0 0 0; padding: 0; }
+    .toc li { margin-bottom: 8px; }
+    .toc a { color: var(--text); text-decoration: none; font-weight: 500; }
+    .toc a:hover { color: var(--accent); }
+
+    /* Contact card */
+    .contact-card { background: var(--white); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-sm); margin: 32px 0; display: flex; align-items: center; gap: 20px; }
+    .contact-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--bg-alt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-icon i { font-size: 26px; color: var(--accent); }
+    .contact-card h3 { margin: 0 0 4px 0; font-size: 17px; font-family: var(--font-sans); }
+    .contact-card p { margin: 0; color: var(--text-light); font-size: 15px; }
+    .contact-card a { font-weight: 600; }
+
+    /* Footer */
+    footer { background: var(--bg-alt); padding: 48px 40px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .footer-logo { font-family: var(--font-serif); font-size: 24px; font-weight: 600; color: var(--accent); margin-bottom: 16px; }
+    .footer-links { list-style: none; display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-light); text-decoration: none; font-size: 14px; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { color: var(--text-muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><img src="/images/foil_wordmark.png" alt="Foil"></a>
+      <div class="nav-center">
+        <a href="/product-tour.html" class="nav-link">Product Tour</a>
+        <a href="/#features" class="nav-link">Features</a>
+        <a href="/blog" class="nav-link">Blog</a>
+        <a href="/values" class="nav-link">Our Values</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://apps.apple.com/us/app/foil-app/id6759352471" class="nav-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span>iOS</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <h1>Support</h1>
+    <p>Help with using Foil — answers to common questions, account management, and how to get in touch.</p>
+  </section>
+
+  <main class="doc">
+
+    <div class="contact-card">
+      <div class="contact-icon"><i class="ti ti-mail"></i></div>
+      <div>
+        <h3>Email us anytime</h3>
+        <p><a href="mailto:support@getfoilapp.com">support@getfoilapp.com</a> — we typically reply within 24 hours.</p>
+      </div>
+    </div>
+
+    <div class="toc">
+      <h3>On this page</h3>
+      <ul>
+        <li><a href="#getting-started">Getting started</a></li>
+        <li><a href="#receipt-scanning">Receipt scanning</a></li>
+        <li><a href="#expiry">Expiration tracking and notifications</a></li>
+        <li><a href="#recipes">AI recipes</a></li>
+        <li><a href="#household">Household sharing</a></li>
+        <li><a href="#premium">Foil Premium</a></li>
+        <li><a href="#account">Account, sign-in, and data</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#delete-account">Delete your account</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ul>
+    </div>
+
+    <h2 id="getting-started">Getting started</h2>
+    <h3>Do I need an account to use Foil?</h3>
+    <p>No. Foil works fully without an account — your kitchen is stored locally on your device. Sign in only if you want to sync across devices, share a household, or access Premium features.</p>
+
+    <h3>Which platforms does Foil support?</h3>
+    <p>Foil is available for iPhone (iOS 17 and later) and Android. iPad runs the iPhone version. Sync works across all of your signed-in devices.</p>
+
+    <h2 id="receipt-scanning">Receipt scanning</h2>
+    <h3>How do I scan a receipt?</h3>
+    <ol>
+      <li>Tap the <strong>Cart</strong> tab at the bottom of the screen.</li>
+      <li>Tap <strong>Scan Receipt</strong>.</li>
+      <li>Use the in-app camera to snap your receipt, or pick one from your Photo Library.</li>
+      <li>Foil reads the items, prices, and storage locations and streams them in. Review and tap <strong>Add Items</strong>.</li>
+    </ol>
+
+    <h3>Tips for the best scan</h3>
+    <ul>
+      <li>Lay the receipt flat on a contrasting surface — a dark counter under a light receipt works well.</li>
+      <li>Fill the camera frame with the receipt; let the app's auto-detect handle the edges.</li>
+      <li>If the receipt is long, no need to fold — Foil handles tall receipts.</li>
+      <li>If a scan looks wrong, tap <strong>Retake</strong> rather than trying to edit every item — the next scan usually goes better.</li>
+    </ul>
+
+    <h3>Which stores does Foil recognize?</h3>
+    <p>Most major U.S. grocery chains, including Trader Joe's, Whole Foods, HEB, Aldi, Costco, Target, Walmart, Kroger, Safeway, and many regional chains. If a store you shop at isn't reading well, email us and we'll improve coverage.</p>
+
+    <h2 id="expiry">Expiration tracking and notifications</h2>
+    <h3>How does Foil decide when something expires?</h3>
+    <p>Foil uses tailored expiry dates based on what each item actually is — spinach gets four days, apples get twenty-one. Dates can always be edited per item.</p>
+
+    <h3>How do I turn on reminders?</h3>
+    <p>Open <strong>Settings → Notifications</strong> and enable reminders. You can choose how many days ahead you'd like to be notified. Foil sends local notifications only — nothing is broadcast through any server.</p>
+
+    <h3>Why didn't I get a notification?</h3>
+    <ul>
+      <li>Check that notifications are enabled for Foil in <strong>iOS Settings → Notifications → Foil</strong> (or Android equivalent).</li>
+      <li>Confirm Do Not Disturb / Focus modes aren't suppressing alerts during your reminder time.</li>
+      <li>Foil only schedules notifications for items with future expiry dates. Past-due items don't fire new alerts.</li>
+    </ul>
+
+    <h2 id="recipes">AI recipes</h2>
+    <h3>How does Foil pick recipes?</h3>
+    <p>Foil suggests recipes based on what's actually in your kitchen. Toggle <strong>Expiring soon</strong> to filter to recipes that use ingredients about to peak.</p>
+
+    <h3>Are AI recipes safe to follow?</h3>
+    <p>Recipes are AI-generated and meant as inspiration. Always use your own judgment for food safety, allergens, and cooking temperatures — we don't replace a doctor, dietitian, or food-safety guidance.</p>
+
+    <h2 id="household">Household sharing</h2>
+    <h3>How do I share my kitchen with someone?</h3>
+    <ol>
+      <li>Open <strong>Settings → Household</strong>.</li>
+      <li>Tap <strong>Create Household</strong>.</li>
+      <li>Share the invite link or QR code with up to 6 members.</li>
+      <li>Once they accept, your inventory, shopping list, and meal plans sync in real time.</li>
+    </ol>
+
+    <h3>What happens if someone leaves the household?</h3>
+    <p>Their access is revoked immediately. Any items they originally added stay in the household — ownership is transferred so nothing is lost.</p>
+
+    <h2 id="premium">Foil Premium</h2>
+    <h3>What's included in Premium?</h3>
+    <ul>
+      <li>Collaborative meal planning</li>
+      <li>Household activity log</li>
+      <li>Kitchen insights</li>
+      <li>Export My Data (CSV)</li>
+      <li>Unlimited AI recipes</li>
+      <li>Unlimited saved recipes</li>
+      <li>Custom AI recipes</li>
+    </ul>
+    <p>Pricing and any free trial offer are shown when you tap <strong>Settings → Foil Premium</strong>.</p>
+
+    <h3>How do I cancel my subscription?</h3>
+    <ul>
+      <li><strong>iPhone:</strong> Settings → [your name] → Subscriptions → Foil → Cancel Subscription.</li>
+      <li><strong>Android:</strong> Google Play Store → Profile → Payments &amp; Subscriptions → Subscriptions → Foil → Cancel.</li>
+    </ul>
+    <p>Cancellation takes effect at the end of your current billing period. Your Premium features stay active until then.</p>
+
+    <h3>How do I restore a Premium purchase?</h3>
+    <p>Open the Foil Premium screen and tap <strong>Restore Purchases</strong>. Make sure you're signed in with the same Apple ID or Google account you used to subscribe.</p>
+
+    <h2 id="account">Account, sign-in, and data</h2>
+    <h3>Can I use Foil without signing in?</h3>
+    <p>Yes — every core feature works locally. Sign in only when you want sync, household sharing, or Premium.</p>
+
+    <h3>What sign-in methods does Foil support?</h3>
+    <p>Sign in with Apple, Sign in with Google, or email + password.</p>
+
+    <h3>How do I export my data?</h3>
+    <p>Premium subscribers can export inventory and shopping history as CSV files: <strong>Settings → Export My Data → Export</strong>. The system share sheet lets you save to Files, Drive, Mail, Numbers, or any other app.</p>
+
+    <h2 id="troubleshooting">Troubleshooting</h2>
+    <h3>The app crashed or feels stuck</h3>
+    <ol>
+      <li>Force-quit the app and reopen.</li>
+      <li>Confirm you're on the latest version (App Store / Play Store → Foil → Update).</li>
+      <li>Restart your device.</li>
+      <li>If the issue persists, email <a href="mailto:support@getfoilapp.com">support@getfoilapp.com</a> with your device model, OS version, and what you were doing when it happened.</li>
+    </ol>
+
+    <h3>Sync isn't working</h3>
+    <ul>
+      <li>Check that you're signed in on both devices with the same account.</li>
+      <li>Confirm both devices have a working internet connection.</li>
+      <li>Sign out and back in on the device that's behind — the kitchen will re-pull from the server.</li>
+    </ul>
+
+    <h3>Receipt scanner returned the wrong items</h3>
+    <p>You can edit any item before adding it. If a specific store consistently scans poorly, email us a sample receipt photo (with personal info redacted) and we'll improve coverage in a future release.</p>
+
+    <h2 id="delete-account">Delete your account</h2>
+    <p>You can delete your Foil account, your kitchen data, and your sync history at any time, directly from the app:</p>
+    <ol>
+      <li>Open <strong>Settings → Account</strong>.</li>
+      <li>Tap <strong>Delete Account</strong>.</li>
+      <li>Confirm. Deletion is immediate and permanent.</li>
+    </ol>
+    <p>If you can't sign in or otherwise can't reach the in-app option, email <a href="mailto:support@getfoilapp.com">support@getfoilapp.com</a> from the address tied to your account and we'll process the deletion within 30 days.</p>
+    <p>Deleting your account also cancels any associated Foil Premium subscription. To stop being billed, also cancel the subscription via the App Store or Google Play (see <a href="#premium">Premium</a> above).</p>
+
+    <h2 id="contact">Contact us</h2>
+    <p>For anything not covered above — bug reports, feature requests, partnership inquiries, press — please email <a href="mailto:support@getfoilapp.com">support@getfoilapp.com</a>. We read every message.</p>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Foil</div>
+      <ul class="footer-links">
+        <li><a href="/support/">Support</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+        <li><a href="mailto:support@getfoilapp.com">Contact</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Mirae Ventures LLC. Foil &mdash; use what's ripe.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
