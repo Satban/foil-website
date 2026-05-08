@@ -14,6 +14,11 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://getfoilapp.com/blog/posts/freeze-cooked-chicken.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://getfoilapp.com/blog/posts/fresh-food-habit.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -35,6 +40,11 @@
   </url>
   <url>
     <loc>https://getfoilapp.com/blog/posts/leftover-legends-food-expiration-tracking.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://getfoilapp.com/blog/posts/meal-management-for-busy-moms.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
