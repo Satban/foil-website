@@ -57,3 +57,34 @@ jobs:
           echo "These files are hand-designed (see CLAUDE.md). To override, include"
           echo "[allow-protected] in your commit message."
           exit 1
+
+      - name: Blog nav sanity — wordmark in nav-logo, never the icon
+        run: |
+          # Catches the recurring regression where blog files revert to using
+          # foil_icon.png (square snowflake) inside <a class="nav-logo">, which
+          # breaks visual consistency with index.html, values.html, product-tour.
+          # Fails the build on PRs/pushes that introduce this regression.
+          BAD_FILES=""
+          for f in blog/index.html blog/posts/*.html; do
+            [ -f "$f" ] || continue
+            [ "$f" = "blog/posts/_template.html" ] && continue
+            # Look at the 4 lines starting at class="nav-logo" — that's the <a>...<img></a> block
+            if grep -A4 'class="nav-logo"' "$f" | grep -q 'foil_icon\.png'; then
+              BAD_FILES="$BAD_FILES $f"
+            fi
+          done
+          # Same check for the template
+          if [ -f blog/posts/_template.html ] && \
+             grep -A4 'class="nav-logo"' blog/posts/_template.html | grep -q 'foil_icon\.png'; then
+            BAD_FILES="$BAD_FILES blog/posts/_template.html"
+          fi
+          if [ -n "$BAD_FILES" ]; then
+            echo "::error::Blog files using foil_icon.png inside .nav-logo (must be foil_wordmark.png):"
+            for b in $BAD_FILES; do echo "  - $b"; done
+            echo ""
+            echo "These blog files need to use the wordmark in the nav (matching the rest"
+            echo "of the site). The icon variant is reserved for favicons and app-icon"
+            echo "use cases, not navigation. Run the bulk-fix script or update manually."
+            exit 1
+          fi
+          echo "✓ All blog files use the wordmark in nav."
