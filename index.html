@@ -1693,6 +1693,246 @@
         font-size: 13px;
       }
     }
+
+    /* ==========================================================================
+       Watch section
+       ========================================================================== */
+    .section-watch {
+      padding: var(--space-2xl) 40px;
+      background: var(--bg);
+    }
+    .section-watch .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .section-watch .section-eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--coral);
+      margin-bottom: var(--space-sm);
+    }
+    .section-watch .section-title {
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: -1px;
+      margin-bottom: var(--space-md);
+      font-family: var(--font-serif);
+    }
+    .section-watch .section-sub {
+      font-size: 18px;
+      color: var(--text-light);
+      max-width: 640px;
+      margin: 0 auto var(--space-xl);
+      line-height: 1.6;
+    }
+
+    .watch-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: var(--space-lg) 16px 0;
+    }
+    .watch {
+      flex: 0 0 auto;
+      width: 152px;
+      height: 184px;
+      background:
+        linear-gradient(160deg, #f2f2f4 0%, #d6d6da 25%, #a8a8ad 55%, #7e7e84 85%, #5e5e64 100%);
+      border-radius: 36px;
+      padding: 6px;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.4),
+        0 0 18px 2px rgba(220,220,228,0.55),
+        0 0 36px 6px rgba(200,200,210,0.30),
+        0 28px 48px -14px rgba(0,0,0,0.35),
+        0 12px 22px -8px rgba(0,0,0,0.25),
+        inset 0 2px 0 rgba(255,255,255,0.85),
+        inset 0 -2px 0 rgba(0,0,0,0.22),
+        inset 2px 0 0 rgba(255,255,255,0.35),
+        inset -2px 0 0 rgba(0,0,0,0.18);
+    }
+    .watch::after {
+      content: "";
+      position: absolute;
+      right: -4px;
+      top: 36%;
+      width: 7px;
+      height: 28px;
+      background: linear-gradient(180deg, #f5f5f7 0%, #b8b8bd 40%, #7a7a80 65%, #d6d6da 100%);
+      border-radius: 3px;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.45),
+        inset 1px 0 0 rgba(255,255,255,0.6),
+        inset -1px 0 0 rgba(0,0,0,0.25);
+    }
+    .watch::before {
+      content: "";
+      position: absolute;
+      right: -3px;
+      top: 62%;
+      width: 5px;
+      height: 18px;
+      background: linear-gradient(180deg, #e4e4e8 0%, #909096 50%, #b6b6bc 100%);
+      border-radius: 2px;
+      box-shadow:
+        0 1px 1px rgba(0,0,0,0.4),
+        inset 1px 0 0 rgba(255,255,255,0.4);
+    }
+    .watch-screen {
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(ellipse 100% 50% at 50% 0%, rgba(255,255,255,0.07), transparent 60%),
+        linear-gradient(155deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 28%, transparent 50%),
+        #000;
+      border-radius: 30px;
+      padding: 14px 12px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.09),
+        inset 0 -8px 14px -10px rgba(0,0,0,0.6);
+    }
+    .watch-screen::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 8%; right: 8%;
+      height: 26%;
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .watch-time {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .watch-foil-mark {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--coral);
+      text-transform: uppercase;
+    }
+    .watch-content {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .watch-num {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--coral);
+    }
+    .watch-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.78);
+      letter-spacing: 0.3px;
+    }
+    .watch-headline {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    .watch-body {
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.3;
+    }
+    .watch-mic {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 0 4px rgba(232,131,107,0.25);
+      margin-bottom: 4px;
+    }
+    .watch-check {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(82, 183, 136, 0.18);
+      color: #52B788;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2px;
+    }
+    .watch-list {
+      font-size: 10px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.85);
+    }
+    .watch-list-item { display: block; padding: 1px 0; }
+    .watch-list-item .dot { color: var(--coral); margin-right: 4px; }
+    .watch-arrow {
+      font-size: 18px;
+      color: var(--coral);
+      font-weight: 600;
+      letter-spacing: -1px;
+    }
+    .watch-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: var(--space-md);
+      letter-spacing: 0.4px;
+    }
+
+    @media (max-width: 768px) {
+      .section-watch { padding: var(--space-xl) 0; }
+      .section-watch .section-header,
+      .section-watch .section-sub,
+      .section-watch .watch-caption { padding-left: 20px; padding-right: 20px; }
+
+      .watch-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding: var(--space-md) 24px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .watch-row::-webkit-scrollbar { display: none; }
+      .watch {
+        scroll-snap-align: center;
+        flex-shrink: 0;
+        width: 152px;
+        height: 184px;
+      }
+      .watch-row::before,
+      .watch-row::after {
+        content: "";
+        position: sticky;
+        top: 0;
+        width: 24px;
+        height: 184px;
+        flex-shrink: 0;
+        pointer-events: none;
+      }
+      .watch-row::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); margin-right: -16px; }
+      .watch-row::after  { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); margin-left: -16px; }
+    }
   </style>
 </head>
 <body>
@@ -1948,6 +2188,86 @@
       <span class="wave-divider">·</span>
     </div>
   </div>
+
+  <!-- Watch companion -->
+  <section class="section section-watch fade-up" id="watch">
+    <div class="section-inner">
+      <div class="section-eyebrow">New · Apple Watch</div>
+      <h2 class="section-title">Foil, on your wrist.</h2>
+      <p class="section-sub">A Watch companion that follows you into the kitchen. Talk to it, glance at what's expiring, log without pulling out your phone.</p>
+
+      <div class="watch-row">
+        <!-- 1. Complication / glance -->
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Foil</span>
+            <span class="watch-time">2:14</span>
+            <div class="watch-content">
+              <div class="watch-num">3</div>
+              <div class="watch-label">expire today</div>
+              <div class="watch-body">Tap for the list</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Voice listening -->
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Listening</span>
+            <span class="watch-time">2:15</span>
+            <div class="watch-content">
+              <div class="watch-mic"></div>
+              <div class="watch-headline">"I used half<br>the spinach"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Confirmation -->
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Foil</span>
+            <span class="watch-time">2:15</span>
+            <div class="watch-content">
+              <div class="watch-check">✓</div>
+              <div class="watch-headline">Spinach</div>
+              <div class="watch-body">50% used</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Expiring today list -->
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Today</span>
+            <span class="watch-time">2:16</span>
+            <div class="watch-content">
+              <div class="watch-list">
+                <span class="watch-list-item"><span class="dot">·</span>Spinach</span>
+                <span class="watch-list-item"><span class="dot">·</span>Yogurt</span>
+                <span class="watch-list-item"><span class="dot">·</span>Cooked chicken</span>
+                <span class="watch-list-item"><span class="dot">·</span>Strawberries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Move action -->
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Foil</span>
+            <span class="watch-time">2:17</span>
+            <div class="watch-content">
+              <div class="watch-arrow">→</div>
+              <div class="watch-headline">Chicken</div>
+              <div class="watch-body">Fridge to Freezer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="watch-caption">Glance · talk · log · move · know — without picking up your phone.</p>
+    </div>
+  </section>
 
   <!-- Moments -->
   <section class="section moments">
