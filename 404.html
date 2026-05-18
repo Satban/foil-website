@@ -10,15 +10,18 @@
   <meta name="apple-itunes-app" content="app-id=6759352471">
   <title>Page Not Found | Foil</title>
   <script>
-    // Routing for GitHub Pages 404 handling.
+    // Routing for GitHub Pages 404 handling. Runs inline in <head> so
+    // redirects can fire before any UI flashes. DOM-touching code is
+    // deferred to DOMContentLoaded because <body> is not yet parsed at
+    // this point (touching document.body here throws and aborts the
+    // script — that's what kept the spinner stuck previously).
     (function() {
       const path = window.location.pathname;
 
       // Handle /club/CODE pattern → /club/?code=CODE
       const clubMatch = path.match(/^\/club\/([A-Za-z0-9]+)\/?$/);
       if (clubMatch) {
-        const code = clubMatch[1];
-        window.location.replace('/club/?code=' + code);
+        window.location.replace('/club/?code=' + clubMatch[1]);
         return;
       }
 
@@ -28,7 +31,10 @@
       // the preview for the link in the email — and email preview
       // caches are not refreshable. Show a clean, honest 404 instead.
       if (path.indexOf('/drafts/') === 0) {
-        document.body.setAttribute('data-mode', 'draft');
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.setAttribute('data-mode', 'draft');
+          document.title = 'Draft not yet published | Foil';
+        });
         return;
       }
 
