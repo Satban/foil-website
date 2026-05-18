@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="apple-itunes-app" content="app-id=6759352471">
+  <title>Press — Foil</title>
+  <meta name="description" content="Press kit for Foil — the calm-tech kitchen app. Boilerplate, founder bio, screenshots, story angles, and brand assets for journalists and creators.">
+  <link rel="canonical" href="https://getfoilapp.com/press.html">
+  <meta property="og:title" content="Press — Foil">
+  <meta property="og:description" content="Press kit for Foil — the calm-tech kitchen app.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getfoilapp.com/press.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --bg: #FEFBF6;
+      --bg-alt: #F5F0E8;
+      --bg-dark: #1E3D32;
+      --text: #1A1A1A;
+      --text-light: #4A4A4A;
+      --text-muted: #8A8A8A;
+      --accent: #1E3D32;
+      --accent-light: #2A5244;
+      --coral: #E8836B;
+      --white: #FFFFFF;
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 48px;
+      --space-xl: 80px;
+      --space-2xl: 120px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+      --max-width: 1100px;
+      --max-width-prose: 720px;
+      --nav-height: 72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.4px;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-light); }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-height);
+      background: rgba(254, 251, 246, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .nav-inner {
+      max-width: 1200px; height: 100%; margin: 0 auto;
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .nav-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 12px; background: var(--accent); color: var(--white);
+      border-radius: 8px; font-size: 13px; font-weight: 600;
+      transition: all 200ms ease;
+    }
+    .nav-badge:hover { background: var(--accent-light); color: var(--white); transform: translateY(-1px); }
+    .nav-badge svg { width: 16px; height: 16px; flex-shrink: 0; fill: currentColor; }
+    .nav-badge span { display: none; }
+    @media (min-width: 900px) { .nav-badge span { display: inline; } }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-right .nav-badge:last-child { display: none; }
+    }
+
+    /* Layout */
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: calc(var(--nav-height) + var(--space-xl)) 40px var(--space-2xl);
+    }
+    .prose { max-width: var(--max-width-prose); }
+    section + section { margin-top: var(--space-xl); }
+
+    /* Hero */
+    .hero-eyebrow {
+      font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--coral); margin-bottom: var(--space-sm);
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 52px);
+      margin-bottom: var(--space-md);
+    }
+    .hero-subtitle {
+      font-size: 19px; color: var(--text-light);
+      max-width: 640px;
+    }
+
+    /* Quick facts */
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .fact {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+    }
+    .fact-label {
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--text-muted); margin-bottom: 6px;
+    }
+    .fact-value { font-size: 16px; font-weight: 500; color: var(--text); }
+
+    /* Section heading */
+    h2.section-title {
+      font-size: clamp(28px, 3.5vw, 36px);
+      margin-bottom: var(--space-md);
+    }
+    .section-lead {
+      color: var(--text-light);
+      margin-bottom: var(--space-lg);
+      max-width: var(--max-width-prose);
+    }
+
+    /* Boilerplate cards */
+    .boilerplate {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+    @media (max-width: 768px) { .boilerplate { grid-template-columns: 1fr; } }
+    .boiler-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+    }
+    .boiler-card h3 {
+      font-family: var(--font-sans);
+      font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-sm);
+    }
+    .boiler-card p { color: var(--text); }
+    .copy-hint {
+      display: block;
+      margin-top: var(--space-sm);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Founder */
+    .founder {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: var(--space-lg);
+    }
+    @media (max-width: 600px) {
+      .founder { grid-template-columns: 1fr; text-align: center; }
+      .founder-photo { margin: 0 auto; }
+    }
+    .founder-photo {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 30%;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-md);
+    }
+    .founder h3 {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+    .founder-role {
+      font-size: 14px; color: var(--text-muted);
+      margin-bottom: var(--space-sm);
+    }
+    .founder p { color: var(--text-light); }
+
+    /* Story angles */
+    .angles { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
+    .angle {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: var(--space-md) var(--space-lg);
+      border-left: 4px solid var(--coral);
+    }
+    .angle h3 {
+      font-size: 20px;
+      margin-bottom: var(--space-xs);
+    }
+    .angle p { color: var(--text-light); }
+
+    /* Screenshots */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-md);
+    }
+    .screen-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: var(--space-sm);
+      text-align: center;
+    }
+    .screen-card img {
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      margin: 0 auto var(--space-sm);
+      max-height: 320px;
+      width: auto;
+    }
+    .screen-card .caption {
+      font-size: 12px; color: var(--text-muted);
+    }
+    .subhead {
+      font-family: var(--font-sans);
+      font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin: var(--space-lg) 0 var(--space-sm);
+    }
+
+    /* CSS-rendered watch mockups (mirrors index.html) */
+    .watch-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: var(--space-lg) 16px 0;
+    }
+    .watch {
+      flex: 0 0 auto;
+      width: 152px;
+      height: 184px;
+      background:
+        linear-gradient(160deg, #f2f2f4 0%, #d6d6da 25%, #a8a8ad 55%, #7e7e84 85%, #5e5e64 100%);
+      border-radius: 36px;
+      padding: 6px;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.4),
+        0 0 18px 2px rgba(220,220,228,0.55),
+        0 0 36px 6px rgba(200,200,210,0.30),
+        0 28px 48px -14px rgba(0,0,0,0.35),
+        0 12px 22px -8px rgba(0,0,0,0.25),
+        inset 0 2px 0 rgba(255,255,255,0.85),
+        inset 0 -2px 0 rgba(0,0,0,0.22),
+        inset 2px 0 0 rgba(255,255,255,0.35),
+        inset -2px 0 0 rgba(0,0,0,0.18);
+    }
+    .watch::after {
+      content: "";
+      position: absolute;
+      right: -4px;
+      top: 36%;
+      width: 7px;
+      height: 28px;
+      background: linear-gradient(180deg, #f5f5f7 0%, #b8b8bd 40%, #7a7a80 65%, #d6d6da 100%);
+      border-radius: 3px;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.45),
+        inset 1px 0 0 rgba(255,255,255,0.6),
+        inset -1px 0 0 rgba(0,0,0,0.25);
+    }
+    .watch::before {
+      content: "";
+      position: absolute;
+      right: -3px;
+      top: 62%;
+      width: 5px;
+      height: 18px;
+      background: linear-gradient(180deg, #e4e4e8 0%, #909096 50%, #b6b6bc 100%);
+      border-radius: 2px;
+      box-shadow:
+        0 1px 1px rgba(0,0,0,0.4),
+        inset 1px 0 0 rgba(255,255,255,0.4);
+    }
+    .watch-screen {
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(ellipse 100% 50% at 50% 0%, rgba(255,255,255,0.07), transparent 60%),
+        linear-gradient(155deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 28%, transparent 50%),
+        #000;
+      border-radius: 30px;
+      padding: 14px 12px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.09),
+        inset 0 -8px 14px -10px rgba(0,0,0,0.6);
+    }
+    .watch-screen::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 8%; right: 8%;
+      height: 26%;
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .watch-time {
+      position: absolute;
+      top: 10px; right: 14px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .watch-foil-mark {
+      position: absolute;
+      top: 10px; left: 14px;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--coral);
+      text-transform: uppercase;
+    }
+    .watch-content {
+      margin-top: 32px;
+      display: flex; flex-direction: column;
+      gap: 6px;
+    }
+    .watch-num {
+      font-family: var(--font-serif);
+      font-size: 38px; font-weight: 600;
+      line-height: 1;
+      color: var(--coral);
+    }
+    .watch-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.78);
+      letter-spacing: 0.3px;
+    }
+    .watch-headline {
+      font-size: 12px; font-weight: 600;
+      line-height: 1.25;
+    }
+    .watch-body {
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.3;
+    }
+    .watch-mic {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 0 4px rgba(232,131,107,0.25);
+      margin-bottom: 4px;
+    }
+    .watch-check {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(82, 183, 136, 0.18);
+      color: #52B788;
+      font-size: 16px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2px;
+    }
+    .watch-list {
+      font-size: 10px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.85);
+    }
+    .watch-list-item { display: block; padding: 1px 0; }
+    .watch-list-item .dot { color: var(--coral); margin-right: 4px; }
+    .watch-arrow {
+      font-size: 18px;
+      color: var(--coral);
+      font-weight: 600;
+      letter-spacing: -1px;
+    }
+    @media (max-width: 768px) {
+      .watch-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding: var(--space-md) 24px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .watch-row::-webkit-scrollbar { display: none; }
+      .watch {
+        scroll-snap-align: center;
+        flex-shrink: 0;
+      }
+    }
+
+    /* Brand assets */
+    .assets { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md); }
+    .asset {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+      text-align: center;
+    }
+    .asset-preview {
+      height: 140px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--space-sm);
+      background: var(--bg-alt);
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+    }
+    .asset-preview img { max-height: 96px; max-width: 96px; width: auto; height: auto; }
+    .asset-preview.wide img { max-width: 220px; max-height: 80px; }
+    .asset-preview.dark {
+      background: var(--bg-dark);
+    }
+    .asset-preview.icon img {
+      border-radius: 22%;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+    .asset-label { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .asset-meta { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
+    .asset-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 13px; font-weight: 600;
+    }
+
+    /* Palette */
+    .palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-sm); }
+    .swatch {
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+      color: var(--white);
+      font-size: 13px;
+    }
+    .swatch .name { font-weight: 600; margin-bottom: 2px; }
+    .swatch .hex { opacity: 0.85; font-family: 'SF Mono', Menlo, monospace; }
+
+    /* Contact */
+    .contact-card {
+      background: var(--bg-dark);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .contact-card h2 { color: var(--white); font-size: 28px; }
+    .contact-card p { color: rgba(255,255,255,0.85); max-width: 480px; }
+    .contact-email {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px;
+      background: var(--coral);
+      color: var(--white);
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 200ms ease;
+    }
+    .contact-email:hover {
+      background: #d97557;
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+    .contact-text { flex: 1; min-width: 260px; }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-alt);
+      padding: var(--space-lg) 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .footer a { color: var(--text-muted); margin: 0 6px; }
+    .footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/foil_wordmark.png" alt="Foil">
+      </a>
+      <div class="nav-right">
+        <a href="https://apps.apple.com/us/app/foil-app/id6759352471" class="nav-badge" aria-label="Download on the App Store">
+          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span>iOS</span>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.getfoil.app" class="nav-badge" aria-label="Get it on Google Play">
+          <svg viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span>Android</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">Press kit</div>
+      <h1>For journalists, bloggers, and creators</h1>
+      <p class="hero-subtitle">Everything you need to write about Foil — boilerplate, founder bio, screenshots, story angles, and brand assets. If you need anything that isn't here, the email's at the bottom.</p>
+
+      <div class="facts">
+        <div class="fact">
+          <div class="fact-label">Founded</div>
+          <div class="fact-value">2024 · Indie, bootstrapped</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Platforms</div>
+          <div class="fact-value">iOS · Android · Apple Watch (next)</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Business model</div>
+          <div class="fact-value">Free + Premium subscription. No individual data sales. No dark patterns.</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Tagline</div>
+          <div class="fact-value">Know What. Know When.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Boilerplate -->
+    <section>
+      <h2 class="section-title">About Foil</h2>
+      <p class="section-lead">Copy these descriptions directly into your post. Both are written and ready to use.</p>
+
+      <div class="boilerplate">
+        <div class="boiler-card">
+          <h3>50-word version</h3>
+          <p>Foil is a privacy-first kitchen app for iOS and Android. Scan a grocery receipt and Foil tracks every item — what's in the fridge, what's expiring, what you can cook tonight. No individual data sales. No rewards manipulation. No dark patterns. Built solo, bootstrapped, on a Premium subscription.</p>
+          <span class="copy-hint">~50 words · drop-in for shorter mentions</span>
+        </div>
+        <div class="boiler-card">
+          <h3>200-word version</h3>
+          <p>Foil is a calm-tech kitchen app that helps households know what they have and when to use it. Scan a grocery receipt with your phone and Foil reads every item, sorts it into the right storage location, and tracks expiration dates. When food is about to get past peak freshness, Foil surfaces recipes that prioritize those ingredients first.</p>
+          <p style="margin-top: 12px;">It runs on iOS and Android, with an Apple Watch experience and a native voice agent shipping next. Household sharing keeps the whole family on the same inventory in real time. The business model is straightforward: free to use, with a Premium subscription for power features. No individual data sales. No rewards manipulation. No dark patterns. The opposite of the surveillance-driven incumbents in the space.</p>
+          <p style="margin-top: 12px;">Foil is built solo and bootstrapped, with the tagline "Know What. Know When." It's calm tech for the kitchen — a category currently saturated with dark patterns.</p>
+          <span class="copy-hint">~200 words · drop-in for full reviews</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section>
+      <h2 class="section-title">Founder</h2>
+      <p class="section-lead">Available for interviews, demos, and quotes. Calendly link in the contact section below.</p>
+
+      <div class="founder">
+        <img class="founder-photo" src="images/founder.jpg" alt="Satyam, founder of Foil">
+        <div>
+          <h3>Satyam</h3>
+          <div class="founder-role">Founder · Foil</div>
+          <p>Satyam built Foil after watching his own family lose track of what was in the fridge week after week. Solo founder, bootstrapped, building from the conviction that household software should serve the household — not extract from it. Background spans product and engineering at consumer-tech companies before going indie.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story angles -->
+    <section>
+      <h2 class="section-title">Story angles</h2>
+      <p class="section-lead">Three different framings you can lead with, depending on your beat.</p>
+
+      <div class="angles">
+        <div class="angle">
+          <h3>Calm tech for the kitchen</h3>
+          <p>Most food and grocery apps are built around rewards programs, sponsored placements, or behavioral data sold to CPG brands. Foil takes the opposite stance: no individual data sales, no rewards manipulation, no dark patterns. A Premium subscription instead. Fits coverage on privacy, anti-surveillance tech, and consumer software ethics.</p>
+        </div>
+        <div class="angle">
+          <h3>Indie iOS app, bootstrapped, built solo</h3>
+          <p>Single founder, no VC, shipping receipt scanning, household sharing, Apple Watch, and a native voice agent — all without selling out the user. Fits coverage on indie iOS, calm-tech apps, and the post-VC consumer software wave.</p>
+        </div>
+        <div class="angle">
+          <h3>A voice agent for the kitchen that isn't Siri or Alexa</h3>
+          <p>Native voice agent shipping inside the app — designed for hands-free fridge logging, not surveillance-style always-listening. The first calm voice interface for household food. Fits coverage on AI applications, voice UI, and the next wave of Apple-ecosystem agents.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section>
+      <h2 class="section-title">Screenshots</h2>
+      <p class="section-lead">Right-click any image to save. For higher-resolution or device-framed versions, email the press contact below.</p>
+
+      <div class="subhead">iPhone</div>
+      <div class="screens-grid">
+        <div class="screen-card">
+          <img src="images/screens/scan1.png" alt="Foil receipt scanning">
+          <div class="caption">Receipt scan</div>
+        </div>
+        <div class="screen-card">
+          <img src="images/screens/scan2.png" alt="Foil scanned items review">
+          <div class="caption">Item review</div>
+        </div>
+        <div class="screen-card">
+          <img src="images/foil_home_screen.png" alt="Foil home screen">
+          <div class="caption">Home — by storage location</div>
+        </div>
+        <div class="screen-card">
+          <img src="images/screens/recipe1.png" alt="Foil recipe ideas">
+          <div class="caption">Recipe suggestions</div>
+        </div>
+        <div class="screen-card">
+          <img src="images/screens/recipe2.png" alt="Foil recipe detail">
+          <div class="caption">Recipe detail</div>
+        </div>
+        <div class="screen-card">
+          <img src="images/screens/mealplan1.png" alt="Foil meal planning">
+          <div class="caption">Weekly meal plan</div>
+        </div>
+        <div class="screen-card">
+          <img src="images/screens/household1.png" alt="Foil household sharing">
+          <div class="caption">Household sharing</div>
+        </div>
+        <div class="screen-card">
+          <img src="images/screens/household2.png" alt="Foil household activity">
+          <div class="caption">Household activity</div>
+        </div>
+      </div>
+
+      <div class="subhead">Apple Watch</div>
+      <div class="watch-row">
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Foil</span>
+            <span class="watch-time">2:14</span>
+            <div class="watch-content">
+              <div class="watch-num">3</div>
+              <div class="watch-label">expire today</div>
+              <div class="watch-body">Tap for the list</div>
+            </div>
+          </div>
+        </div>
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Listening</span>
+            <span class="watch-time">2:15</span>
+            <div class="watch-content">
+              <div class="watch-mic"></div>
+              <div class="watch-headline">"I used half<br>the spinach"</div>
+            </div>
+          </div>
+        </div>
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Foil</span>
+            <span class="watch-time">2:15</span>
+            <div class="watch-content">
+              <div class="watch-check">✓</div>
+              <div class="watch-headline">Spinach</div>
+              <div class="watch-body">50% used</div>
+            </div>
+          </div>
+        </div>
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Today</span>
+            <span class="watch-time">2:16</span>
+            <div class="watch-content">
+              <div class="watch-list">
+                <span class="watch-list-item"><span class="dot">·</span>Spinach</span>
+                <span class="watch-list-item"><span class="dot">·</span>Yogurt</span>
+                <span class="watch-list-item"><span class="dot">·</span>Cooked chicken</span>
+                <span class="watch-list-item"><span class="dot">·</span>Strawberries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="watch">
+          <div class="watch-screen">
+            <span class="watch-foil-mark">Foil</span>
+            <span class="watch-time">2:17</span>
+            <div class="watch-content">
+              <div class="watch-arrow">→</div>
+              <div class="watch-headline">Chicken</div>
+              <div class="watch-body">Fridge to Freezer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand assets -->
+    <section>
+      <h2 class="section-title">Brand assets</h2>
+      <p class="section-lead">Logo, icon, and color palette. For SVGs, additional formats, or a bundled asset pack, email the press contact below.</p>
+
+      <div class="assets">
+        <div class="asset">
+          <div class="asset-preview wide"><img src="images/foil_wordmark.png" alt="Foil wordmark"></div>
+          <div class="asset-label">Wordmark</div>
+          <div class="asset-meta">PNG · use on light backgrounds</div>
+          <a href="images/foil_wordmark.png" download class="asset-link"><i class="ti ti-download"></i> Download</a>
+        </div>
+        <div class="asset">
+          <div class="asset-preview dark icon"><img src="images/foil_app_icon.png" alt="Foil app icon"></div>
+          <div class="asset-label">App icon</div>
+          <div class="asset-meta">PNG · 512×512, for app references</div>
+          <a href="images/foil_app_icon.png" download class="asset-link"><i class="ti ti-download"></i> Download</a>
+        </div>
+      </div>
+
+      <h3 style="font-family: var(--font-sans); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin: var(--space-lg) 0 var(--space-sm);">Color palette</h3>
+      <div class="palette">
+        <div class="swatch" style="background: #1E3D32;">
+          <div class="name">Forest</div>
+          <div class="hex">#1E3D32</div>
+        </div>
+        <div class="swatch" style="background: #2A5244;">
+          <div class="name">Forest light</div>
+          <div class="hex">#2A5244</div>
+        </div>
+        <div class="swatch" style="background: #E8836B;">
+          <div class="name">Coral</div>
+          <div class="hex">#E8836B</div>
+        </div>
+        <div class="swatch" style="background: #FEFBF6; color: #1A1A1A;">
+          <div class="name">Cream</div>
+          <div class="hex">#FEFBF6</div>
+        </div>
+        <div class="swatch" style="background: #1A1A1A;">
+          <div class="name">Ink</div>
+          <div class="hex">#1A1A1A</div>
+        </div>
+      </div>
+
+      <p style="margin-top: var(--space-md); font-size: 14px; color: var(--text-muted);">Type: <strong style="color: var(--text);">Inter</strong> (sans) · <strong style="color: var(--text);">Fraunces</strong> (serif), both Google Fonts.</p>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <h2 class="section-title">Get in touch</h2>
+      <div class="contact-card">
+        <div class="contact-text">
+          <h2 style="font-size: 28px; margin-bottom: var(--space-sm);">Press inquiries</h2>
+          <p>Direct line to the founder. Replies usually within a day. Happy to send Premium codes for review, do a 15-min demo, or send custom assets on request.</p>
+        </div>
+        <a href="mailto:satyam@getfoilapp.com?subject=Foil%20press%20inquiry" class="contact-email">
+          <i class="ti ti-mail"></i>
+          satyam@getfoilapp.com
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Foil. <a href="index.html">Home</a> &middot; <a href="product-tour.html">Product tour</a> &middot; <a href="values.html">Our values</a> &middot; <a href="blog/">Blog</a></p>
+  </footer>
+
+</body>
+</html>
