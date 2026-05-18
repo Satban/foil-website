@@ -8,14 +8,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="apple-itunes-app" content="app-id=6759352471">
-  <title>Redirecting... | Foil</title>
+  <title>Page Not Found | Foil</title>
   <script>
-    // Handle dynamic routes for GitHub Pages
-    // Redirects /club/CODE to /club/?code=CODE
+    // Routing for GitHub Pages 404 handling.
     (function() {
       const path = window.location.pathname;
 
-      // Handle /club/CODE pattern
+      // Handle /club/CODE pattern → /club/?code=CODE
       const clubMatch = path.match(/^\/club\/([A-Za-z0-9]+)\/?$/);
       if (clubMatch) {
         const code = clubMatch[1];
@@ -23,7 +22,17 @@
         return;
       }
 
-      // For other 404s, redirect to home
+      // Drafts: never silently redirect to homepage. The blog agent
+      // emails preview URLs of the form /drafts/{slug}.html. If we
+      // bounce to "/", email clients cache the homepage's OG card as
+      // the preview for the link in the email — and email preview
+      // caches are not refreshable. Show a clean, honest 404 instead.
+      if (path.indexOf('/drafts/') === 0) {
+        document.body.setAttribute('data-mode', 'draft');
+        return;
+      }
+
+      // For other 404s, redirect to home.
       window.location.replace('/');
     })();
   </script>
@@ -37,10 +46,9 @@
       margin: 0;
       background: #FAF8F5;
       color: #1a1a1a;
+      padding: 24px;
     }
-    .loader {
-      text-align: center;
-    }
+    .loader, .draft-message { text-align: center; max-width: 420px; }
     .spinner {
       width: 40px;
       height: 40px;
@@ -53,12 +61,31 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+    .draft-message { display: none; }
+    .draft-message h1 { font-size: 22px; margin: 0 0 12px; color: #1E3D32; }
+    .draft-message p { color: #4a5a52; line-height: 1.5; margin: 0 0 20px; }
+    .draft-message a {
+      display: inline-block;
+      background: #1E3D32;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    body[data-mode="draft"] .loader { display: none; }
+    body[data-mode="draft"] .draft-message { display: block; }
   </style>
 </head>
 <body>
   <div class="loader">
     <div class="spinner"></div>
     <p>Redirecting...</p>
+  </div>
+  <div class="draft-message">
+    <h1>This draft isn't published yet</h1>
+    <p>The preview link you followed points to a blog draft that hasn't been deployed. If you got here from a blog-agent approval email, the draft may still be building — try again in a minute.</p>
+    <a href="/blog/">Go to the blog</a>
   </div>
 </body>
 </html>
