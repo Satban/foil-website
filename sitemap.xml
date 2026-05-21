@@ -44,6 +44,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://getfoilapp.com/blog/posts/how-to-tell-if-chicken-has-gone-bad.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://getfoilapp.com/blog/posts/leftover-legends-food-expiration-tracking.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
