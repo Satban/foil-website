@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Why Deciding What to Eat Feels So Hard (and How to Simplify It) – Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --cream: #ffffff; --ink: #1a1a1a; --ink-light: #4a4a4a; --green: #2D5A3D; --white: #ffffff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Instrument Sans', sans-serif; background: var(--cream); color: var(--ink); font-size: 17px; line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+    .banner { background: linear-gradient(135deg, #2D5A3D, #4A7C5C); color: white; text-align: center; padding: 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .banner h2 { margin: 0 0 12px; font-size: 18px; font-weight: 500; opacity: 0.9; }
+    .banner-actions { display: flex; justify-content: center; gap: 16px; }
+    .banner-actions a { display: inline-block; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 15px; transition: transform 0.2s; }
+    .banner-actions a:hover { transform: translateY(-2px); }
+    .btn-approve { background: white; color: #2D5A3D; }
+    .btn-reject { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; }
+    .btn-revise { background: #fff3e0; color: #e65100; border: 2px solid #ffcc80; }
+    article { max-width: 720px; margin: 0 auto; padding: 140px 40px 80px; }
+    article h1 { font-size: 36px; margin-bottom: 12px; }
+    .byline { font-size: 14px; font-style: italic; color: #7a7a7a; margin-bottom: 24px; }
+    .excerpt { font-size: 18px; color: var(--ink-light); line-height: 1.6; margin-bottom: 32px; }
+    .featured-image { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px; }
+    .content { font-size: 18px; line-height: 1.8; }
+    .content h2 { font-size: 26px; margin: 40px 0 16px; }
+    .content h3 { font-size: 22px; margin: 32px 0 12px; }
+    .content p { margin-bottom: 20px; }
+    .content ul, .content ol { margin: 0 0 20px 24px; }
+    .content li { margin-bottom: 8px; }
+    .social { background: #f8f8f8; padding: 24px; border-radius: 12px; margin-top: 48px; border: 1px solid #e0e0e0; }
+    .social h4 { margin: 0 0 12px; color: #666; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .social p { margin: 0; color: #333; }
+    .key-takeaways { background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border-left: 4px solid #2D5A3D; border-radius: 10px; padding: 24px 28px; margin: 32px 0; }
+    .key-takeaways h3 { color: #2D5A3D; font-size: 18px; margin-bottom: 16px; }
+    .key-takeaways ul { margin: 0; padding-left: 20px; }
+    .key-takeaways li { margin-bottom: 10px; color: #4a4a4a; line-height: 1.6; }
+    .meta-info { background: #fff3e0; padding: 16px 20px; border-radius: 8px; margin-top: 24px; border: 1px solid #ffcc80; }
+    .meta-info h4 { margin: 0 0 8px; color: #e65100; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .meta-info p { margin: 0; color: #333; font-size: 14px; }
+    .cta { background: var(--green); color: white; padding: 40px; border-radius: 16px; text-align: center; margin-top: 48px; }
+    .cta h3 { color: white; margin-bottom: 12px; }
+    .cta p { opacity: 0.9; margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      .banner-actions { flex-direction: column; gap: 10px; }
+      article { padding: 130px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <h2>Draft Preview – Ready for Review</h2>
+    <div class="banner-actions">
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=approve&draft_id=6024d5f4-3fb7-49e6-aa33-d64164a89d51&token=_RWzd-fL-CnOoqSvXZ_hFKLi5cHrr6SEea-47RCAOlY" class="btn-approve">✅ Approve</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=revise&draft_id=6024d5f4-3fb7-49e6-aa33-d64164a89d51&token=_RWzd-fL-CnOoqSvXZ_hFKLi5cHrr6SEea-47RCAOlY" class="btn-revise">✏️ Request Changes</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=reject&draft_id=6024d5f4-3fb7-49e6-aa33-d64164a89d51&token=_RWzd-fL-CnOoqSvXZ_hFKLi5cHrr6SEea-47RCAOlY" class="btn-reject">❌ Reject</a>
+    </div>
+  </div>
+
+  <article>
+    <img src="https://getfoilapp.com/images/blog/deciding-what-to-eat-gSGv42JeOEE.jpg?v=1779450203" alt="Featured image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px;">
+    <h1>Why Deciding What to Eat Feels So Hard (and How to Simplify It)</h1>
+    <p class="byline">Authored by Foil Content Team<br>Helping you waste less, one article at a time</p>
+    <p class="excerpt">Struggling with what to eat? Explore the reasons behind decision fatigue and learn gentle systems to simplify meal planning in your kitchen.</p>
+
+    <div class="key-takeaways">
+      <h3>✨ Key Takeaways</h3>
+      <ul>
+        <li>Decision fatigue affects meal planning and can overwhelm cooks.</li>
+        <li>Choice overload in recipes can lead to avoidance.</li>
+        <li>Implementing gentle systems simplifies culinary decisions.</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h2>Why Is Deciding What to Eat So Challenging?</h2><p>Ever stood in front of your kitchen counter, staring at an array of ingredients, only to feel utterly lost about what to cook? It’s not just you—the struggle to decide what to eat can warp our perception of mealtime into a puzzle that's as daunting as an escape room. With endless recipes, dietary considerations, and our own whims, it’s no wonder we often resort to takeout or cereal for dinner.</p><h2>Understanding Decision Fatigue</h2><p>Decision fatigue is a real phenomenon, and it manifests in our kitchens too. When faced with choices—especially trivial ones—our mental resources degrade over time. After a long day, the thought of selecting a meal feels like an insurmountable task. Instead of delighting in culinary creativity, it can lead to stress and avoidance. In contrast, how good does it feel to have a go-to recipe ready to roll? The key is to channel your energy into the right decisions rather than becoming paralyzed by too many options.</p><h2>Choice Overload and Its Culinary Consequences</h2><p>In today’s world, more choices can lead to less satisfaction. The internet is saturated with boundless recipes and meal ideas, which might sound appealing but can lead to a paradox of choice. When you’re bombarded by potential meals, you might hesitate to pick one, fearing you’ll miss out on something better. This can spiral, turning meal planning into an afternoon of endless scrolling. Instead, consider curating a simplified menu of your favorite dishes, or even prepping a rotation of meals that excite you—affording your daily choices a comforting familiarity.</p><h2>Implementing Gentle Systems</h2><p>One way to combat this disarray is to build gentle systems into your kitchen routine. Embrace the space you have—keep a visible whiteboard or a notepad in your kitchen to jot down ideas or even curate weekly themes for meals. For instance, Monday could be pasta night, while Thursdays revolve around tacos. This intuitive structure brings joy back into your cooking as you anticipate the flavor profiles you enjoy, enticing your palate while minimizing decisions.<p>Similarly, think about the ingredients that shine at their peak freshness. You might build your weekly menu around what's in season or what's sitting in your fridge, turning potential spoilage into culinary intrigue. The thrill of cooking can return when the pressure of boundless options is alleviated, transforming your shared kitchen into a space of joyful creation rather than exhaustion.</p><h2>Conclusion</h2><p>Ultimately, simplifying your meal choices starts with recognizing what overwhelms you. By embracing gentle systems, like structured themes and seasonal cooking, you can cultivate a rewarding culinary experience. The next time you face that daunting moment of choice, remember that the joy of creativity in the kitchen can flourish in simplicity, allowing food to nourish more than just our appetites—but our hearts as well.</p><h2>Common Questions</h2><h3>What are some easy ways to simplify meal planning?</h3><p>Start with creating a rotating menu of your favorite recipes, or set specific themes for each night of the week. This gives you some structure without restricting creativity.</p><h3>How can I help my family be involved in meal decisions?</h3><p>Get family members to suggest their favorite meals for the week and rotate selections. You can even assign each person a night to choose and prepare!</p>
+    </div>
+
+    <div class="social">
+      <h4>Social Media Caption (Facebook & Instagram)</h4>
+      <p>Struggling with meal choices? Discover why it feels so hard and how simple systems can help. 🌿 #MealPlanning #CookingSimplified</p>
+    </div>
+
+    <div class="meta-info">
+      <h4>SEO Meta Description (136 chars)</h4>
+      <p>Explore the impact of decision fatigue and choice overload on meal planning. Simplify your cooking with gentle systems for fresh eating.</p>
+    </div>
+
+    <div class="cta">
+      <h3>Ready to reduce your food waste?</h3>
+      <p>Foil helps you track what's in your kitchen and reminds you before things expire.</p>
+    </div>
+  </article>
+</body>
+</html>
