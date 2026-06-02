@@ -39,6 +39,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://getfoilapp.com/blog/posts/hidden-patterns-food-choices.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://getfoilapp.com/blog/posts/how-long-chicken-sit-out-room-temperature.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
