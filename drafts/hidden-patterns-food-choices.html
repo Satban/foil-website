@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Understanding the Gap Between Food Intentions and Reality – Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --cream: #ffffff; --ink: #1a1a1a; --ink-light: #4a4a4a; --green: #2D5A3D; --white: #ffffff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Instrument Sans', sans-serif; background: var(--cream); color: var(--ink); font-size: 17px; line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+    .banner { background: linear-gradient(135deg, #2D5A3D, #4A7C5C); color: white; text-align: center; padding: 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .banner h2 { margin: 0 0 12px; font-size: 18px; font-weight: 500; opacity: 0.9; }
+    .banner-actions { display: flex; justify-content: center; gap: 16px; }
+    .banner-actions a { display: inline-block; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 15px; transition: transform 0.2s; }
+    .banner-actions a:hover { transform: translateY(-2px); }
+    .btn-approve { background: white; color: #2D5A3D; }
+    .btn-reject { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; }
+    .btn-revise { background: #fff3e0; color: #e65100; border: 2px solid #ffcc80; }
+    article { max-width: 720px; margin: 0 auto; padding: 140px 40px 80px; }
+    article h1 { font-size: 36px; margin-bottom: 12px; }
+    .byline { font-size: 14px; font-style: italic; color: #7a7a7a; margin-bottom: 24px; }
+    .excerpt { font-size: 18px; color: var(--ink-light); line-height: 1.6; margin-bottom: 32px; }
+    .featured-image { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px; }
+    .content { font-size: 18px; line-height: 1.8; }
+    .content h2 { font-size: 26px; margin: 40px 0 16px; }
+    .content h3 { font-size: 22px; margin: 32px 0 12px; }
+    .content p { margin-bottom: 20px; }
+    .content ul, .content ol { margin: 0 0 20px 24px; }
+    .content li { margin-bottom: 8px; }
+    .social { background: #f8f8f8; padding: 24px; border-radius: 12px; margin-top: 48px; border: 1px solid #e0e0e0; }
+    .social h4 { margin: 0 0 12px; color: #666; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .social p { margin: 0; color: #333; }
+    .key-takeaways { background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border-left: 4px solid #2D5A3D; border-radius: 10px; padding: 24px 28px; margin: 32px 0; }
+    .key-takeaways h3 { color: #2D5A3D; font-size: 18px; margin-bottom: 16px; }
+    .key-takeaways ul { margin: 0; padding-left: 20px; }
+    .key-takeaways li { margin-bottom: 10px; color: #4a4a4a; line-height: 1.6; }
+    .meta-info { background: #fff3e0; padding: 16px 20px; border-radius: 8px; margin-top: 24px; border: 1px solid #ffcc80; }
+    .meta-info h4 { margin: 0 0 8px; color: #e65100; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .meta-info p { margin: 0; color: #333; font-size: 14px; }
+    .cta { background: var(--green); color: white; padding: 40px; border-radius: 16px; text-align: center; margin-top: 48px; }
+    .cta h3 { color: white; margin-bottom: 12px; }
+    .cta p { opacity: 0.9; margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      .banner-actions { flex-direction: column; gap: 10px; }
+      article { padding: 130px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <h2>Draft Preview – Ready for Review</h2>
+    <div class="banner-actions">
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=approve&draft_id=389897c6-9024-4560-a23e-a04f31fdb479&token=35oQZ3ZtdLuE_KfZjG2qiP5cA7iQJt0YKMAS5ZFydSQ" class="btn-approve">✅ Approve</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=revise&draft_id=389897c6-9024-4560-a23e-a04f31fdb479&token=35oQZ3ZtdLuE_KfZjG2qiP5cA7iQJt0YKMAS5ZFydSQ" class="btn-revise">✏️ Request Changes</a>
+      <a href="https://aqdapnwrsvyjrpiwtwip.supabase.co/functions/v1/blog-approval?action=reject&draft_id=389897c6-9024-4560-a23e-a04f31fdb479&token=35oQZ3ZtdLuE_KfZjG2qiP5cA7iQJt0YKMAS5ZFydSQ" class="btn-reject">❌ Reject</a>
+    </div>
+  </div>
+
+  <article>
+    <img src="https://getfoilapp.com/images/blog/hidden-patterns-food-choices--9CjvlbUGhY.jpg?v=1780403581" alt="Featured image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 32px;">
+    <h1>Understanding the Gap Between Food Intentions and Reality</h1>
+    <p class="byline">Authored by Foil Content Team<br>Helping you waste less, one article at a time</p>
+    <p class="excerpt">Explore the hidden patterns in our food choices and learn how to bring intentions back into alignment with our everyday meals.</p>
+
+    <div class="key-takeaways">
+      <h3>✨ Key Takeaways</h3>
+      <ul>
+        <li>Our meal choices often reflect habits over intentions, leading to familiar defaults.</li>
+        <li>Planning meals loosely can help bridge the gap between what we want to eat and what we actually prepare.</li>
+        <li>Embracing culinary spontaneity can encourage creativity and enjoyment in cooking.</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h2>The Hidden Patterns Behind What We Actually End Up Eating</h2>
+<p>Standing in the spice aisle, you’re convinced you need saffron for that risotto you’ve been dreaming of all week. However, when you get home, your pantry hints instead at an unceremonious stir-fry of leftover vegetables that’s been half-heartedly waiting for attention. This dance of intentions and routines often leads us down winding paths of contradictions, uncovering the hidden patterns behind what we actually end up eating.</p>
+
+<h2>What We Intend vs. What We Do</h2>
+<p>Despite our grand culinary aspirations, a curious phenomenon unfolds in our kitchens. Many of us find ourselves leaning toward comfort foods, quick meals, or whatever is most visible. That’s not decision-making gone awry; it’s habit taking the wheel. When we set intentions to create balanced plates with those vibrant vegetables or grain salads, a week of hectic schedules and the allure of takeout can derail those plans.</p>
+<p>Consider the mystery of the forgotten ingredients. The fresh herbs you bought for a sauce might wilt away while waiting two days for the homemade pasta you planned. When you browse the fridge for dinner, those herbs, along with the expression of guilt, often whisper, “We had plans…” Yet they’re relegated to an unseen shelf, lost in the backdrop of daily meals centered around what’s easily reachable.</p>
+
+<h2>The Allure of Default Choices</h2>
+<p>Comfort is a powerful force in our food decisions, and it leads to default choices that aren’t always reflective of our intentions. Whether it’s the crispy pizza or familiar grilled cheese, these meals often involve less brainpower than crafting a fresh salad or sautéing vegetables. Moreover, our brains seek shortcuts, finding comfort in routine and familiar flavors over creative endeavors—even if those endeavors are rooted in good intentions.</p>
+<p>Additionally, social dynamics play a role. When the family turns to their favorite mac and cheese instead of the crunchy quinoa salad, the intention to eat better quickly dissolves into amiable conformity. That pull towards familiar and beloved meals holds weight, with culinary comfort often outranking health goals in the minds of the whole household. How can we integrate our desires for goodness with the friction of practicality and collective choices?</p>
+
+<h2>Strategies for Smoother Transitions</h2>
+<p>To bridge the gap between what we intend to eat and what we end up actually consuming, a few guiding strategies can create smoother pathways. Planning your meals, even loosely, can help frame your week. This doesn’t mean every dish has to be a complex feat; rather, aim to outline a few easily executable meals that celebrate freshness. If you know what’s on the docket, experienced cooks can pull off those spur-of-the-moment decisions that still align with your goals.</p>
+<p>For instance, consider a “clean out the fridge” night, where you give yourself permission to creatively combine leftover ingredients instead of defaulting to delivery. Embracing the mercurial nature of ingredients in your kitchen can invigorate your cooking and, quite frankly, spark joy when transforming what's available into something new.</p>
+
+<h2>Embracing Flexibility</h2>
+<p>Ultimately, allowing yourself the grace of imperfection in what you intend to eat versus what you actually prepare can liberate you from the notion that every meal must fit neatly into a box. The encouragement to embrace a little chaos means letting spontaneity steer sometimes. Therefore, experiment and observe the hidden patterns in both your desires and what you reach for. Building a kitchen practice that allows for sous-vide seitan tacos one night and a snacky charcuterie board the next can meld your plans with reality.</p>
+
+<p>Let’s respect the small victories: using the freshest ingredients, flexibly shifting your plans, and allowing yourself culinary creativity. Food is, after all, meant to nourish and bring joy, even amidst the tension of intentions versus habits.</p>
+
+<h2>Common Questions</h2>
+<h3>What if I don’t have time to meal prep?</h3>
+<p>Start small! Even batching ingredients, like washing and chopping veggies for the week, can save time while allowing a bit of flexibility in your meal plans.</p>
+<h3>How can I help my family embrace new meals?</h3>
+<p>Involve everyone in the meal planning process. Set a rotating “theme night” for creative cooking, where each family member gets to pick a meal idea.</p>
+<h3>Is it okay to change my meal plans on a whim?</h3>
+<p>Absolutely! Flexibility can lead to culinary adventures. Don’t hesitate to swap meals based on what’s fresh or how you feel that day.</p>
+    </div>
+
+    <div class="social">
+      <h4>Social Media Caption (Facebook & Instagram)</h4>
+      <p>Unearth the hidden patterns in your food choices and discover how to align your culinary intentions with reality for fresher meals.</p>
+    </div>
+
+    <div class="meta-info">
+      <h4>SEO Meta Description (107 chars)</h4>
+      <p>Discover how to align your food intentions with reality to make smarter eating choices and reduce spoilage.</p>
+    </div>
+
+    <div class="cta">
+      <h3>Ready to reduce your food waste?</h3>
+      <p>Foil helps you track what's in your kitchen and reminds you before things expire.</p>
+    </div>
+  </article>
+</body>
+</html>
