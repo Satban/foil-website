@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neera — Help shape an AI nutrition agent for GLP-1</title>
+<meta name="description" content="Help shape Neera, an AI nutrition agent built for the GLP-1 journey. 5-minute survey, your input shapes what gets built.">
+<meta property="og:title" content="Neera — An AI nutrition agent for life on GLP-1">
+<meta property="og:description" content="Built with patients, not for them. Take the 5-min survey.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://meetneera.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EFE3;
+    --card: #FFFFFF;
+    --text: #2A2520;
+    --text-soft: #6B6258;
+    --accent: #5A7A4F;
+    --accent-dark: #46603D;
+    --border: #E5DDD0;
+    --error: #B85450;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(42, 37, 32, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    min-height: 100vh;
+  }
+  .brand {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .brand img {
+    max-width: 240px;
+    width: 70%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .intro-venn {
+    display: block;
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    margin: 28px auto 8px;
+  }
+  .progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    color: var(--text-soft);
+    font-size: 14px;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+    border-radius: 4px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    box-shadow: var(--shadow);
+  }
+  h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  p {
+    margin: 0 0 16px;
+    color: var(--text-soft);
+  }
+  p.lede {
+    color: var(--text);
+    font-size: 18px;
+  }
+  .question-label {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: var(--text);
+  }
+  .question-hint {
+    font-size: 14px;
+    color: var(--text-soft);
+    margin: 0 0 20px;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    font-size: 16px;
+  }
+  .option:hover { border-color: var(--accent); background: #FAF6EC; }
+  .option input[type=radio], .option input[type=checkbox] {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+  .option.selected {
+    border-color: var(--accent);
+    background: #EEF2E8;
+  }
+  .other-input {
+    margin-top: 10px;
+    display: none;
+  }
+  .other-input.visible { display: block; }
+  textarea, input[type=text], input[type=email] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--text);
+    resize: vertical;
+    min-height: 44px;
+    transition: border-color 0.15s ease;
+  }
+  textarea { min-height: 100px; }
+  textarea:focus, input[type=text]:focus, input[type=email]:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #FFFFFF;
+  }
+  .nav-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
+    text-decoration: none;
+  }
+  .btn:hover { background: var(--accent-dark); }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled {
+    background: var(--border);
+    cursor: not-allowed;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-soft);
+    border: 1.5px solid var(--border);
+  }
+  .btn-secondary:hover { background: var(--bg); border-color: var(--text-soft); color: var(--text); }
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0 24px;
+  }
+  .video-wrap video, .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .error-msg {
+    color: var(--error);
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .success {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .success-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 auto 24px;
+  }
+  .conditional-email {
+    margin-top: 16px;
+    display: none;
+  }
+  .conditional-email.visible { display: block; }
+  @media (max-width: 500px) {
+    .container { padding: 20px 14px 60px; }
+    .card { padding: 24px 18px; }
+    h1 { font-size: 28px; }
+    .question-label { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="brand">
+    <img src="assets/neera_logo.png" alt="Neera — your nutrition companion">
+  </div>
+
+  <div class="progress" id="progress" style="display: none;">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div>
+    <div id="progress-text">1 of 16</div>
+  </div>
+
+  <div class="card" id="card">
+    <!-- Steps injected by JS -->
+  </div>
+
+  <div class="footer">
+    Currently in research mode. Your responses are private.
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG — REPLACE THESE TWO VALUES
+// ============================================================
+const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzj7Kd7s4xqepq1wuwi5xu6sU4gwhSgmc9PQuVLYxMq0ExbgpbsZdcqLaLpDvEmlWpbUw/exec";
+const VIDEO_URL = "https://www.youtube.com/embed/3sDOxxgKeRY?rel=0&modestbranding=1";
+// (Alternative for self-hosted MP4: set VIDEO_URL = "" and use a direct path below)
+
+// ============================================================
+// SURVEY DEFINITION
+// ============================================================
+const steps = [
+  {
+    type: "intro",
+    title: "Help shape Neera",
+    body: [
+      "Hi, I'm Satyam. I'm building Neera, your nutrition companion for life on GLP-1.",
+      "Neera brings together what you eat, what your wearables track, and the insights that help you stay on course.",
+      "This 5-minute survey is private. Your responses shape what gets built."
+    ],
+    venn: true,
+    button: "Let's go"
+  },
+  {
+    id: "on_glp1",
+    type: "single",
+    label: "Are you currently on a GLP-1 medication?",
+    hint: "Ozempic, Wegovy, Mounjaro, Zepbound, or compounded.",
+    options: ["Yes, currently", "I was on one but stopped", "No, but considering it", "No, and not considering it"],
+    required: true
+  },
+  {
+    id: "which_glp1",
+    type: "single",
+    label: "Which GLP-1 are you on (or were on most recently)?",
+    options: ["Ozempic (semaglutide)", "Wegovy (semaglutide)", "Mounjaro (tirzepatide)", "Zepbound (tirzepatide)", "Compounded semaglutide or tirzepatide"],
+    other: true,
+    required: true,
+    showIf: (a) => a.on_glp1 && a.on_glp1 !== "No, and not considering it"
+  },
+  {
+    id: "duration",
+    type: "single",
+    label: "How long have you been on it (or were on it)?",
+    options: ["Less than 1 month", "1–3 months", "3–6 months", "6–12 months", "1–2 years", "More than 2 years"],
+    required: true,
+    showIf: (a) => a.on_glp1 && (a.on_glp1 === "Yes, currently" || a.on_glp1 === "I was on one but stopped")
+  },
+  {
+    id: "why_started",
+    type: "single",
+    label: "What was your main reason for starting?",
+    options: ["Weight loss", "Diabetes / pre-diabetes management", "Cardiovascular risk", "PCOS", "Other health condition"],
+    other: true,
+    required: true,
+    showIf: (a) => a.on_glp1 && a.on_glp1 !== "No, and not considering it"
+  },
+  {
+    id: "challenges",
+    type: "multi",
+    label: "What's been hardest about food on a GLP-1?",
+    hint: "Select up to 3.",
+    options: [
+      "Getting enough protein",
+      "Getting enough fiber",
+      "Managing nausea and other symptoms",
+      "Knowing what to eat",
+      "Planning meals",
+      "Grocery shopping decisions",
+      "Staying motivated to cook",
+      "Adapting to changing appetite",
+      "Worry about coming off and gaining weight back",
+      "Eating out / social meals"
+    ],
+    other: true,
+    maxSelect: 3,
+    required: true,
+    showIf: (a) => a.on_glp1 && a.on_glp1 !== "No, and not considering it"
+  },
+  {
+    id: "current_tools",
+    type: "multi",
+    label: "What apps, tools, or services do you currently use for food, weight, or health?",
+    hint: "Select all that apply.",
+    options: [
+      "MyFitnessPal",
+      "Cronometer",
+      "Noom",
+      "WeightWatchers",
+      "Levels / continuous glucose monitor",
+      "Apple Health / Google Fit",
+      "A registered dietitian",
+      "A coach or program (Calibrate, Form Health, etc.)",
+      "A Facebook or Reddit GLP-1 community",
+      "None of the above"
+    ],
+    other: true,
+    required: false
+  },
+  {
+    type: "video",
+    label: "Take 90 seconds to watch this",
+    hint: "When ready, click below."
+  },
+  {
+    id: "reaction",
+    type: "text",
+    label: "In a few words, what's your first reaction?",
+    hint: "Optional but encouraged.",
+    required: false,
+    placeholder: "What came to mind as you watched..."
+  },
+  {
+    id: "resonance",
+    type: "single",
+    label: "Does this look like something that would actually help you?",
+    options: ["Yes, very much", "Maybe, depends on the details", "Probably not for me", "Definitely not"],
+    required: true
+  },
+  {
+    id: "stood_out",
+    type: "multi",
+    label: "What part felt most useful?",
+    hint: "Select all that apply.",
+    options: [
+      "The voice meal planning",
+      "The receipt analysis (what you buy vs eat)",
+      "The symptom adaptation",
+      "The health outcomes tracking",
+      "The cardiometabolic fit score",
+      "None of the above"
+    ],
+    required: false
+  },
+  {
+    id: "off",
+    type: "text",
+    label: "What felt unclear, unnecessary, or just wrong?",
+    hint: "Optional. Honest feedback most useful.",
+    required: false,
+    placeholder: "Anything that felt off..."
+  },
+  {
+    id: "wtp",
+    type: "multi",
+    label: "If something like this existed today, what feels fair?",
+    hint: "Select all that apply. Price and reimbursement preferences are both useful.",
+    options: ["$0 (free or ad-supported)", "Under $10/month", "$10–25/month", "$25–50/month", "$50–75/month", "More than $75/month", "I'd want to use HSA/FSA pre-tax dollars", "I'd want my insurance to cover it"],
+    required: true
+  },
+  {
+    id: "discovery",
+    type: "multi",
+    label: "Where do you usually go for nutrition or GLP-1 information?",
+    hint: "Select all.",
+    options: ["Reddit", "Facebook groups", "Instagram / TikTok creators", "My prescribing doctor / clinic", "Friends or family", "Podcasts", "General Google search"],
+    other: true,
+    required: false
+  },
+  {
+    id: "wish",
+    type: "text",
+    label: "If you could wave a wand and fix ONE thing about your nutrition on GLP-1, what would it be?",
+    required: false,
+    placeholder: "The one thing that would make this easier..."
+  },
+  {
+    id: "zoom_interview",
+    type: "single",
+    label: "Open to a 20-minute Zoom conversation to go deeper?",
+    hint: "Your perspective would directly shape what gets built.",
+    options: ["Yes, let's talk", "Maybe, tell me more", "No thanks"],
+    required: true,
+    conditionalEmail: true
+  },
+  {
+    id: "beta_list",
+    type: "single",
+    label: "Want to be on the early beta list when Neera launches?",
+    options: ["Yes", "No"],
+    required: false,
+    conditionalEmail: true
+  }
+];
+
+// ============================================================
+// SURVEY ENGINE
+// ============================================================
+const answers = {};
+let currentIndex = 0;
+
+function visibleSteps() {
+  return steps.filter(s => !s.showIf || s.showIf(answers));
+}
+
+function totalDataSteps() {
+  return visibleSteps().filter(s => s.type !== "intro" && s.type !== "video").length;
+}
+
+function currentDataStepNumber() {
+  const v = visibleSteps();
+  return v.slice(0, currentIndex + 1).filter(s => s.type !== "intro" && s.type !== "video").length;
+}
+
+function render() {
+  const v = visibleSteps();
+  const step = v[currentIndex];
+  if (!step) return;
+  const card = document.getElementById("card");
+  const progress = document.getElementById("progress");
+  const fill = document.getElementById("progress-fill");
+  const ptext = document.getElementById("progress-text");
+
+  if (step.type === "intro") {
+    progress.style.display = "none";
+    card.innerHTML = `
+      <h1>${step.title}</h1>
+      ${step.body.map(b => `<p class="lede">${b}</p>`).join("")}
+      ${step.venn ? `<img class="intro-venn" src="assets/neera_venn.png" alt="Neera connects wearables, food and groceries, and insights">` : ""}
+      <div class="nav-row"><button class="btn" id="next-btn">${step.button}</button></div>
+    `;
+  } else if (step.type === "video") {
+    progress.style.display = "flex";
+    const total = totalDataSteps();
+    const num = currentDataStepNumber();
+    fill.style.width = `${(num / total) * 100}%`;
+    ptext.textContent = `${num} of ${total}`;
+    card.innerHTML = `
+      <div class="question-label">${step.label}</div>
+      <div class="question-hint">${step.hint}</div>
+      <div class="video-wrap">
+        ${VIDEO_URL.includes("youtube.com") || VIDEO_URL.includes("youtu.be")
+          ? `<iframe src="${VIDEO_URL}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+          : VIDEO_URL
+            ? `<video src="${VIDEO_URL}" controls playsinline></video>`
+            : `<div style="color:white;text-align:center;padding:40px;">Video placeholder — set VIDEO_URL in script</div>`}
+      </div>
+      <div class="nav-row">
+        <button class="btn-secondary btn" id="back-btn">← Back</button>
+        <button class="btn" id="next-btn" style="margin-left:auto;">I've watched it →</button>
+      </div>
+    `;
+  } else if (step.type === "single") {
+    progress.style.display = "flex";
+    const total = totalDataSteps();
+    const num = currentDataStepNumber();
+    fill.style.width = `${(num / total) * 100}%`;
+    ptext.textContent = `${num} of ${total}`;
+    const showOther = step.other ? `<div class="option" data-value="__other__"><input type="radio" name="opt"> Other (please specify)</div><div class="other-input"><input type="text" id="other-input" placeholder="Tell us more..."></div>` : "";
+    card.innerHTML = `
+      <div class="question-label">${step.label}</div>
+      ${step.hint ? `<div class="question-hint">${step.hint}</div>` : ""}
+      <div class="options" id="options">
+        ${step.options.map(o => `<div class="option" data-value="${o.replace(/"/g, '&quot;')}"><input type="radio" name="opt"> ${o}</div>`).join("")}
+        ${showOther}
+      </div>
+      ${step.conditionalEmail ? `<div class="conditional-email" id="conditional-email"><input type="email" id="email-input" placeholder="Your email so I can reach out..."></div>` : ""}
+      <div class="error-msg" id="error" style="display:none;"></div>
+      <div class="nav-row">
+        <button class="btn-secondary btn" id="back-btn" ${currentIndex === 0 ? "disabled" : ""}>← Back</button>
+        <button class="btn" id="next-btn" style="margin-left:auto;">Next →</button>
+      </div>
+    `;
+    attachSingleHandlers(step);
+  } else if (step.type === "multi") {
+    progress.style.display = "flex";
+    const total = totalDataSteps();
+    const num = currentDataStepNumber();
+    fill.style.width = `${(num / total) * 100}%`;
+    ptext.textContent = `${num} of ${total}`;
+    const showOther = step.other ? `<div class="option" data-value="__other__"><input type="checkbox"> Other (please specify)</div><div class="other-input"><input type="text" id="other-input" placeholder="Tell us more..."></div>` : "";
+    card.innerHTML = `
+      <div class="question-label">${step.label}</div>
+      ${step.hint ? `<div class="question-hint">${step.hint}</div>` : ""}
+      <div class="options" id="options">
+        ${step.options.map(o => `<div class="option" data-value="${o.replace(/"/g, '&quot;')}"><input type="checkbox"> ${o}</div>`).join("")}
+        ${showOther}
+      </div>
+      <div class="error-msg" id="error" style="display:none;"></div>
+      <div class="nav-row">
+        <button class="btn-secondary btn" id="back-btn">← Back</button>
+        <button class="btn" id="next-btn" style="margin-left:auto;">Next →</button>
+      </div>
+    `;
+    attachMultiHandlers(step);
+  } else if (step.type === "text") {
+    progress.style.display = "flex";
+    const total = totalDataSteps();
+    const num = currentDataStepNumber();
+    fill.style.width = `${(num / total) * 100}%`;
+    ptext.textContent = `${num} of ${total}`;
+    card.innerHTML = `
+      <div class="question-label">${step.label}</div>
+      ${step.hint ? `<div class="question-hint">${step.hint}</div>` : ""}
+      <textarea id="text-input" placeholder="${step.placeholder || ""}"></textarea>
+      <div class="error-msg" id="error" style="display:none;"></div>
+      <div class="nav-row">
+        <button class="btn-secondary btn" id="back-btn">← Back</button>
+        <button class="btn" id="next-btn" style="margin-left:auto;">Next →</button>
+      </div>
+    `;
+    document.getElementById("text-input").value = answers[step.id] || "";
+  }
+
+  attachNavHandlers();
+}
+
+function attachSingleHandlers(step) {
+  const opts = document.querySelectorAll(".option");
+  const otherInput = document.querySelector(".other-input");
+  const conditionalEmail = document.getElementById("conditional-email");
+
+  opts.forEach(opt => {
+    opt.addEventListener("click", () => {
+      opts.forEach(o => o.classList.remove("selected"));
+      opts.forEach(o => o.querySelector("input").checked = false);
+      opt.classList.add("selected");
+      opt.querySelector("input").checked = true;
+      const val = opt.dataset.value;
+      if (val === "__other__") {
+        otherInput.classList.add("visible");
+      } else {
+        if (otherInput) otherInput.classList.remove("visible");
+      }
+      if (conditionalEmail) {
+        if (val === "Yes, let's talk" || val === "Maybe, tell me more" || val === "Yes") {
+          conditionalEmail.classList.add("visible");
+        } else {
+          conditionalEmail.classList.remove("visible");
+        }
+      }
+    });
+  });
+
+  // restore prior answer
+  const prior = answers[step.id];
+  if (prior) {
+    opts.forEach(opt => {
+      if (opt.dataset.value === prior || (opt.dataset.value === "__other__" && typeof prior === "string" && !step.options.includes(prior))) {
+        opt.classList.add("selected");
+        opt.querySelector("input").checked = true;
+        if (opt.dataset.value === "__other__" && otherInput) {
+          otherInput.classList.add("visible");
+          document.getElementById("other-input").value = prior;
+        }
+      }
+    });
+    if (conditionalEmail && (prior === "Yes, let's talk" || prior === "Maybe, tell me more" || prior === "Yes")) {
+      conditionalEmail.classList.add("visible");
+      if (answers[step.id + "_email"]) {
+        document.getElementById("email-input").value = answers[step.id + "_email"];
+      }
+    }
+  }
+}
+
+function attachMultiHandlers(step) {
+  const opts = document.querySelectorAll(".option");
+  const otherInput = document.querySelector(".other-input");
+
+  opts.forEach(opt => {
+    opt.addEventListener("click", () => {
+      const cb = opt.querySelector("input");
+      cb.checked = !cb.checked;
+      opt.classList.toggle("selected", cb.checked);
+      if (opt.dataset.value === "__other__") {
+        otherInput.classList.toggle("visible", cb.checked);
+      }
+    });
+  });
+
+  // restore prior
+  const prior = answers[step.id];
+  if (prior && Array.isArray(prior)) {
+    opts.forEach(opt => {
+      if (prior.includes(opt.dataset.value) || (opt.dataset.value === "__other__" && prior.some(p => !step.options.includes(p)))) {
+        opt.classList.add("selected");
+        opt.querySelector("input").checked = true;
+        if (opt.dataset.value === "__other__" && otherInput) {
+          otherInput.classList.add("visible");
+          const otherVal = prior.find(p => !step.options.includes(p));
+          if (otherVal) document.getElementById("other-input").value = otherVal;
+        }
+      }
+    });
+  }
+}
+
+function attachNavHandlers() {
+  const nextBtn = document.getElementById("next-btn");
+  const backBtn = document.getElementById("back-btn");
+  if (nextBtn) nextBtn.addEventListener("click", handleNext);
+  if (backBtn) backBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      render();
+    }
+  });
+}
+
+function handleNext() {
+  const v = visibleSteps();
+  const step = v[currentIndex];
+  const errorEl = document.getElementById("error");
+
+  if (step.type === "single") {
+    const selected = document.querySelector(".option.selected");
+    if (!selected && step.required) {
+      errorEl.textContent = "Please pick one to continue.";
+      errorEl.style.display = "block";
+      return;
+    }
+    if (selected) {
+      let val = selected.dataset.value;
+      if (val === "__other__") {
+        const otherVal = document.getElementById("other-input").value.trim();
+        if (!otherVal) {
+          errorEl.textContent = "Please tell us more.";
+          errorEl.style.display = "block";
+          return;
+        }
+        val = otherVal;
+      }
+      answers[step.id] = val;
+      const condEmail = document.getElementById("conditional-email");
+      if (condEmail && condEmail.classList.contains("visible")) {
+        const emailVal = document.getElementById("email-input").value.trim();
+        if (emailVal) answers[step.id + "_email"] = emailVal;
+      }
+    }
+
+    // End-of-survey condition: not on GLP-1 + not considering
+    if (step.id === "on_glp1" && answers.on_glp1 === "No, and not considering it") {
+      showThankYouEarly();
+      return;
+    }
+  } else if (step.type === "multi") {
+    const selected = Array.from(document.querySelectorAll(".option.selected"));
+    if (selected.length === 0 && step.required) {
+      errorEl.textContent = "Please pick at least one.";
+      errorEl.style.display = "block";
+      return;
+    }
+    if (step.maxSelect && selected.length > step.maxSelect) {
+      errorEl.textContent = `Please select up to ${step.maxSelect}.`;
+      errorEl.style.display = "block";
+      return;
+    }
+    let vals = selected.map(s => s.dataset.value);
+    if (vals.includes("__other__")) {
+      vals = vals.filter(v => v !== "__other__");
+      const otherVal = document.getElementById("other-input").value.trim();
+      if (otherVal) vals.push(otherVal);
+    }
+    answers[step.id] = vals;
+  } else if (step.type === "text") {
+    answers[step.id] = document.getElementById("text-input").value.trim();
+  }
+
+  if (currentIndex < v.length - 1) {
+    currentIndex++;
+    render();
+  } else {
+    submit();
+  }
+}
+
+function showThankYouEarly() {
+  document.getElementById("progress").style.display = "none";
+  document.getElementById("card").innerHTML = `
+    <div class="success">
+      <div class="success-divider"></div>
+      <h2>Thanks for stopping by</h2>
+      <p>This survey is focused on people directly impacted by GLP-1s.</p>
+      <p>If you know someone who is, please share this page with them. It would help a lot.</p>
+      <button class="btn" onclick="navigator.clipboard.writeText('https://meetneera.com').then(() => alert('Link copied!'))">Copy link to share</button>
+    </div>
+  `;
+}
+
+async function submit() {
+  document.getElementById("card").innerHTML = `<div class="success"><p>Sending your responses...</p></div>`;
+  try {
+    answers._timestamp = new Date().toISOString();
+    answers._userAgent = navigator.userAgent;
+    answers._referrer = document.referrer || "direct";
+    const res = await fetch(SUBMIT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(answers)
+    });
+    showSuccess();
+  } catch (e) {
+    console.error(e);
+    showError();
+  }
+}
+
+function showSuccess() {
+  document.getElementById("progress").style.display = "none";
+  document.getElementById("card").innerHTML = `
+    <div class="success">
+      <div class="success-divider"></div>
+      <h2>Thank you so much</h2>
+      <p>${answers.zoom_interview === "Yes, let's talk" || answers.zoom_interview === "Maybe, tell me more"
+        ? "I'll reach out within 48 hours to set up the Zoom."
+        : ""}
+      ${answers.beta_list === "Yes" ? "I'll keep you posted on early beta access." : ""}
+      Either way, I genuinely appreciate you taking the time.</p>
+      <p style="margin-top:24px;">— Satyam</p>
+      <div style="margin-top:32px;">
+        <button class="btn" onclick="navigator.clipboard.writeText('https://meetneera.com').then(() => alert('Link copied!'))">Share with someone on GLP-1</button>
+      </div>
+    </div>
+  `;
+}
+
+function showError() {
+  document.getElementById("card").innerHTML = `
+    <div class="success">
+      <h2>Something went wrong</h2>
+      <p>Your responses didn't get through. Could you email me directly at letsmeetneera@gmail.com? I'd really appreciate it.</p>
+    </div>
+  `;
+}
+
+// Boot
+render();
+</script>
+</body>
+</html>
