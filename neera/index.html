@@ -297,7 +297,7 @@ const steps = [
     type: "intro",
     title: "Help shape Neera",
     body: [
-      "Hi, I'm Satyam. I'm building Neera, your nutrition companion for life on GLP-1.",
+      "Hi, I'm Satyam. I'm building Neera, an AI nutrition companion. Built first for people on GLP-1 medications, designed for anyone managing food and health more mindfully.",
       "Neera brings together what you eat, what your wearables track, and the insights that help you stay on course.",
       "This 5-minute survey is private. Your responses shape what gets built."
     ],
@@ -307,9 +307,9 @@ const steps = [
   {
     id: "on_glp1",
     type: "single",
-    label: "Are you currently on a GLP-1 medication?",
-    hint: "Ozempic, Wegovy, Mounjaro, Zepbound, or compounded.",
-    options: ["Yes, currently", "I was on one but stopped", "No, but considering it", "No, and not considering it"],
+    label: "What best describes you?",
+    hint: "Neera is built first for GLP-1 users, but useful for anyone managing nutrition.",
+    options: ["I'm currently on a GLP-1 medication", "I was on a GLP-1 but stopped", "I'm considering a GLP-1", "I'm focused on weight or nutrition without medication", "I'm just curious about Neera"],
     required: true
   },
   {
@@ -319,7 +319,7 @@ const steps = [
     options: ["Ozempic (semaglutide)", "Wegovy (semaglutide)", "Mounjaro (tirzepatide)", "Zepbound (tirzepatide)", "Compounded semaglutide or tirzepatide"],
     other: true,
     required: true,
-    showIf: (a) => a.on_glp1 && a.on_glp1 !== "No, and not considering it"
+    showIf: (a) => a.on_glp1 === "I'm currently on a GLP-1 medication" || a.on_glp1 === "I was on a GLP-1 but stopped"
   },
   {
     id: "duration",
@@ -327,38 +327,39 @@ const steps = [
     label: "How long have you been on it (or were on it)?",
     options: ["Less than 1 month", "1–3 months", "3–6 months", "6–12 months", "1–2 years", "More than 2 years"],
     required: true,
-    showIf: (a) => a.on_glp1 && (a.on_glp1 === "Yes, currently" || a.on_glp1 === "I was on one but stopped")
+    showIf: (a) => a.on_glp1 === "I'm currently on a GLP-1 medication" || a.on_glp1 === "I was on a GLP-1 but stopped"
   },
   {
     id: "why_started",
     type: "single",
-    label: "What was your main reason for starting?",
-    options: ["Weight loss", "Diabetes / pre-diabetes management", "Cardiovascular risk", "PCOS", "Other health condition"],
+    label: "What's your main motivation?",
+    hint: "GLP-1 users: why did you start? Others: what brings you to mindful nutrition?",
+    options: ["Weight loss", "Diabetes / pre-diabetes management", "Cardiovascular health", "PCOS", "General wellness / healthy aging", "Other health condition"],
     other: true,
-    required: true,
-    showIf: (a) => a.on_glp1 && a.on_glp1 !== "No, and not considering it"
+    required: true
   },
   {
     id: "challenges",
     type: "multi",
-    label: "What's been hardest about food on a GLP-1?",
+    label: "What's been hardest about food and nutrition lately?",
     hint: "Select up to 3.",
     options: [
       "Getting enough protein",
       "Getting enough fiber",
-      "Managing nausea and other symptoms",
+      "Managing nausea or other GLP-1 symptoms",
       "Knowing what to eat",
       "Planning meals",
       "Grocery shopping decisions",
       "Staying motivated to cook",
       "Adapting to changing appetite",
-      "Worry about coming off and gaining weight back",
-      "Eating out / social meals"
+      "Worry about gaining weight back",
+      "Eating out / social meals",
+      "Tracking nutrition consistently",
+      "Sticking with healthy habits"
     ],
     other: true,
     maxSelect: 3,
-    required: true,
-    showIf: (a) => a.on_glp1 && a.on_glp1 !== "No, and not considering it"
+    required: true
   },
   {
     id: "current_tools",
@@ -751,11 +752,7 @@ function handleNext() {
       }
     }
 
-    // End-of-survey condition: not on GLP-1 + not considering
-    if (step.id === "on_glp1" && answers.on_glp1 === "No, and not considering it") {
-      showThankYouEarly();
-      return;
-    }
+    // No early-exit — all respondents continue the survey regardless of GLP-1 status.
   } else if (step.type === "multi") {
     const selected = Array.from(document.querySelectorAll(".option.selected"));
     if (selected.length === 0 && step.required) {
