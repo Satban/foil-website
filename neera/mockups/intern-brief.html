@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neera — Intern Onboarding Brief</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EFE3;
+    --cream: #FAF6EC;
+    --brand: #C77966;
+    --brand-dark: #A85B49;
+    --brand-soft: #EFD5CB;
+    --sage: #5A7A4F;
+    --sage-soft: #DDE5D5;
+    --amber: #D4A55C;
+    --amber-soft: #F2E2C2;
+    --text: #2A2520;
+    --text-soft: #6B6258;
+    --border: #E5DDD0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 24px 80px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .nav {
+    margin-bottom: 24px;
+    font-size: 13px;
+  }
+  .nav a {
+    color: var(--brand-dark);
+    text-decoration: none;
+  }
+  .nav a:hover { text-decoration: underline; }
+  h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: 42px;
+    font-weight: 500;
+    margin: 0 0 6px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    font-size: 16px;
+    color: var(--text-soft);
+    margin-bottom: 36px;
+  }
+  h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--text);
+    margin: 40px 0 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--text);
+    margin: 24px 0 8px;
+  }
+  p { margin: 8px 0 14px; }
+  ul, ol {
+    padding-left: 20px;
+    margin: 6px 0 14px;
+  }
+  li {
+    margin-bottom: 6px;
+    line-height: 1.55;
+  }
+  strong { color: var(--text); font-weight: 600; }
+  code, .url {
+    background: var(--cream);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 13.5px;
+    color: var(--brand-dark);
+    border: 1px solid var(--border);
+  }
+  .callout {
+    background: var(--brand-soft);
+    border-left: 3px solid var(--brand);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin: 16px 0;
+    font-size: 14.5px;
+  }
+  .callout strong { color: var(--brand-dark); }
+  .callout.sage {
+    background: var(--sage-soft);
+    border-left-color: var(--sage);
+  }
+  .callout.sage strong { color: var(--sage); }
+  .callout.amber {
+    background: var(--amber-soft);
+    border-left-color: var(--amber);
+  }
+  .callout.amber strong { color: #8A6C2C; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 14.5px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th {
+    background: var(--cream);
+    font-weight: 600;
+    color: var(--text);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 640px) { .do-dont { grid-template-columns: 1fr; } }
+  .do-card, .dont-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .do-card { border-left: 3px solid var(--sage); }
+  .dont-card { border-left: 3px solid var(--brand); }
+  .do-card h4, .dont-card h4 {
+    margin: 0 0 8px;
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .do-card h4 { color: var(--sage); }
+  .dont-card h4 { color: var(--brand); }
+  .do-card ul, .dont-card ul {
+    padding-left: 18px;
+    margin: 0;
+    font-size: 14px;
+  }
+  .do-card li, .dont-card li {
+    margin-bottom: 5px;
+  }
+  .gate-block {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 12px 0;
+  }
+  .gate-block h4 {
+    margin: 0 0 8px;
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .gate-block.green { border-left: 3px solid var(--sage); }
+  .gate-block.amber { border-left: 3px solid var(--amber); }
+  .gate-block.red { border-left: 3px solid var(--brand); }
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    color: var(--text-soft);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="nav"><a href="./">← Back to mockups hub</a></div>
+
+<h1>Intern Onboarding Brief</h1>
+<p class="lede">Your playbook for the first 3–4 weeks. Welcome aboard.</p>
+
+<h2>1 · The mission</h2>
+<p>Neera is an AI nutrition agent being built for people on GLP-1 medications (Ozempic, Wegovy, Mounjaro, Zepbound). Right now we're in <strong>research mode</strong> — talking to real GLP-1 patients to understand their needs before building further.</p>
+<p>Your job: recruit GLP-1 patients to take our 5-minute survey, collect honest input, and help synthesize what we learn.</p>
+<div class="callout"><strong>Target:</strong> ~100 quality survey responses in the next 3–4 weeks.</div>
+
+<h2>2 · The tools you'll use</h2>
+<table>
+  <thead><tr><th>Tool</th><th>Access</th></tr></thead>
+  <tbody>
+    <tr><td>Survey URL</td><td><span class="url">https://getfoilapp.com/neera/</span></td></tr>
+    <tr><td>Google Sheet "Neera Survey Responses"</td><td>Satyam will share with your email (Editor access)</td></tr>
+    <tr><td>Instagram @meetneera</td><td>Added as Editor via Meta Business Suite</td></tr>
+    <tr><td>Tracking spreadsheet</td><td>Dedicated outreach tracker (Satyam will create)</td></tr>
+    <tr><td>Calendly (for Zoom calls)</td><td>Will be set up</td></tr>
+    <tr><td>Daily check-in</td><td>15-min sync with Satyam (first 2 weeks)</td></tr>
+  </tbody>
+</table>
+
+<h2>3 · Where you'll post — the channel plan</h2>
+
+<h3>Primary: Reddit (highest signal-to-noise)</h3>
+<p>Target subreddits in order of priority:</p>
+<ul>
+  <li>r/Ozempic (~350k members)</li>
+  <li>r/Mounjaro (~200k members)</li>
+  <li>r/Wegovy</li>
+  <li>r/Zepbound</li>
+  <li>r/GLP1</li>
+  <li>r/loseit</li>
+</ul>
+<p><strong>Approach:</strong> modmail FIRST. Never post without approval. Reddit auto-flags promo posts.</p>
+
+<h3>Secondary: Facebook Groups</h3>
+<ul>
+  <li>"Ozempic Support Group" (largest)</li>
+  <li>"Wegovy Weight Loss Group"</li>
+  <li>"Mounjaro Tirzepatide Support"</li>
+  <li>"GLP-1 Journey"</li>
+  <li>"Tirzepatide &amp; Semaglutide Community"</li>
+</ul>
+<p><strong>Approach:</strong> join, engage for 2 days, then ask admin permission to post a research solicitation.</p>
+
+<h3>Tertiary: Instagram + TikTok creator DMs</h3>
+<p>Find creators with 500–10,000 followers posting weekly about their GLP-1 journey using hashtags like <span class="url">#ozempicjourney</span>, <span class="url">#wegovyweightloss</span>, <span class="url">#mounjarojourney</span>, <span class="url">#glp1</span>.</p>
+<p><strong>Approach:</strong> follow + leave one genuine comment on their content, then DM with the research invitation 1–2 days later.</p>
+
+<h3>Quaternary: Personal network referrals</h3>
+<p>Satyam will provide a few warm intros to GLP-1 patients in his network. Tag those in the tracking sheet separately as "warm referrals."</p>
+
+<h2>4 · Approval gates</h2>
+
+<div class="gate-block green">
+  <h4>✓ You can do WITHOUT approval</h4>
+  <ul>
+    <li>Reply to DMs from interested respondents</li>
+    <li>Send follow-up confirmations</li>
+    <li>Schedule Zoom calls via Calendly</li>
+    <li>Engage authentically (like, comment) in target communities</li>
+    <li>Personalize DMs to Instagram/TikTok creators using approved templates</li>
+    <li>Send the thank-you message after each survey response</li>
+    <li>Add respondents to the tracking sheet</li>
+    <li>Reply to direct questions about the research</li>
+  </ul>
+</div>
+
+<div class="gate-block amber">
+  <h4>⚠ You need Satyam's approval BEFORE</h4>
+  <ul>
+    <li>Posting in any subreddit (Reddit posts are high-visibility, hard to delete cleanly)</li>
+    <li>Posting in any Facebook group</li>
+    <li>Posting on Instagram or TikTok feed (DMs are fine with templates)</li>
+    <li>Mentioning anything about pricing, specific product features, or competitors</li>
+    <li>Sending modmail to a new subreddit</li>
+    <li>Responding to anyone who pushes back hard or asks technical questions</li>
+    <li>Replying to anyone who claims to be a competitor or potential investor</li>
+  </ul>
+</div>
+
+<div class="gate-block red">
+  <h4>! Always escalate immediately</h4>
+  <ul>
+    <li>Mod warnings or removals</li>
+    <li>Anything involving safety or medical questions</li>
+    <li>Anyone hostile or making accusations</li>
+    <li>Anyone offering to invest, partner, or collaborate</li>
+    <li>Press or media inquiries</li>
+    <li>Anyone you suspect is a competitor researching us</li>
+  </ul>
+</div>
+
+<h2>5 · How to engage — for max response + pleasant UX</h2>
+
+<h3>Voice and tone</h3>
+<ul>
+  <li><strong>Warm, human, real.</strong> Not corporate.</li>
+  <li>Use Satyam's name in posts and DMs ("I'm Satyam, an early-stage founder…"). It's a real person doing real research, not a brand campaign.</li>
+  <li>Lead with empathy. The audience has hard physical and emotional experiences.</li>
+  <li>Make the ask small: "5-minute survey," not a 30-minute commitment.</li>
+  <li>Position as research, not product launch.</li>
+</ul>
+
+<h3>Posting playbook</h3>
+<ol>
+  <li>Read each community's rules carefully BEFORE engaging</li>
+  <li>Spend 1–2 days observing the tone of the community</li>
+  <li>Engage authentically (comment thoughtfully on others' posts) before pitching</li>
+  <li>Ask mod/admin permission via modmail or DM</li>
+  <li>Wait for approval (sometimes 24h, sometimes never)</li>
+  <li>Post using the approved templates (Satyam will share)</li>
+  <li>Track every outreach attempt and outcome in the sheet</li>
+</ol>
+
+<h3>DM playbook</h3>
+<ul>
+  <li>Personalize each DM. Reference something specific from their content ("I saw your post about ginger tea for nausea — really resonated…")</li>
+  <li>One DM per person. No follow-up if no reply within 5 days.</li>
+  <li>Always thank them, even if they decline.</li>
+  <li>If they respond positively, send them the survey link AND offer the optional Zoom interview.</li>
+  <li>Reply to inbound questions within 24 hours.</li>
+</ul>
+
+<h2>6 · Do's and Don'ts</h2>
+<div class="do-dont">
+  <div class="do-card">
+    <h4>✓ Do</h4>
+    <ul>
+      <li>Read community rules before posting</li>
+      <li>Always ask mod/admin permission first</li>
+      <li>Personalize DMs (don't copy-paste)</li>
+      <li>Engage authentically before pitching</li>
+      <li>Track every outreach in the sheet</li>
+      <li>Escalate edge cases promptly</li>
+      <li>Respond within 24 hours</li>
+      <li>Use Satyam's first name in messaging</li>
+      <li>Position as research, not product launch</li>
+    </ul>
+  </div>
+  <div class="dont-card">
+    <h4>✗ Don't</h4>
+    <ul>
+      <li>Post identical content across multiple subs in a short window</li>
+      <li>Post without explicit mod/admin permission</li>
+      <li>Mention price points or specific features publicly</li>
+      <li>Compare to Noom or any competitor by name</li>
+      <li>Make medical claims ("treats," "cures," "manages")</li>
+      <li>Argue with skeptics in comments</li>
+      <li>Share the internal mockups URL in any public post</li>
+      <li>Use a brand-new Reddit account</li>
+      <li>Follow up more than once after no response</li>
+    </ul>
+  </div>
+</div>
+
+<h2>7 · Competitor monitoring risk — how to manage</h2>
+<p>Yes, large companies like Noom DO monitor these communities. But here's what's real:</p>
+<ul>
+  <li>Research solicitation is not a product reveal. They can't "steal" a research conversation.</li>
+  <li>The product moat is not the idea — every healthtech company has heard "AI for GLP-1." The moat is execution + data + brand + user relationships.</li>
+  <li>Volunteer-led research framing is unthreatening — it looks like a curious founder, not a startup pitching.</li>
+</ul>
+
+<p><strong>Mitigation in your outreach:</strong></p>
+<ul>
+  <li>Don't reveal the specific UI in public posts (survey video is fine; internal mockups page stays private)</li>
+  <li>Don't mention specific features beyond "AI nutrition agent for GLP-1"</li>
+  <li>Don't share pricing or architecture publicly</li>
+  <li>Don't compare to competitors by name</li>
+  <li>If you notice anyone with a Noom / Calibrate / Form Health / Nourish email asking detailed questions, <strong>flag immediately</strong> to Satyam</li>
+</ul>
+
+<div class="callout sage"><strong>Bottom line:</strong> the competitive risk is small if we stay focused on RESEARCH framing, not PRODUCT REVEAL framing.</div>
+
+<h2>8 · Target funnel — what 100 responses looks like</h2>
+<table>
+  <thead><tr><th>Stage</th><th>Volume</th></tr></thead>
+  <tbody>
+    <tr><td>Outreach attempts</td><td>~250 (DMs + post recruiting + warm intros)</td></tr>
+    <tr><td>Quality survey responses</td><td>~100 (40% response rate)</td></tr>
+    <tr><td>Opt-in for Zoom interview</td><td>~15–20 (17% of survey takers)</td></tr>
+    <tr><td>Timeline</td><td>3–4 weeks</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Daily quota suggestion:</strong></p>
+<ul>
+  <li>10 IG/TikTok DMs per day to creators</li>
+  <li>1–2 Reddit post requests per week (different subreddits)</li>
+  <li>1–2 Facebook group requests per week</li>
+  <li>Track everything</li>
+</ul>
+
+<h2>9 · Analysis — what happens once responses come in</h2>
+<p><strong>Short answer: Satyam (with Claude's help) will synthesize. You prep the data.</strong></p>
+
+<h3>What you do beforehand:</h3>
+<ol>
+  <li>Keep the tracking sheet updated daily</li>
+  <li>Note any obvious spam / duplicates / bad-faith responses</li>
+  <li>Flag interesting quotes you see in open-text answers</li>
+  <li>Note when respondents opt in for Zoom (priority follow-up)</li>
+  <li>Weekly: export the Google Sheet as CSV and send to Satyam</li>
+</ol>
+
+<h3>What Claude does (with Satyam):</h3>
+<ul>
+  <li>Pattern detection across responses (clusters of similar pain, similar WTP)</li>
+  <li>Word frequency in open-text answers</li>
+  <li>WTP distribution analysis</li>
+  <li>Trust threshold distribution</li>
+  <li>Channel discovery analysis (where respondents found us)</li>
+  <li>Identifying killer quotes for investor pitches</li>
+  <li>Identifying the wedge user (who's most enthusiastic)</li>
+</ul>
+
+<h3>Weekly synthesis rhythm:</h3>
+<ul>
+  <li>Mondays: export prior week's responses</li>
+  <li>Send CSV + tracking sheet snapshot to Satyam</li>
+  <li>Get insights back within 24–48 hours</li>
+  <li>Adjust outreach focus based on what's working</li>
+</ul>
+
+<h2>10 · Your first week</h2>
+
+<h3>Day 1 (today)</h3>
+<ul>
+  <li>Read this document fully</li>
+  <li>Get sheet access from Satyam</li>
+  <li>Set up Reddit account if you don't have one with karma</li>
+  <li>Join the 5 target Facebook groups (answer their membership questions honestly)</li>
+  <li>Get access to @meetneera via Meta Business Suite</li>
+</ul>
+
+<h3>Day 2</h3>
+<ul>
+  <li>Read posts in each target community to understand tone</li>
+  <li>Send first modmail to one Reddit subreddit</li>
+  <li>DM 5 Instagram creators using the approved template</li>
+</ul>
+
+<h3>Days 3–5</h3>
+<ul>
+  <li>Continue engagement in communities</li>
+  <li>DM 10/day to Instagram + TikTok creators</li>
+  <li>Wait for mod responses; follow up if no response in 3 days</li>
+</ul>
+
+<h3>Week 2</h3>
+<ul>
+  <li>First Reddit post if mod approved</li>
+  <li>First Facebook group post if admin approved</li>
+  <li>Start booking Zoom interviews from survey opt-ins</li>
+</ul>
+
+<h3>End of Week 2 check</h3>
+<ul>
+  <li>Survey responses: target 30+</li>
+  <li>Outreach tracking sheet: 80+ rows</li>
+  <li>3–5 booked Zoom interviews</li>
+  <li>First weekly synthesis with Satyam</li>
+</ul>
+
+<h2>11 · When to ask for help</h2>
+<ul>
+  <li>Don't have an answer to a respondent's question? Ask Satyam — don't guess.</li>
+  <li>Don't know if a community is appropriate? Ask before posting.</li>
+  <li>Got a hostile reply? Document and ask before responding.</li>
+  <li>Anything legal, medical, or competitive feels off? Escalate.</li>
+</ul>
+
+<div class="callout amber"><strong>Default mode:</strong> when in doubt, ask. Better to slow down for 30 minutes than burn a community.</div>
+
+<h2>12 · Communication cadence</h2>
+<ul>
+  <li><strong>Daily 15-min sync</strong> with Satyam (first 2 weeks, then dial down)</li>
+  <li><strong>Slack / Discord / WhatsApp</strong> for quick questions</li>
+  <li><strong>Email</strong> letsmeetneera@gmail.com for shared assets</li>
+  <li><strong>Tracking sheet</strong> updated daily</li>
+</ul>
+
+<div class="footer">
+  Welcome aboard. Let's go.<br>
+  Internal use only · Neera is in research mode
+</div>
+
+</div>
+</body>
+</html>
