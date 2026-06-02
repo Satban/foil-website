@@ -424,6 +424,45 @@ const steps = [
     placeholder: "Anything that felt off..."
   },
   {
+    id: "interaction_mode",
+    type: "single",
+    label: "How would you want Neera to talk to you?",
+    options: [
+      "Proactive nudges throughout the day (notifications, reminders)",
+      "Only when I open it (pull-based)",
+      "A mix of both"
+    ],
+    required: true
+  },
+  {
+    id: "trust_threshold",
+    type: "single",
+    label: "How much human involvement would you want?",
+    hint: "What level of clinical oversight feels right?",
+    options: [
+      "AI is fine for everything",
+      "AI is fine, but I want human-reviewed every few weeks",
+      "I'd need a clinical professional involved throughout",
+      "I'd want my prescribing doctor to recommend it first"
+    ],
+    required: true
+  },
+  {
+    id: "data_sharing",
+    type: "multi",
+    label: "What would you be comfortable connecting?",
+    hint: "Select all you'd be willing to share with Neera.",
+    options: [
+      "Apple Health / Google Fit",
+      "Grocery receipts (photos or email forwarding)",
+      "Bank account or card transactions",
+      "Wearables (Apple Watch, Oura, Whoop, etc.)",
+      "Voice conversations with the agent",
+      "None — I'd want to enter everything manually"
+    ],
+    required: true
+  },
+  {
     id: "wtp",
     type: "multi",
     label: "If something like this existed today, what feels fair?",
