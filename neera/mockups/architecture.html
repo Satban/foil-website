@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neera Architecture — Phased Build-Out</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EFE3;
+    --cream: #FAF6EC;
+    --brand: #C77966;
+    --brand-dark: #A85B49;
+    --brand-soft: #EFD5CB;
+    --sage: #5A7A4F;
+    --sage-soft: #DDE5D5;
+    --slate: #4A6B7D;
+    --slate-soft: #D5DFE6;
+    --amber: #D4A55C;
+    --amber-soft: #F2E2C2;
+    --text: #2A2520;
+    --text-soft: #6B6258;
+    --border: #E5DDD0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 24px 80px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: 38px;
+    font-weight: 500;
+    margin: 0 0 8px;
+    color: var(--text);
+  }
+  h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--text);
+    margin: 48px 0 4px;
+  }
+  h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0 0 12px;
+  }
+  .subtitle {
+    color: var(--text-soft);
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .phase-block {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .phase-label {
+    position: absolute;
+    top: -12px;
+    left: 32px;
+    background: var(--brand);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .phase-label.phase2 { background: var(--sage); }
+  .phase-label.phase3 { background: var(--slate); }
+  .phase-label.phase4 { background: var(--amber); color: var(--text); }
+  .phase-meta {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-bottom: 24px;
+  }
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .arch-layer {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+  .arch-layer-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+  .arch-layer-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .arch-layer-side {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-soft);
+  }
+  .arch-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 500;
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .pill.brand { background: var(--brand-soft); border-color: var(--brand); color: var(--brand-dark); }
+  .pill.sage { background: var(--sage-soft); border-color: var(--sage); color: var(--sage); }
+  .pill.slate { background: var(--slate-soft); border-color: var(--slate); color: var(--slate); }
+  .pill.amber { background: var(--amber-soft); border-color: var(--amber); color: #8A6C2C; }
+  .pill.new { font-weight: 600; }
+  .pill.new::before { content: "+ "; }
+  .pill.dim { opacity: 0.55; }
+  .pill.dim::before { content: ""; }
+  .arrow {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 16px;
+    margin: -4px 0;
+  }
+  .agent-mesh {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .agent-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .agent-row-fan {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+  }
+  .agent-box {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    text-align: center;
+  }
+  .agent-box.orchestrator {
+    background: var(--brand);
+    color: white;
+    border-color: var(--brand);
+    font-weight: 600;
+  }
+  .agent-box.guardrail {
+    background: var(--amber-soft);
+    border-color: var(--amber);
+    color: #8A6C2C;
+  }
+  .agent-box.subagent {
+    background: var(--sage-soft);
+    border-color: var(--sage);
+  }
+  .agent-box .agent-name {
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .agent-box .agent-meta {
+    font-size: 10.5px;
+    opacity: 0.85;
+    line-height: 1.35;
+  }
+  .note {
+    background: var(--brand-soft);
+    border-left: 3px solid var(--brand);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text);
+    margin-top: 16px;
+  }
+  .note strong { color: var(--brand-dark); }
+  .lead {
+    color: var(--text-soft);
+    font-size: 15px;
+    max-width: 760px;
+    margin: 0 0 32px;
+    line-height: 1.55;
+  }
+  .legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 8px 0 24px;
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+  .legend-swatch.exist { background: white; }
+  .legend-swatch.new { background: var(--brand-soft); border-color: var(--brand); }
+  .legend-swatch.future { background: white; opacity: 0.55; }
+  .toc {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .toc a {
+    color: var(--brand-dark);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .toc a:hover { text-decoration: underline; }
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .principle-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .principle-card h4 {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    margin: 0 0 6px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .principle-card p {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 24px 0 36px;
+  }
+  .tl-cell {
+    padding: 18px;
+    border-right: 1px solid var(--border);
+    font-size: 12.5px;
+  }
+  .tl-cell:last-child { border-right: none; }
+  .tl-cell h5 {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    margin: 0 0 4px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tl-cell .tl-when {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--brand);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .tl-cell ul {
+    padding-left: 16px;
+    margin: 0;
+    color: var(--text-soft);
+  }
+  .tl-cell li {
+    margin-bottom: 4px;
+    line-height: 1.45;
+  }
+  @media (max-width: 800px) {
+    .timeline { grid-template-columns: 1fr; }
+    .tl-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Neera Architecture</h1>
+<div class="subtitle">Phased build-out · MVP through Year 2+</div>
+<p class="lead">
+The architecture below is designed for evolution. Each phase adds capability without throwing away the previous foundation. Phase 1 ships fast; the seams for multi-agent, multi-tool, and multi-tenant are already in place but not operationalized until they're needed.
+</p>
+
+<div class="legend">
+  <div class="legend-item"><span class="legend-swatch exist"></span>Existing / in this phase</div>
+  <div class="legend-item"><span class="legend-swatch new"></span>New in this phase</div>
+  <div class="legend-item"><span class="legend-swatch future"></span>Stub seam for future phase</div>
+</div>
+
+<div class="toc">
+  <a href="#phase1">Phase 1 — MVP</a>
+  <a href="#phase2">Phase 2 — Multi-Agent + Clinical</a>
+  <a href="#phase3">Phase 3 — Hardware + Insurance</a>
+  <a href="#phase4">Phase 4 — Platform</a>
+  <a href="#mesh">Agentic Framework Evolution</a>
+  <a href="#principles">Day-1 Principles</a>
+</div>
+
+
+<!-- =============== PHASE 1 =============== -->
+<div class="phase-block" id="phase1">
+  <span class="phase-label">Phase 1 · MVP</span>
+  <h3>Months 0–4.5 · Single agent · Pure software</h3>
+  <div class="phase-meta">Launch iOS with Starter ($9.99) + Pro ($19.99). One primary agent, deterministic tool use, structured memory. Ship.</div>
+
+  <div class="arch-grid">
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Surfaces</span><span class="arch-layer-side">User-facing</span></div>
+      <div class="arch-row">
+        <span class="pill">Flutter iOS</span>
+        <span class="pill">Flutter Android</span>
+        <span class="pill">Apple Watch app</span>
+        <span class="pill">iOS widgets + Live Activities</span>
+      </div>
+    </div>
+
+    <div class="arrow">↓ WebSocket / SSE streaming ↓</div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span><span class="arch-layer-side">Python service on Fly.io</span></div>
+      <div class="arch-row">
+        <span class="pill new brand">Python FastAPI service</span>
+        <span class="pill new brand">Single Neera agent (custom loop)</span>
+        <span class="pill new brand">Tool registry</span>
+        <span class="pill new brand">LLM provider abstraction</span>
+      </div>
+    </div>
+
+    <div class="arrow">↓ Tool calls ↓</div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Tools</span><span class="arch-layer-side">External integrations</span></div>
+      <div class="arch-row">
+        <span class="pill">Apple HealthKit (native)</span>
+        <span class="pill">Google Health Connect</span>
+        <span class="pill">Receipt parser (OpenAI Vision)</span>
+        <span class="pill">Meal planner (LLM)</span>
+        <span class="pill">Instacart deeplink</span>
+        <span class="pill">Calendar (iCal / Google)</span>
+        <span class="pill">YouTube embed (video recipe)</span>
+      </div>
+    </div>
+
+    <div class="arrow">↓ Persist + read ↓</div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Data + State</span><span class="arch-layer-side">Supabase</span></div>
+      <div class="arch-row">
+        <span class="pill">Postgres (existing schema)</span>
+        <span class="pill new brand">conversations + messages</span>
+        <span class="pill new brand">learned_facts</span>
+        <span class="pill new brand">nutrition_targets</span>
+        <span class="pill new brand">pgvector embeddings</span>
+        <span class="pill new brand">tool_calls_log (audit)</span>
+        <span class="pill">RLS + auth (existing)</span>
+        <span class="pill new brand">Field-level encryption (PHI)</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">LLM Providers</span><span class="arch-layer-side">Behind provider abstraction</span></div>
+      <div class="arch-row">
+        <span class="pill">GPT-4o (orchestration)</span>
+        <span class="pill">GPT-4o-mini (classification)</span>
+        <span class="pill">OpenAI Realtime (voice)</span>
+        <span class="pill">ElevenLabs (TTS persona)</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Eventing</span><span class="arch-layer-side">Proactive nudges from Day 1</span></div>
+      <div class="arch-row">
+        <span class="pill new brand">Scheduled events (Supabase cron)</span>
+        <span class="pill new brand">Wearable signal triggers</span>
+        <span class="pill new brand">Routed through Neera agent</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Observability</span><span class="arch-layer-side">From Day 1</span></div>
+      <div class="arch-row">
+        <span class="pill new brand">Helicone (LLM telemetry)</span>
+        <span class="pill">Sentry (errors)</span>
+        <span class="pill new brand">PostHog (product analytics)</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Seams stubbed for later</span><span class="arch-layer-side">Future-proofing</span></div>
+      <div class="arch-row">
+        <span class="pill dim future">Multi-agent orchestration</span>
+        <span class="pill dim future">Plaid · Gmail (post-CASA)</span>
+        <span class="pill dim future">RD scheduling</span>
+        <span class="pill dim future">Apple Health Records</span>
+        <span class="pill dim future">Hardware bundle ops</span>
+        <span class="pill dim future">HIPAA BAA</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <strong>Day-1 architecture call:</strong> the Python AI service is a separate deployable from day 1, even if it has one agent in it. Doing agents inside Supabase edge functions hits a wall by Phase 2. Cost: $0/mo on Fly.io free tier.
+  </div>
+</div>
+
+
+<!-- =============== PHASE 2 =============== -->
+<div class="phase-block" id="phase2">
+  <span class="phase-label phase2">Phase 2 · Multi-Agent + Clinical</span>
+  <h3>Months 5–12 · Multi-agent mesh · Async RD layer · B2B2C pilots</h3>
+  <div class="phase-meta">$49 Premium tier launches with dietitian network. First telehealth partner pilots. LangGraph for cyclic agent flows.</div>
+
+  <div class="arch-grid">
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Surfaces</span></div>
+      <div class="arch-row">
+        <span class="pill">iOS / Android / Watch</span>
+        <span class="pill new sage">Flutter Web (desktop view)</span>
+        <span class="pill new sage">RD video consult (in-app)</span>
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span><span class="arch-layer-side">Python + LangGraph</span></div>
+      <div class="arch-row">
+        <span class="pill new sage">LangGraph (cyclic agent loops)</span>
+        <span class="pill new sage">Multi-agent mesh (see below)</span>
+        <span class="pill new sage">Streaming + interrupts</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Tools</span></div>
+      <div class="arch-row">
+        <span class="pill">(Phase 1 tools)</span>
+        <span class="pill new sage">Gmail receipt API (post-CASA)</span>
+        <span class="pill new sage">Plaid (card transactions)</span>
+        <span class="pill new sage">Instacart Connect API (full)</span>
+        <span class="pill new sage">Apple Health Records</span>
+        <span class="pill new sage">RD scheduling (Calendly API)</span>
+        <span class="pill new sage">PDF doctor reports</span>
+        <span class="pill new sage">Whoop · Oura direct (non-HealthKit)</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Data + State</span></div>
+      <div class="arch-row">
+        <span class="pill">(Phase 1 data)</span>
+        <span class="pill new sage">Symptom tracking</span>
+        <span class="pill new sage">health_signals (longitudinal)</span>
+        <span class="pill new sage">RD appointment records</span>
+        <span class="pill new sage">Family member profiles</span>
+        <span class="pill new sage">HIPAA add-on enabled</span>
+        <span class="pill new sage">BAA-ready architecture</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">LLM Providers</span></div>
+      <div class="arch-row">
+        <span class="pill">(Phase 1 providers)</span>
+        <span class="pill new sage">Claude 3.5 Sonnet (nuanced conversation)</span>
+        <span class="pill new sage">On-device LLMs for symptoms (Apple Intelligence)</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">B2B2C Infrastructure</span><span class="arch-layer-side">New layer</span></div>
+      <div class="arch-row">
+        <span class="pill new sage">Multi-tenant data (employer / telehealth)</span>
+        <span class="pill new sage">White-label theming hooks</span>
+        <span class="pill new sage">SSO ready (SAML / OIDC)</span>
+        <span class="pill new sage">Outcomes reporting dashboards</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Seams stubbed for later</span></div>
+      <div class="arch-row">
+        <span class="pill dim future">CGM integration (Stelo direct)</span>
+        <span class="pill dim future">Smart scale hardware</span>
+        <span class="pill dim future">MNT insurance billing</span>
+        <span class="pill dim future">Medicare Advantage hooks</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <strong>Migration note:</strong> Phase 1 → Phase 2 doesn't require any rewrite. LangGraph slots into the existing Python service; the single agent becomes one of multiple orchestrated agents. Tool registry expands. Memory schema unchanged.
+  </div>
+</div>
+
+
+<!-- =============== PHASE 3 =============== -->
+<div class="phase-block" id="phase3">
+  <span class="phase-label phase3">Phase 3 · Hardware + Insurance</span>
+  <h3>Months 12–24 · CGM bundles · Insurance billing · Pharma adherence</h3>
+  <div class="phase-meta">Premium+ ($69) and Metabolic ($119) tiers with hardware. MNT billing via RD network. Pharma adherence deals.</div>
+
+  <div class="arch-grid">
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Surfaces</span></div>
+      <div class="arch-row">
+        <span class="pill">(Phase 2 surfaces)</span>
+        <span class="pill new slate">Smart scale onboarding (Withings)</span>
+        <span class="pill new slate">CGM onboarding (Stelo)</span>
+        <span class="pill new slate">In-app clinical chart for RDs</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span></div>
+      <div class="arch-row">
+        <span class="pill">(Phase 2 LangGraph mesh)</span>
+        <span class="pill new slate">Insurance billing agent</span>
+        <span class="pill new slate">Hardware integration agent</span>
+        <span class="pill new slate">Pharma adherence reporting agent</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Tools</span></div>
+      <div class="arch-row">
+        <span class="pill">(Phase 2 tools)</span>
+        <span class="pill new slate">Stelo CGM direct API</span>
+        <span class="pill new slate">Withings smart scale API</span>
+        <span class="pill new slate">MNT billing (Claim.MD / Office Ally)</span>
+        <span class="pill new slate">Pharmacy refill APIs</span>
+        <span class="pill new slate">Pharma adherence webhooks (Lilly / Novo)</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Data + State</span></div>
+      <div class="arch-row">
+        <span class="pill">(Phase 2 data)</span>
+        <span class="pill new slate">CGM time-series (high-volume)</span>
+        <span class="pill new slate">Insurance claims</span>
+        <span class="pill new slate">Clinical encounter records</span>
+        <span class="pill new slate">Pharma cohort attribution</span>
+        <span class="pill new slate">Move time-series to TimescaleDB</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Operations</span></div>
+      <div class="arch-row">
+        <span class="pill new slate">Hardware fulfillment integration</span>
+        <span class="pill new slate">Clinical operations dashboard</span>
+        <span class="pill new slate">FDA wellness exemption documented</span>
+        <span class="pill new slate">RD credentialing workflows</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Seams stubbed for later</span></div>
+      <div class="arch-row">
+        <span class="pill dim future">Medicare Advantage supplemental billing</span>
+        <span class="pill dim future">Multi-region deployment</span>
+        <span class="pill dim future">Glasses / AR surfaces</span>
+        <span class="pill dim future">MCP-compatible agent interop</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =============== PHASE 4 =============== -->
+<div class="phase-block" id="phase4">
+  <span class="phase-label phase4">Phase 4 · Platform</span>
+  <h3>Year 2+ · Medicare Advantage · International · Glasses · Agent interop</h3>
+  <div class="phase-meta">Neera becomes infrastructure. MA supplemental benefit. International expansion. Ambient surfaces.</div>
+
+  <div class="arch-grid">
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Surfaces</span></div>
+      <div class="arch-row">
+        <span class="pill">(Previous surfaces)</span>
+        <span class="pill new amber">Apple Vision Pro / spatial</span>
+        <span class="pill new amber">Meta Ray-Ban / ambient glasses</span>
+        <span class="pill new amber">White-label partner apps</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span></div>
+      <div class="arch-row">
+        <span class="pill">(Previous mesh)</span>
+        <span class="pill new amber">MCP-compatible agent interop</span>
+        <span class="pill new amber">Agent-to-agent commerce protocol</span>
+        <span class="pill new amber">Multi-region inference (latency)</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Tools</span></div>
+      <div class="arch-row">
+        <span class="pill">(Previous tools)</span>
+        <span class="pill new amber">Medicare Advantage billing</span>
+        <span class="pill new amber">Hospital EHR integration (Epic / Cerner)</span>
+        <span class="pill new amber">International payer APIs</span>
+        <span class="pill new amber">Senior living facility partners</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Platform</span></div>
+      <div class="arch-row">
+        <span class="pill new amber">Anonymized data products</span>
+        <span class="pill new amber">Research partnerships</span>
+        <span class="pill new amber">Developer SDK (third-party agents)</span>
+        <span class="pill new amber">Multi-region data residency</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =============== AGENTIC FRAMEWORK =============== -->
+<h2 id="mesh">Agentic Framework Evolution</h2>
+<p class="lead">How the agent layer morphs across phases. Phase 1 is intentionally simple. Each subsequent phase adds specialized sub-agents around the central orchestrator.</p>
+
+<div class="phase-block">
+  <span class="phase-label">Phase 1</span>
+  <h3 style="margin-top: 8px;">Single agent — direct tool calling</h3>
+  <div class="agent-mesh">
+    <div class="agent-row">
+      <div class="agent-box orchestrator">
+        <div class="agent-name">Neera (single orchestrator)</div>
+        <div class="agent-meta">Receives input, picks tools, returns response. Custom loop, no framework.</div>
+      </div>
+    </div>
+    <div class="arrow">↓ calls tools directly ↓</div>
+    <div class="agent-row-fan">
+      <div class="agent-box"><div class="agent-name">Receipt parser</div><div class="agent-meta">OpenAI Vision</div></div>
+      <div class="agent-box"><div class="agent-name">Meal planner</div><div class="agent-meta">GPT-4o</div></div>
+      <div class="agent-box"><div class="agent-name">HealthKit reader</div><div class="agent-meta">via mobile</div></div>
+      <div class="agent-box"><div class="agent-name">Recipe generator</div><div class="agent-meta">GPT-4o</div></div>
+      <div class="agent-box"><div class="agent-name">Voice (Realtime)</div><div class="agent-meta">OpenAI</div></div>
+      <div class="agent-box"><div class="agent-name">Instacart linker</div><div class="agent-meta">deeplink</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="phase-block">
+  <span class="phase-label phase2">Phase 2</span>
+  <h3 style="margin-top: 8px;">Multi-agent mesh — LangGraph orchestration</h3>
+  <div class="agent-mesh">
+    <div class="agent-row">
+      <div class="agent-box orchestrator">
+        <div class="agent-name">Orchestrator (LangGraph router)</div>
+        <div class="agent-meta">Determines user intent, delegates to sub-agents, runs cyclic loops, manages memory</div>
+      </div>
+    </div>
+    <div class="arrow">↓ delegates to ↓</div>
+    <div class="agent-row-fan">
+      <div class="agent-box subagent">
+        <div class="agent-name">Nutrition Agent</div>
+        <div class="agent-meta">Analyzes macros, plans meals, adapts to GLP-1 needs</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Biometrics Agent</div>
+        <div class="agent-meta">Watches wearables, flags drops, surfaces patterns</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Commerce Agent</div>
+        <div class="agent-meta">Builds carts, swaps items, talks to Instacart</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Symptom Agent</div>
+        <div class="agent-meta">Tracks GLP-1 side effects, adjusts plans</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Memory Agent</div>
+        <div class="agent-meta">Writes structured facts, queries pgvector, surfaces patterns</div>
+      </div>
+    </div>
+    <div class="arrow">↓ all routed through ↓</div>
+    <div class="agent-row">
+      <div class="agent-box guardrail">
+        <div class="agent-name">Guardrail Agent</div>
+        <div class="agent-meta">Medical safety: refuses dosing advice, escalates dangerous symptoms, enforces "consult your doctor" boundaries</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phase-block">
+  <span class="phase-label phase3">Phase 3</span>
+  <h3 style="margin-top: 8px;">Specialized clinical + commerce agents</h3>
+  <div class="agent-mesh">
+    <div class="agent-row">
+      <div class="agent-box orchestrator">
+        <div class="agent-name">Orchestrator</div>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="agent-row-fan">
+      <div class="agent-box subagent">
+        <div class="agent-name">Nutrition · Biometrics · Symptom</div>
+        <div class="agent-meta">(Phase 2 agents)</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Hardware Agent</div>
+        <div class="agent-meta">CGM, smart scale, BP cuff ingestion + interpretation</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Billing Agent</div>
+        <div class="agent-meta">MNT codes, insurance claims, HSA/FSA receipts</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Pharma Adherence Agent</div>
+        <div class="agent-meta">Reports anonymized outcomes to drug manufacturers</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">RD Coordinator Agent</div>
+        <div class="agent-meta">Routes patients to credentialed RDs, prepares clinical context</div>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="agent-row">
+      <div class="agent-box guardrail">
+        <div class="agent-name">Guardrail · Compliance · Clinical Safety</div>
+        <div class="agent-meta">Expanded for billing accuracy, HIPAA enforcement, clinical escalation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phase-block">
+  <span class="phase-label phase4">Phase 4</span>
+  <h3 style="margin-top: 8px;">Platform · MCP interop · Agent-to-agent</h3>
+  <div class="agent-mesh">
+    <div class="agent-row">
+      <div class="agent-box orchestrator">
+        <div class="agent-name">Orchestrator (MCP-compliant)</div>
+        <div class="agent-meta">Talks to external agents (other healthtech, pharma, hospital systems) via standard protocol</div>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="agent-row-fan">
+      <div class="agent-box subagent">
+        <div class="agent-name">All Phase 3 agents</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Payer Liaison Agent</div>
+        <div class="agent-meta">Medicare Advantage, employer benefits orchestration</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Research Agent</div>
+        <div class="agent-meta">Cohort analytics, anonymized data products</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Hospital Discharge Agent</div>
+        <div class="agent-meta">Post-discharge GLP-1 onboarding via EHR</div>
+      </div>
+      <div class="agent-box subagent">
+        <div class="agent-name">Third-party MCP agents</div>
+        <div class="agent-meta">Talk to other companies' AI agents safely</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =============== PRINCIPLES =============== -->
+<h2 id="principles">Day-1 Architectural Principles</h2>
+<p class="lead">These are the choices made in Phase 1 that compound (or constrain) every later phase.</p>
+
+<div class="principle-grid">
+  <div class="principle-card">
+    <h4>Provider-agnostic LLM layer</h4>
+    <p>Wrap every LLM call behind an interface. Don't hard-code OpenAI. 30 min on day 1, saves 3 weeks at month 18.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Tool use as first-class</h4>
+    <p>Every external API is registered as a tool. Add new tools by registering them; the agent loop doesn't change.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Three-layer memory</h4>
+    <p>In-context conversation + structured facts (Postgres) + semantic embeddings (pgvector). All from day 1.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Python AI service separate</h4>
+    <p>Even with one agent, deploy the AI orchestration as its own service. Agents inside Supabase edge functions break by Phase 2.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Field-level encryption on PHI</h4>
+    <p>Medications, conditions, lab values encrypted at column level. Doesn't slow MVP; retrofitting is brutal.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Eventing infrastructure</h4>
+    <p>Proactive nudges are 50%+ of agent value. Build the event bus in Phase 1 even with 3 events.</p>
+  </div>
+  <div class="principle-card">
+    <h4>LLM telemetry from day 1</h4>
+    <p>Helicone or Langfuse on every LLM call. You can't optimize what you don't measure.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Structural readiness without complexity</h4>
+    <p>Stub seams for multi-agent, multi-tenant, hardware ops. Don't operationalize until needed. Seams are cheap; retrofitting is not.</p>
+  </div>
+</div>
+
+
+<h2>Phase Timeline At a Glance</h2>
+<div class="timeline">
+  <div class="tl-cell">
+    <div class="tl-when">Phase 1 · Mo 0–4.5</div>
+    <h5>MVP</h5>
+    <ul>
+      <li>Single agent</li>
+      <li>Pure software</li>
+      <li>iOS launch</li>
+      <li>$9.99 / $19.99 tiers</li>
+      <li>Direct-to-consumer</li>
+    </ul>
+  </div>
+  <div class="tl-cell">
+    <div class="tl-when">Phase 2 · Mo 5–12</div>
+    <h5>Multi-Agent + Clinical</h5>
+    <ul>
+      <li>LangGraph mesh</li>
+      <li>RD network</li>
+      <li>$49 Premium tier</li>
+      <li>Telehealth pilots</li>
+      <li>Employer benefits start</li>
+    </ul>
+  </div>
+  <div class="tl-cell">
+    <div class="tl-when">Phase 3 · Mo 12–24</div>
+    <h5>Hardware + Insurance</h5>
+    <ul>
+      <li>CGM bundles</li>
+      <li>Smart scale</li>
+      <li>MNT billing live</li>
+      <li>Pharma adherence</li>
+      <li>$69 / $119 tiers</li>
+    </ul>
+  </div>
+  <div class="tl-cell">
+    <div class="tl-when">Phase 4 · Year 2+</div>
+    <h5>Platform</h5>
+    <ul>
+      <li>Medicare Advantage</li>
+      <li>International</li>
+      <li>Glasses / AR</li>
+      <li>MCP agent interop</li>
+      <li>White-label SDK</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neera — UI Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EFE3;
+    --cream: #FAF6EC;
+    --brand: #C77966;
+    --brand-dark: #A85B49;
+    --sage: #5A7A4F;
+    --text: #2A2520;
+    --text-soft: #6B6258;
+    --border: #E5DDD0;
+    --bubble-user: #C77966;
+    --bubble-agent: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background: #E8E2D2;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: var(--bg);
+    border-radius: 48px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(42, 37, 32, 0.18), 0 0 0 12px #1a1a1a, 0 0 0 13px #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-size: 15px;
+  }
+  /* Status bar */
+  .status {
+    height: 50px;
+    padding: 16px 32px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  /* Header */
+  .header {
+    padding: 12px 20px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .header img { height: 32px; }
+  .header-icons { display: flex; gap: 16px; font-size: 20px; color: var(--text-soft); }
+  /* Top tabs */
+  .top-tabs {
+    display: flex;
+    padding: 0 20px;
+    background: var(--bg);
+  }
+  .top-tab {
+    flex: 1;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-soft);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  .top-tab.active {
+    color: var(--brand);
+    border-bottom-color: var(--brand);
+    font-weight: 600;
+  }
+  /* Chat area */
+  .chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 16px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .day-divider {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-soft);
+    margin: 8px 0;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .bubble {
+    max-width: 78%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .agent {
+    background: var(--bubble-agent);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    color: var(--text);
+  }
+  .user {
+    background: var(--bubble-user);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  .agent-name {
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-left: 4px;
+    margin-bottom: -4px;
+  }
+  .agent-action {
+    font-size: 11px;
+    color: var(--brand);
+    align-self: flex-start;
+    padding: 4px 12px;
+    background: rgba(199, 121, 102, 0.08);
+    border-radius: 10px;
+    margin-left: 4px;
+  }
+  .card-msg {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    max-width: 78%;
+    align-self: flex-start;
+    font-size: 13px;
+  }
+  .card-msg-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .card-msg-score {
+    font-size: 28px;
+    color: var(--sage);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .card-msg-meta {
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+  .quick-chips {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 0 16px 8px;
+  }
+  .chip {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  /* Input bar */
+  .input-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px 12px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+  .input {
+    flex: 1;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--text-soft);
+  }
+  .input-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .input-icon.secondary {
+    background: white;
+    color: var(--text-soft);
+    border: 1px solid var(--border);
+    font-size: 16px;
+  }
+  /* Bottom nav */
+  .bottom-nav {
+    display: flex;
+    background: white;
+    border-top: 1px solid var(--border);
+    padding: 8px 0 28px;
+  }
+  .nav-item {
+    flex: 1;
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .nav-icon {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  .nav-item.active { color: var(--brand); }
+  .nav-item.active .nav-icon { color: var(--brand); }
+  /* Labels */
+  .phone-label {
+    text-align: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--text);
+    margin-top: 16px;
+  }
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* Secondary phones (Plan/Insights placeholder views) */
+  .placeholder-view {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ph-card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    border: 1px solid var(--border);
+  }
+  .ph-card-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--text);
+    margin: 0 0 4px;
+  }
+  .ph-card-meta {
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+  .ph-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .ph-row:last-child { border-bottom: none; }
+  .ph-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .ph-bar-fill {
+    height: 100%;
+    background: var(--sage);
+    border-radius: 3px;
+  }
+  .ph-bar-fill.amber { background: #D4A55C; }
+  .score-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 6px solid var(--sage);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    font-family: 'EB Garamond', serif;
+  }
+  .score-circle-num {
+    font-size: 36px;
+    color: var(--text);
+    line-height: 1;
+  }
+  .score-circle-label {
+    font-size: 10px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- PHONE 1: CHAT (PRIMARY) -->
+<div class="phone-wrap">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>● ▌▌▌ 100%</span></div>
+    <div class="header">
+      <img src="neera_logo.png" alt="Neera">
+      <div class="header-icons">
+        <span>⋮</span>
+      </div>
+    </div>
+    <div class="top-tabs">
+      <div class="top-tab active">Conversation</div>
+      <div class="top-tab">History</div>
+    </div>
+    <div class="chat">
+      <div class="day-divider">Today · 9:41 AM</div>
+
+      <div class="agent-name">Mira</div>
+      <div class="bubble agent">Morning. You logged a 6-hour sleep night — light recovery. Want a gentler breakfast today? You have eggs and yogurt in the fridge.</div>
+
+      <div class="bubble user">Yes please, something high protein.</div>
+
+      <div class="agent-action">Mira is checking your kitchen…</div>
+
+      <div class="card-msg">
+        <div class="card-msg-title">Greek yogurt parfait + scrambled eggs</div>
+        <div class="card-msg-meta">~28g protein · 8 min · uses what you have</div>
+      </div>
+
+      <div class="day-divider">Yesterday · 6:12 PM</div>
+
+      <div class="bubble user">I just got back from Whole Foods.</div>
+
+      <div class="agent-name">Mira</div>
+      <div class="card-msg">
+        <div class="card-msg-title">Receipt analyzed</div>
+        <div class="card-msg-score">84</div>
+        <div class="card-msg-meta">Cardiometabolic fit · up from 71 last week</div>
+      </div>
+      <div class="bubble agent">Strong run. Sodium trending high — let's adjust Thursday's sauces.</div>
+    </div>
+    <div class="quick-chips">
+      <div class="chip">Plan this week</div>
+      <div class="chip">How am I doing?</div>
+      <div class="chip">Snack ideas</div>
+      <div class="chip">Talk to a dietitian</div>
+    </div>
+    <div class="input-bar">
+      <div class="input-icon secondary">+</div>
+      <div class="input">Message Mira…</div>
+      <div class="input-icon">🎤</div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item active"><span class="nav-icon">●</span>Chat</div>
+      <div class="nav-item"><span class="nav-icon">▢</span>Plan</div>
+      <div class="nav-item"><span class="nav-icon">◇</span>Insights</div>
+      <div class="nav-item"><span class="nav-icon">○</span>You</div>
+    </div>
+  </div>
+  <div class="phone-label">Chat (primary)</div>
+</div>
+
+
+<!-- PHONE 2: PLAN -->
+<div class="phone-wrap">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>● ▌▌▌ 100%</span></div>
+    <div class="header">
+      <img src="neera_logo.png" alt="Neera">
+      <div class="header-icons"><span>⋮</span></div>
+    </div>
+    <div class="top-tabs">
+      <div class="top-tab active">Meals</div>
+      <div class="top-tab">Groceries</div>
+      <div class="top-tab">Calendar</div>
+    </div>
+    <div class="placeholder-view">
+      <div class="ph-card">
+        <div class="ph-card-title">Tonight's plan</div>
+        <div class="ph-card-meta">Lemon salmon · broccoli · quinoa</div>
+        <div class="ph-card-meta" style="margin-top: 8px;">25 min · 32g protein · gentle on stomach</div>
+      </div>
+      <div class="ph-card">
+        <div class="ph-card-title">This week</div>
+        <div class="ph-row"><span>Tuesday</span><span style="color: var(--text-soft);">Cod with greens</span></div>
+        <div class="ph-row"><span>Wednesday</span><span style="color: var(--text-soft);">Turkey chili</span></div>
+        <div class="ph-row"><span>Thursday</span><span style="color: var(--text-soft);">Ginger rice + tofu</span></div>
+        <div class="ph-row"><span>Friday</span><span style="color: var(--text-soft);">Chickpea bowl</span></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item"><span class="nav-icon">●</span>Chat</div>
+      <div class="nav-item active"><span class="nav-icon">▢</span>Plan</div>
+      <div class="nav-item"><span class="nav-icon">◇</span>Insights</div>
+      <div class="nav-item"><span class="nav-icon">○</span>You</div>
+    </div>
+  </div>
+  <div class="phone-label">Plan</div>
+</div>
+
+
+<!-- PHONE 3: INSIGHTS -->
+<div class="phone-wrap">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>● ▌▌▌ 100%</span></div>
+    <div class="header">
+      <img src="neera_logo.png" alt="Neera">
+      <div class="header-icons"><span>⋮</span></div>
+    </div>
+    <div class="top-tabs">
+      <div class="top-tab">Today</div>
+      <div class="top-tab active">This Week</div>
+      <div class="top-tab">Story</div>
+    </div>
+    <div class="placeholder-view">
+      <div class="ph-card" style="text-align: center;">
+        <div class="score-circle">
+          <div class="score-circle-num">84</div>
+          <div class="score-circle-label">Cardio fit</div>
+        </div>
+        <div class="ph-card-meta">Up from 71 last week</div>
+      </div>
+      <div class="ph-card">
+        <div class="ph-card-title" style="font-size: 16px;">This week's nutrition</div>
+        <div style="margin-top: 12px;">
+          <div style="display: flex; justify-content: space-between; font-size: 13px;"><span>Protein</span><span>92g / 90g</span></div>
+          <div class="ph-bar"><div class="ph-bar-fill" style="width: 100%"></div></div>
+        </div>
+        <div style="margin-top: 12px;">
+          <div style="display: flex; justify-content: space-between; font-size: 13px;"><span>Fiber</span><span>21g / 25g</span></div>
+          <div class="ph-bar"><div class="ph-bar-fill" style="width: 84%"></div></div>
+        </div>
+        <div style="margin-top: 12px;">
+          <div style="display: flex; justify-content: space-between; font-size: 13px;"><span>Sodium</span><span>2900mg / 2300mg</span></div>
+          <div class="ph-bar"><div class="ph-bar-fill amber" style="width: 100%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item"><span class="nav-icon">●</span>Chat</div>
+      <div class="nav-item"><span class="nav-icon">▢</span>Plan</div>
+      <div class="nav-item active"><span class="nav-icon">◇</span>Insights</div>
+      <div class="nav-item"><span class="nav-icon">○</span>You</div>
+    </div>
+  </div>
+  <div class="phone-label">Insights</div>
+</div>
+
+
+</body>
+</html>

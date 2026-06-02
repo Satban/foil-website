@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neera — Interactive Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EFE3;
+    --cream: #FAF6EC;
+    --brand: #C77966;
+    --brand-dark: #A85B49;
+    --brand-soft: #EFD5CB;
+    --sage: #5A7A4F;
+    --sage-soft: #DDE5D5;
+    --amber: #D4A55C;
+    --text: #2A2520;
+    --text-soft: #6B6258;
+    --border: #E5DDD0;
+    --bubble-user: #C77966;
+    --bubble-agent: #FFFFFF;
+  }
+  * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+  body {
+    margin: 0;
+    padding: 30px 20px;
+    background: #E8E2D2;
+    font-family: 'Inter', -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .stage-label {
+    text-align: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 24px;
+    color: var(--text);
+    margin-bottom: 8px;
+    width: 100%;
+  }
+  .stage-sub {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-bottom: 24px;
+    width: 100%;
+  }
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: var(--bg);
+    border-radius: 48px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(42, 37, 32, 0.18), 0 0 0 11px #1a1a1a, 0 0 0 12px #2c2c2c;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .status {
+    height: 44px;
+    padding: 14px 32px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+  .header {
+    padding: 8px 20px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .header img { height: 30px; }
+  .header-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-soft);
+    border-radius: 50%;
+  }
+  .header-action:hover { background: rgba(0,0,0,0.04); }
+  .header-action svg { width: 22px; height: 22px; }
+  /* Top tabs */
+  .top-tabs {
+    display: flex;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .top-tabs::-webkit-scrollbar { display: none; }
+  .top-tab {
+    padding: 12px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-soft);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .top-tab.active {
+    color: var(--brand);
+    border-bottom-color: var(--brand);
+    font-weight: 600;
+  }
+  /* Main scroll area */
+  .view {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    flex-direction: column;
+  }
+  .view.active { display: flex; }
+  /* CHAT */
+  .chat-feed {
+    flex: 1;
+    padding: 14px 14px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .day-divider {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-soft);
+    margin: 8px 0;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .bubble {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14.5px;
+    line-height: 1.45;
+    animation: pop 0.3s ease;
+  }
+  @keyframes pop {
+    from { transform: translateY(8px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .agent {
+    background: var(--bubble-agent);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    color: var(--text);
+  }
+  .user {
+    background: var(--bubble-user);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  .agent-name {
+    font-size: 11px;
+    color: var(--text-soft);
+    margin: 4px 0 -4px 4px;
+    letter-spacing: 0.04em;
+  }
+  .agent-action {
+    font-size: 11px;
+    color: var(--brand);
+    align-self: flex-start;
+    padding: 4px 12px;
+    background: rgba(199, 121, 102, 0.10);
+    border-radius: 10px;
+    margin-left: 4px;
+    font-style: italic;
+  }
+  .card-msg {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    max-width: 88%;
+    align-self: flex-start;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .card-msg:hover { transform: scale(1.01); border-color: var(--brand); }
+  .card-msg-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    color: var(--text);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .card-msg-meta {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+  .receipt-card {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    max-width: 88%;
+    align-self: flex-start;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  .receipt-card:hover { transform: scale(1.01); border-color: var(--brand); }
+  .score-mini {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 4px solid var(--sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+  .receipt-card-info { flex: 1; }
+  .receipt-card-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .receipt-card-meta {
+    font-size: 11.5px;
+    color: var(--text-soft);
+  }
+  .receipt-card-arrow {
+    color: var(--text-soft);
+    font-size: 18px;
+  }
+  .quick-chips {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 14px 8px;
+    scrollbar-width: none;
+    flex-shrink: 0;
+  }
+  .quick-chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    font-size: 12.5px;
+    color: var(--text);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .chip:hover { border-color: var(--brand); color: var(--brand); }
+  .input-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 10px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .input {
+    flex: 1;
+    background: white;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--text-soft);
+  }
+  .input-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .input-icon:hover { transform: scale(1.05); }
+  .input-icon.secondary {
+    background: white;
+    color: var(--text-soft);
+    border: 1px solid var(--border);
+  }
+  .input-icon svg { width: 20px; height: 20px; }
+  /* Bottom nav */
+  .bottom-nav {
+    display: flex;
+    background: white;
+    border-top: 1px solid var(--border);
+    padding: 6px 0 26px;
+    flex-shrink: 0;
+  }
+  .nav-item {
+    flex: 1;
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 10.5px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 0;
+    transition: color 0.15s;
+  }
+  .nav-icon {
+    display: block;
+    margin: 0 auto 3px;
+    width: 24px;
+    height: 24px;
+  }
+  .nav-item.active { color: var(--brand); }
+  .nav-item.active .nav-icon svg { stroke: var(--brand); fill: var(--brand-soft); }
+  .nav-icon svg { width: 24px; height: 24px; stroke: var(--text-soft); fill: none; stroke-width: 1.8; }
+  /* HISTORY view */
+  .history-list {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .history-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .history-item:hover { border-color: var(--brand); }
+  .history-date {
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+  }
+  .history-snippet {
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  /* Heart favorite icon */
+  .fav-btn {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .fav-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--text-soft);
+    fill: none;
+    stroke-width: 1.8;
+    transition: all 0.15s;
+  }
+  .fav-btn.saved svg {
+    fill: var(--brand);
+    stroke: var(--brand);
+  }
+  .card-msg-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  /* Learning moment */
+  .learning-card {
+    background: var(--sage-soft);
+    border: 1px solid #C8D4BB;
+    border-radius: 16px;
+    padding: 14px;
+    max-width: 88%;
+    align-self: flex-start;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .learning-label {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .learning-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .learning-btn {
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--text);
+  }
+  .learning-btn.primary {
+    background: var(--sage);
+    color: white;
+    border-color: var(--sage);
+  }
+  /* Missing ingredients */
+  .ingredient-split {
+    margin-top: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+  .ingredient-group {
+    margin-bottom: 8px;
+  }
+  .ingredient-group-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .ingredient-list {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .ingredient-list .have {
+    color: var(--sage);
+  }
+  .ingredient-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .ingredient-actions .chip { font-size: 12px; padding: 7px 12px; }
+  .expand-link {
+    font-size: 12px;
+    color: var(--brand);
+    margin-top: 6px;
+    cursor: pointer;
+  }
+  /* "Neera knows you" card */
+  .knows-card {
+    background: linear-gradient(135deg, var(--brand-soft), var(--sage-soft));
+    border-radius: 14px;
+    padding: 18px;
+    border: 1px solid var(--border);
+  }
+  .knows-card-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--text);
+    margin: 0 0 6px;
+  }
+  .knows-card-meta {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+  }
+  .knows-depth {
+    margin: 8px 0 14px;
+  }
+  .knows-depth-head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    margin-bottom: 6px;
+  }
+  .knows-depth-stage {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .knows-depth-count {
+    color: var(--text-soft);
+  }
+  .knows-depth-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .knows-depth-fill {
+    height: 100%;
+    background: var(--brand);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+  /* Watch how link */
+  .watch-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--brand);
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 4px;
+    cursor: pointer;
+  }
+  .watch-link::before {
+    content: "▷";
+    font-size: 10px;
+  }
+  /* Recipe modal */
+  .video-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .video-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2a2520, #4a3d36);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .video-play-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 22px;
+    padding-left: 4px;
+  }
+  .yt-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-soft);
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .yt-link:hover { color: var(--brand); }
+  .recipe-section {
+    margin-top: 18px;
+  }
+  .recipe-section-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-soft);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .recipe-ing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .recipe-ing-list .ing-have { color: var(--sage); }
+  .recipe-ing-list .ing-need { color: var(--brand); }
+  .recipe-steps {
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .recipe-step {
+    display: flex;
+    gap: 12px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .recipe-step::before {
+    counter-increment: step;
+    content: counter(step);
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'EB Garamond', serif;
+  }
+  /* Grocery store tag */
+  .store-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-left: 6px;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .store-tag.wf { background: #006B3F; }
+  .store-tag.tj { background: #C8211D; }
+  .store-tag.costco { background: #1F4E8C; }
+  .store-tag.kroger { background: #006BB6; }
+  .grocery-info-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .knows-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .knows-item {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .knows-footer {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-soft);
+    text-align: center;
+    font-style: italic;
+  }
+  /* PLAN */
+  .plan-content {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .panel-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--text);
+    margin: 0 0 4px;
+    font-weight: 500;
+  }
+  .panel-meta {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-bottom: 12px;
+  }
+  .meal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .meal-row:last-child { border-bottom: none; }
+  .meal-row-day { color: var(--text-soft); }
+  .meal-row-name { font-weight: 500; }
+  .grocery-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .grocery-row:last-child { border-bottom: none; }
+  .grocery-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
+  .grocery-info { flex: 1; }
+  .grocery-name { font-weight: 500; }
+  .grocery-meta { font-size: 11px; color: var(--text-soft); }
+  /* INSIGHTS */
+  .insight-content {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .score-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 16px;
+    text-align: center;
+  }
+  .score-big {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 8px solid var(--sage);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    font-family: 'EB Garamond', serif;
+  }
+  .score-big-num {
+    font-size: 46px;
+    color: var(--text);
+    line-height: 1;
+    font-weight: 600;
+  }
+  .score-big-label {
+    font-size: 10px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-top: 4px;
+  }
+  .score-trend {
+    font-size: 13px;
+    color: var(--sage);
+  }
+  .macro-row {
+    margin-top: 14px;
+  }
+  .macro-row-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+  .macro-name { font-weight: 500; }
+  .macro-target { color: var(--text-soft); font-size: 12px; }
+  .macro-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .macro-fill {
+    height: 100%;
+    background: var(--sage);
+    border-radius: 3px;
+  }
+  .macro-fill.amber { background: var(--amber); }
+  .macro-fill.over { background: var(--brand); }
+  .insight-cta {
+    background: var(--brand-soft);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .insight-cta strong { color: var(--brand-dark); }
+  .receipt-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .receipt-list-item:last-child { border-bottom: none; }
+  .receipt-list-item:hover .receipt-list-name { color: var(--brand); }
+  /* YOU */
+  .you-content {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .profile-block {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 auto 10px;
+  }
+  .profile-name {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    color: var(--text);
+    margin: 0 0 2px;
+  }
+  .profile-meta {
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .journey-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .journey-row:last-child { border-bottom: none; }
+  .journey-row-label { color: var(--text-soft); }
+  .journey-row-value { font-weight: 500; }
+  .milestone-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+  }
+  .milestone-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+  }
+  .milestone-text { font-size: 13.5px; }
+  /* SETTINGS DRAWER */
+  .drawer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(42, 37, 32, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    z-index: 10;
+  }
+  .drawer-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    background: var(--bg);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+  }
+  .drawer.open { transform: translateX(0); }
+  .drawer-header {
+    padding: 50px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .drawer-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 24px;
+    color: var(--text);
+    margin: 0;
+  }
+  .drawer-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-soft);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 0;
+  }
+  .setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-bottom: 1px solid var(--border);
+  }
+  .setting-row:hover { background: rgba(0,0,0,0.02); }
+  .setting-label { font-size: 15px; color: var(--text); font-weight: 500; }
+  .setting-value { font-size: 13px; color: var(--text-soft); }
+  .setting-arrow { color: var(--text-soft); font-size: 18px; }
+  /* RECEIPT DETAIL MODAL */
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(42, 37, 32, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    z-index: 20;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 21;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+  .modal.open { transform: translateY(0); }
+  .modal-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 10px auto 6px;
+  }
+  .modal-content {
+    padding: 8px 20px 30px;
+  }
+  .modal-close-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    color: var(--text-soft);
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .modal-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 24px;
+    margin: 0 0 4px;
+    color: var(--text);
+  }
+  .modal-sub {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-bottom: 18px;
+  }
+  /* Annotation */
+  .annotation {
+    width: 280px;
+    padding: 18px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.5;
+    align-self: flex-start;
+    margin-top: 100px;
+  }
+  .annotation h4 {
+    font-family: 'EB Garamond', serif;
+    color: var(--text);
+    margin: 0 0 8px;
+    font-size: 16px;
+  }
+  .annotation ul { padding-left: 18px; margin: 8px 0; }
+  .annotation li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="stage-label">Neera — Interactive Mockup</div>
+<div class="stage-sub">Tap anywhere to navigate. Use bottom tabs, top tabs, top-right menu, and chat cards.</div>
+
+<div class="phone" id="phone">
+  <div class="status"><span>9:41</span><span>● ▌▌▌ 100%</span></div>
+  <div class="header">
+    <img src="neera_logo.png" alt="Neera">
+    <button class="header-action" onclick="openDrawer()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+    </button>
+  </div>
+
+  <!-- TOP TABS -->
+  <div class="top-tabs" id="topTabs">
+    <!-- populated by JS -->
+  </div>
+
+  <!-- =================== CHAT VIEW =================== -->
+  <div class="view active" id="view-chat-conversation">
+    <div class="chat-feed">
+      <div class="day-divider">Today · 9:41 AM</div>
+      <div class="agent-name">Neera</div>
+      <div class="bubble agent">Morning. You logged a 6-hour night — lighter recovery. Want a gentler breakfast today? You have eggs and Greek yogurt in the fridge.</div>
+      <div class="bubble user">Yes, high protein please.</div>
+      <div class="agent-action">Neera is checking your kitchen…</div>
+      <div class="card-msg" onclick="openModal('recipe')">
+        <div class="card-msg-head">
+          <div>
+            <div class="card-msg-title">Greek yogurt parfait + scrambled eggs</div>
+            <div class="card-msg-meta">~28g protein · 8 min · uses what you have · <span class="watch-link">Watch how (2 min)</span></div>
+          </div>
+          <div class="fav-btn" onclick="toggleFav(event, this)">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-divider">Yesterday · 7:20 PM</div>
+      <div class="bubble user">I want Chinese tonight</div>
+      <div class="agent-action">Neera is checking your kitchen…</div>
+      <div class="card-msg">
+        <div class="card-msg-head">
+          <div>
+            <div class="card-msg-title">High-protein Kung Pao stir-fry</div>
+            <div class="card-msg-meta">25 min · 36g protein · gentle on stomach · <span class="watch-link" onclick="event.stopPropagation(); openModal('recipe')">Watch how (3 min)</span></div>
+          </div>
+          <div class="fav-btn saved" onclick="toggleFav(event, this)">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="ingredient-split">
+          <div class="ingredient-group">
+            <div class="ingredient-group-label">✓ Already in your kitchen</div>
+            <div class="ingredient-list have">Chicken · broccoli · garlic · soy sauce · rice</div>
+          </div>
+          <div class="ingredient-group">
+            <div class="ingredient-group-label">+ Add to make it perfect</div>
+            <div class="ingredient-list">Ginger root · sesame oil · peanuts</div>
+          </div>
+          <div class="expand-link">+ Show 3 more optional ingredients</div>
+        </div>
+        <div class="ingredient-actions">
+          <div class="chip" style="background: var(--brand); color: white; border-color: var(--brand);">Cook with what I have</div>
+          <div class="chip">Send to Instacart</div>
+        </div>
+      </div>
+      <div class="learning-card">
+        <div class="learning-label">Noticed</div>
+        You've asked for Chinese on a Wednesday three weeks in a row. Want me to factor that into future plans?
+        <div class="learning-actions">
+          <div class="learning-btn primary">Yes, learn this</div>
+          <div class="learning-btn">Not really</div>
+        </div>
+      </div>
+
+      <div class="day-divider">Sunday · 6:12 PM</div>
+      <div class="bubble user">Just got back from Whole Foods.</div>
+      <div class="agent-name">Neera</div>
+      <div class="receipt-card" onclick="openModal('receipt')">
+        <div class="score-mini">84</div>
+        <div class="receipt-card-info">
+          <div class="receipt-card-title">Whole Foods · Sun</div>
+          <div class="receipt-card-meta">22 items · cardiometabolic fit ↑ from 71</div>
+        </div>
+        <div class="receipt-card-arrow">›</div>
+      </div>
+      <div class="bubble agent">Strong run. Sodium trending high though — let's adjust Thursday's sauces.</div>
+    </div>
+    <div class="quick-chips">
+      <div class="chip">Plan this week</div>
+      <div class="chip">How am I doing?</div>
+      <div class="chip">Snack ideas</div>
+      <div class="chip">Talk to a dietitian</div>
+    </div>
+    <div class="input-bar">
+      <div class="input-icon secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="input">Message Neera…</div>
+      <div class="input-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== CHAT HISTORY VIEW =================== -->
+  <div class="view" id="view-chat-history">
+    <div class="history-list">
+      <div class="history-item">
+        <div class="history-date">Today</div>
+        <div class="history-snippet">Breakfast for low-recovery day…</div>
+      </div>
+      <div class="history-item">
+        <div class="history-date">Yesterday</div>
+        <div class="history-snippet">Whole Foods receipt scan + Thursday sauce swap</div>
+      </div>
+      <div class="history-item">
+        <div class="history-date">Thursday</div>
+        <div class="history-snippet">Nausea check-in — switched to ginger rice dinner</div>
+      </div>
+      <div class="history-item">
+        <div class="history-date">Wednesday</div>
+        <div class="history-snippet">Doctor visit prep — A1C trend conversation</div>
+      </div>
+      <div class="history-item">
+        <div class="history-date">Last week</div>
+        <div class="history-snippet">Travel meals — high protein at airport</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== PLAN MEALS =================== -->
+  <div class="view" id="view-plan-meals">
+    <div class="plan-content">
+      <div style="display: flex; gap: 8px; padding: 0 0 4px;">
+        <div class="chip" style="background: var(--brand); color: white; border-color: var(--brand);">All meals</div>
+        <div class="chip">♡ Favorites</div>
+        <div class="chip">Recently cooked</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Tonight's plan</div>
+        <div class="panel-meta">25 min · 32g protein · gentle on stomach</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <div style="font-weight: 500;">Lemon salmon · roasted broccoli · quinoa</div>
+          <div class="fav-btn saved" onclick="toggleFav(event, this)">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 12px;">
+          <div class="chip" style="background: var(--brand); color: white; border-color: var(--brand);">Start cooking</div>
+          <div class="chip">Swap meal</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">This week</div>
+        <div class="meal-row">
+          <span class="meal-row-day">Tue</span>
+          <span class="meal-row-name" style="flex: 1; margin-left: 12px;">Cod with greens</span>
+          <div class="fav-btn" onclick="toggleFav(event, this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        </div>
+        <div class="meal-row">
+          <span class="meal-row-day">Wed</span>
+          <span class="meal-row-name" style="flex: 1; margin-left: 12px;">Turkey chili</span>
+          <div class="fav-btn saved" onclick="toggleFav(event, this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        </div>
+        <div class="meal-row">
+          <span class="meal-row-day">Thu</span>
+          <span class="meal-row-name" style="flex: 1; margin-left: 12px;">Ginger rice + tofu</span>
+          <div class="fav-btn" onclick="toggleFav(event, this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        </div>
+        <div class="meal-row">
+          <span class="meal-row-day">Fri</span>
+          <span class="meal-row-name" style="flex: 1; margin-left: 12px;">Chickpea bowl</span>
+          <div class="fav-btn" onclick="toggleFav(event, this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        </div>
+        <div class="meal-row">
+          <span class="meal-row-day">Sat</span>
+          <span class="meal-row-name" style="flex: 1; margin-left: 12px;">Salmon teriyaki</span>
+          <div class="fav-btn saved" onclick="toggleFav(event, this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== PLAN GROCERIES =================== -->
+  <div class="view" id="view-plan-groceries">
+    <div class="plan-content">
+      <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px;">
+        <div class="chip" style="background: var(--brand); color: white; border-color: var(--brand);">All · 9</div>
+        <div class="chip">Whole Foods · 5</div>
+        <div class="chip">Trader Joe's · 3</div>
+        <div class="chip">Costco · 1</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">This week's needs</div>
+        <div class="panel-meta">9 items · ~$42 estimated</div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Salmon · 1 lb</span><span class="store-tag wf">Whole Foods</span></div>
+            <div class="grocery-meta">for Tonight + Saturday</div>
+          </div>
+        </div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Quinoa · 1 bag</span><span class="store-tag tj">Trader Joe's</span></div>
+            <div class="grocery-meta">for Tonight + Friday</div>
+          </div>
+        </div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Greek yogurt · 32 oz</span><span class="store-tag costco">Costco</span></div>
+            <div class="grocery-meta">breakfast staple</div>
+          </div>
+        </div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Tofu · 1 block</span><span class="store-tag tj">Trader Joe's</span></div>
+            <div class="grocery-meta">for Thursday gentle dinner</div>
+          </div>
+        </div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Ginger · 1 root</span><span class="store-tag wf">Whole Foods</span></div>
+            <div class="grocery-meta">for nausea support</div>
+          </div>
+        </div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Broccoli · 2 heads</span><span class="store-tag wf">Whole Foods</span></div>
+            <div class="grocery-meta">for stir-fry + tonight</div>
+          </div>
+        </div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Sesame oil</span><span class="store-tag tj">Trader Joe's</span></div>
+            <div class="grocery-meta">for Chinese flavoring</div>
+          </div>
+        </div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Lemons · 3</span><span class="store-tag wf">Whole Foods</span></div>
+            <div class="grocery-meta">for salmon + tea</div>
+          </div>
+        </div>
+        <div class="grocery-row">
+          <div class="grocery-check"></div>
+          <div class="grocery-info">
+            <div class="grocery-info-row"><span class="grocery-name">Chickpeas · 2 cans</span><span class="store-tag wf">Whole Foods</span></div>
+            <div class="grocery-meta">for Friday bowl</div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <div class="chip" style="flex: 1; text-align: center; padding: 12px; background: var(--brand); color: white; border-color: var(--brand); justify-content: center;">Send to Instacart</div>
+        <div class="chip" style="padding: 12px; justify-content: center;">Copy list</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== PLAN CALENDAR =================== -->
+  <div class="view" id="view-plan-calendar">
+    <div class="plan-content">
+      <div class="panel">
+        <div class="panel-title">Week of June 2</div>
+        <div class="meal-row"><span class="meal-row-day">Mon AM</span><span class="meal-row-name">Yogurt + berries</span></div>
+        <div class="meal-row"><span class="meal-row-day">Mon PM</span><span class="meal-row-name">Salmon · broccoli · quinoa</span></div>
+        <div class="meal-row"><span class="meal-row-day">Tue AM</span><span class="meal-row-name">Oats + walnuts</span></div>
+        <div class="meal-row"><span class="meal-row-day">Tue PM</span><span class="meal-row-name">Cod with greens</span></div>
+        <div class="meal-row"><span class="meal-row-day">Wed AM</span><span class="meal-row-name">Eggs + avocado</span></div>
+        <div class="meal-row"><span class="meal-row-day">Wed PM</span><span class="meal-row-name">Turkey chili</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== INSIGHTS TODAY =================== -->
+  <div class="view" id="view-insights-today">
+    <div class="insight-content">
+      <div class="panel">
+        <div class="panel-title">Today's targets</div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Protein</span><span class="macro-target">62g / 90g</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 69%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Fiber</span><span class="macro-target">14g / 25g</span></div>
+          <div class="macro-bar"><div class="macro-fill amber" style="width: 56%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Water</span><span class="macro-target">42 oz / 64 oz</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 66%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Steps</span><span class="macro-target">5,830 / 8,000</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 73%"></div></div>
+        </div>
+      </div>
+      <div class="insight-cta">
+        <strong>Neera notes:</strong> dinner tonight will close the protein gap. Add a glass of water at 4pm.
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== INSIGHTS THIS WEEK =================== -->
+  <div class="view" id="view-insights-week">
+    <div class="insight-content">
+      <div class="score-card">
+        <div class="score-big">
+          <div class="score-big-num">84</div>
+          <div class="score-big-label">Cardio fit</div>
+        </div>
+        <div class="score-trend">↑ Up from 71 last week</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title" style="font-size: 16px;">Macros this week</div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Protein</span><span class="macro-target">92g avg / 90g target</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 100%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Fiber</span><span class="macro-target">21g avg / 25g target</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 84%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Healthy fats</span><span class="macro-target">on target</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 92%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Sugar</span><span class="macro-target">moderate</span></div>
+          <div class="macro-bar"><div class="macro-fill amber" style="width: 70%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Sodium</span><span class="macro-target">2,900mg / 2,300mg</span></div>
+          <div class="macro-bar"><div class="macro-fill over" style="width: 100%"></div></div>
+        </div>
+      </div>
+      <div class="insight-cta">
+        <strong>Pattern:</strong> recovery is lower on high-sodium days. Thursday's swap will help.
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== INSIGHTS STORY =================== -->
+  <div class="view" id="view-insights-story">
+    <div class="insight-content">
+      <div class="panel">
+        <div class="panel-title">For your next doctor visit</div>
+        <div class="panel-meta">June 2 — Dr. Chen, endocrinology</div>
+        <div style="font-size: 14px; line-height: 1.55; color: var(--text); margin-top: 12px;">
+          You've been on Wegovy 1.0 mg for 12 weeks. Weight down 12.3 lbs. A1C trending from 6.4 → 5.9. Average daily protein 88g, fiber 21g. Common symptoms: mild nausea twice this week.
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 14px;">
+          <div class="chip" style="background: var(--brand); color: white; border-color: var(--brand);">Share PDF with doctor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== INSIGHTS RECEIPTS =================== -->
+  <div class="view" id="view-insights-receipts">
+    <div class="insight-content">
+      <div class="panel">
+        <div class="panel-title">Recent shopping runs</div>
+        <div class="receipt-list-item" onclick="openModal('receipt')">
+          <div class="score-mini">84</div>
+          <div class="receipt-card-info">
+            <div class="receipt-card-title">Whole Foods · Sun</div>
+            <div class="receipt-card-meta">↑ from 71</div>
+          </div>
+          <div class="receipt-card-arrow">›</div>
+        </div>
+        <div class="receipt-list-item">
+          <div class="score-mini" style="border-color: var(--amber);">71</div>
+          <div class="receipt-card-info">
+            <div class="receipt-card-title">Trader Joe's · Wed</div>
+            <div class="receipt-card-meta">↑ from 65</div>
+          </div>
+          <div class="receipt-card-arrow">›</div>
+        </div>
+        <div class="receipt-list-item">
+          <div class="score-mini" style="border-color: var(--amber);">65</div>
+          <div class="receipt-card-info">
+            <div class="receipt-card-title">Amazon Fresh · last week</div>
+            <div class="receipt-card-meta">first time</div>
+          </div>
+          <div class="receipt-card-arrow">›</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== YOU =================== -->
+  <div class="view" id="view-you">
+    <div class="you-content">
+      <div class="profile-block">
+        <div class="avatar">S</div>
+        <div class="profile-name">Sarah</div>
+        <div class="profile-meta">12 weeks into your journey</div>
+      </div>
+      <div class="knows-card">
+        <div class="knows-card-title">What Neera knows about you</div>
+        <div class="knows-card-meta">Last learned 2 days ago</div>
+        <div class="knows-depth">
+          <div class="knows-depth-head">
+            <div class="knows-depth-stage">Getting familiar</div>
+            <div class="knows-depth-count">23 things learned</div>
+          </div>
+          <div class="knows-depth-bar">
+            <div class="knows-depth-fill" style="width: 38%"></div>
+          </div>
+        </div>
+        <div class="knows-list">
+          <div class="knows-item">Prefers ginger over chili for warmth</div>
+          <div class="knows-item">Low tolerance for dairy in mornings</div>
+          <div class="knows-item">Walks after dinner most Thursdays</div>
+          <div class="knows-item">Likes Chinese mid-week, Italian on Fridays</div>
+          <div class="knows-item">Nausea worse on higher-dose injection days</div>
+        </div>
+        <div class="knows-footer">Tap any item to correct or remove</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title" style="font-size: 16px;">Your GLP-1 journey</div>
+        <div class="journey-row"><span class="journey-row-label">Medication</span><span class="journey-row-value">Wegovy 1.0mg</span></div>
+        <div class="journey-row"><span class="journey-row-label">Started</span><span class="journey-row-value">March 10, 2026</span></div>
+        <div class="journey-row"><span class="journey-row-label">Prescribing doctor</span><span class="journey-row-value">Dr. Chen</span></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title" style="font-size: 16px;">Your goals</div>
+        <div class="journey-row"><span class="journey-row-label">Weight target</span><span class="journey-row-value">155 lbs</span></div>
+        <div class="journey-row"><span class="journey-row-label">A1C target</span><span class="journey-row-value">&lt; 5.7%</span></div>
+        <div class="journey-row"><span class="journey-row-label">Daily protein</span><span class="journey-row-value">90g</span></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title" style="font-size: 16px;">Milestones</div>
+        <div class="milestone-list">
+          <div class="milestone-item"><div class="milestone-dot"></div><div class="milestone-text">Lost 12.3 lbs since starting</div></div>
+          <div class="milestone-item"><div class="milestone-dot"></div><div class="milestone-text">A1C dropped from 6.4 to 5.9</div></div>
+          <div class="milestone-item"><div class="milestone-dot"></div><div class="milestone-text">Hit weekly protein 6 weeks straight</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <div class="nav-item active" data-dest="chat" onclick="setDest('chat')">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+      Chat
+    </div>
+    <div class="nav-item" data-dest="plan" onclick="setDest('plan')">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      Plan
+    </div>
+    <div class="nav-item" data-dest="insights" onclick="setDest('insights')">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+      Insights
+    </div>
+    <div class="nav-item" data-dest="you" onclick="setDest('you')">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      You
+    </div>
+  </div>
+
+  <!-- ============ SETTINGS DRAWER ============ -->
+  <div class="drawer-overlay" onclick="closeDrawer()"></div>
+  <div class="drawer">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Settings</h2>
+      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="setting-row">
+        <div>
+          <div class="setting-label">Subscription</div>
+          <div class="setting-value">Starter · $9.99/mo</div>
+        </div>
+        <span class="setting-arrow">›</span>
+      </div>
+      <div class="setting-row">
+        <div>
+          <div class="setting-label">Connections</div>
+          <div class="setting-value">4 active · HealthKit, Gmail, Plaid, Apple Watch</div>
+        </div>
+        <span class="setting-arrow">›</span>
+      </div>
+      <div class="setting-row">
+        <div>
+          <div class="setting-label">People I cook for</div>
+          <div class="setting-value">3 profiles · Sarah, husband, daughter</div>
+        </div>
+        <span class="setting-arrow">›</span>
+      </div>
+      <div class="setting-row">
+        <div>
+          <div class="setting-label">Notifications</div>
+          <div class="setting-value">Morning + evening check-ins</div>
+        </div>
+        <span class="setting-arrow">›</span>
+      </div>
+      <div class="setting-row">
+        <div>
+          <div class="setting-label">Voice & chat preferences</div>
+          <div class="setting-value">Warm tone · slower pace</div>
+        </div>
+        <span class="setting-arrow">›</span>
+      </div>
+      <div class="setting-row">
+        <div><div class="setting-label">Privacy & data</div></div>
+        <span class="setting-arrow">›</span>
+      </div>
+      <div class="setting-row">
+        <div><div class="setting-label">Help & feedback</div></div>
+        <span class="setting-arrow">›</span>
+      </div>
+      <div class="setting-row" style="color: var(--brand);">
+        <div><div class="setting-label" style="color: var(--brand);">Sign out</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL SHELLS ============ -->
+  <div class="modal-overlay" onclick="closeModal()"></div>
+
+  <!-- Recipe modal -->
+  <div class="modal" id="modalRecipe" style="display: none;">
+    <div class="modal-handle"></div>
+    <div class="modal-content">
+      <div class="modal-close-row">
+        <button class="modal-close" onclick="closeModal()">Done</button>
+      </div>
+      <div class="video-wrap">
+        <div class="video-placeholder">
+          <div class="video-play-btn">▶</div>
+        </div>
+      </div>
+      <div class="yt-link">↗ Open in YouTube</div>
+      <h3 class="modal-title" style="margin-top: 12px;">High-protein Kung Pao stir-fry</h3>
+      <div class="modal-sub">25 min · 36g protein · gentle on stomach</div>
+
+      <div class="recipe-section">
+        <div class="recipe-section-title">Already in your kitchen</div>
+        <div class="recipe-ing-list">
+          <div class="ing-have">Chicken breast · 1 lb</div>
+          <div class="ing-have">Broccoli · 1 head</div>
+          <div class="ing-have">Garlic · 4 cloves</div>
+          <div class="ing-have">Soy sauce · low sodium</div>
+          <div class="ing-have">Rice · 1 cup</div>
+        </div>
+      </div>
+
+      <div class="recipe-section">
+        <div class="recipe-section-title">Add to make it perfect</div>
+        <div class="recipe-ing-list">
+          <div class="ing-need">Ginger root · 1 inch</div>
+          <div class="ing-need">Sesame oil · 1 tbsp</div>
+          <div class="ing-need">Peanuts · 1/4 cup</div>
+        </div>
+        <div class="expand-link">+ Show 3 more optional ingredients</div>
+      </div>
+
+      <div class="recipe-section">
+        <div class="recipe-section-title">Steps</div>
+        <div class="recipe-steps">
+          <div class="recipe-step">Cube chicken into 1-inch pieces. Toss with 1 tbsp soy sauce and let sit 5 minutes.</div>
+          <div class="recipe-step">Heat sesame oil in a wok or large pan over high heat. Add chicken and stir-fry 4 minutes.</div>
+          <div class="recipe-step">Add garlic and ginger, cook 30 seconds until fragrant. Add broccoli, stir-fry 3 minutes.</div>
+          <div class="recipe-step">Add remaining soy sauce and a splash of water. Toss in peanuts. Serve over rice.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; margin-top: 20px;">
+        <div class="chip" style="flex: 1; justify-content: center; padding: 12px; background: var(--brand); color: white; border-color: var(--brand);">Start cooking</div>
+        <div class="fav-btn saved" style="width: 44px; height: 44px;" onclick="toggleFav(event, this)">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Receipt detail modal -->
+  <div class="modal" id="modalReceipt">
+    <div class="modal-handle"></div>
+    <div class="modal-content">
+      <div class="modal-close-row">
+        <button class="modal-close" onclick="closeModal()">Done</button>
+      </div>
+      <div style="text-align: center; margin-bottom: 18px;">
+        <div class="score-big" style="margin: 0 auto 8px;">
+          <div class="score-big-num">84</div>
+          <div class="score-big-label">Cardio fit</div>
+        </div>
+        <div class="score-trend">↑ Up from 71 last week</div>
+      </div>
+      <h3 class="modal-title">Whole Foods · Sunday</h3>
+      <div class="modal-sub">22 items · $147 · 1 hr ago</div>
+      <div class="panel" style="background: white; margin-top: 4px;">
+        <div class="macro-row" style="margin-top: 0;">
+          <div class="macro-row-head"><span class="macro-name">Protein</span><span class="macro-target">115g · weekly target met ✓</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 100%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Fiber</span><span class="macro-target">26g · on track</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 95%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Healthy fats</span><span class="macro-target">good balance</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width: 88%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Added sugar</span><span class="macro-target">moderate · 36g</span></div>
+          <div class="macro-bar"><div class="macro-fill amber" style="width: 60%"></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="macro-row-head"><span class="macro-name">Sodium</span><span class="macro-target">trending high · 3,200mg</span></div>
+          <div class="macro-bar"><div class="macro-fill over" style="width: 100%"></div></div>
+        </div>
+      </div>
+      <div class="insight-cta" style="margin-top: 14px;">
+        <strong>Neera says:</strong> protein and fiber are excellent. Sodium is the watch-out — let's swap Thursday's sauces and you'll close the gap.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="annotation">
+  <h4>How to navigate</h4>
+  <ul>
+    <li><b>Bottom nav</b>: Chat (default) · Plan · Insights · You</li>
+    <li><b>Top tabs</b>: change with each destination</li>
+    <li><b>Top-right ⋮</b>: opens Settings drawer (Subscription, Connections, People I cook for, etc.)</li>
+    <li><b>Chat receipt card</b>: tap to see macro breakdown + score</li>
+    <li><b>Insights → Receipts</b>: tap any receipt to see same detail</li>
+  </ul>
+  <h4 style="margin-top: 14px;">Key design calls</h4>
+  <ul>
+    <li>Chat is the always-default landing</li>
+    <li>Cream/coral palette pulled from Neera logo</li>
+    <li>Calm by design — no Noom-style cognitive overload</li>
+    <li>Settings hidden behind ⋮ keeps bottom nav focused on identity destinations</li>
+  </ul>
+</div>
+
+<script>
+// Tab structure per destination
+const TABS = {
+  chat: {
+    tabs: [{ id: 'conversation', label: 'Conversation' }, { id: 'history', label: 'History' }],
+    default: 'conversation'
+  },
+  plan: {
+    tabs: [{ id: 'meals', label: 'Meals' }, { id: 'groceries', label: 'Groceries' }, { id: 'calendar', label: 'Calendar' }],
+    default: 'meals'
+  },
+  insights: {
+    tabs: [{ id: 'today', label: 'Today' }, { id: 'week', label: 'This Week' }, { id: 'receipts', label: 'Receipts' }, { id: 'story', label: 'Story' }],
+    default: 'week'
+  },
+  you: {
+    tabs: [],
+    default: null
+  }
+};
+
+let currentDest = 'chat';
+let currentTab = 'conversation';
+
+function renderTopTabs() {
+  const config = TABS[currentDest];
+  const container = document.getElementById('topTabs');
+  if (!config || config.tabs.length === 0) {
+    container.style.display = 'none';
+    return;
+  }
+  container.style.display = 'flex';
+  container.innerHTML = config.tabs.map(t =>
+    `<div class="top-tab ${t.id === currentTab ? 'active' : ''}" onclick="setTab('${t.id}')">${t.label}</div>`
+  ).join('');
+}
+
+function showView() {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  let id;
+  if (currentDest === 'you') {
+    id = 'view-you';
+  } else {
+    id = `view-${currentDest}-${currentTab}`;
+  }
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+}
+
+function updateNav() {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelector(`.nav-item[data-dest="${currentDest}"]`).classList.add('active');
+}
+
+function setDest(dest) {
+  currentDest = dest;
+  const config = TABS[dest];
+  currentTab = config.default;
+  renderTopTabs();
+  showView();
+  updateNav();
+}
+
+function setTab(tab) {
+  currentTab = tab;
+  renderTopTabs();
+  showView();
+}
+
+function openDrawer() {
+  document.querySelector('.drawer-overlay').classList.add('open');
+  document.querySelector('.drawer').classList.add('open');
+}
+function closeDrawer() {
+  document.querySelector('.drawer-overlay').classList.remove('open');
+  document.querySelector('.drawer').classList.remove('open');
+}
+function openModal(which) {
+  document.querySelector('.modal-overlay').classList.add('open');
+  // Hide all modals first
+  document.getElementById('modalRecipe').style.display = 'none';
+  document.getElementById('modalReceipt').style.display = 'none';
+  document.getElementById('modalRecipe').classList.remove('open');
+  document.getElementById('modalReceipt').classList.remove('open');
+  // Show requested modal
+  const target = which === 'recipe' ? 'modalRecipe' : 'modalReceipt';
+  const el = document.getElementById(target);
+  el.style.display = '';
+  // tiny delay to allow display change before transform animation
+  requestAnimationFrame(() => el.classList.add('open'));
+}
+function closeModal() {
+  document.querySelector('.modal-overlay').classList.remove('open');
+  document.querySelectorAll('.modal').forEach(m => m.classList.remove('open'));
+}
+function toggleFav(event, el) {
+  event.stopPropagation();
+  el.classList.toggle('saved');
+}
+
+// Init
+renderTopTabs();
+</script>
+</body>
+</html>

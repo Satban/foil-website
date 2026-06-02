@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neera — Internal Mockups</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EFE3;
+    --cream: #FAF6EC;
+    --brand: #C77966;
+    --brand-dark: #A85B49;
+    --brand-soft: #EFD5CB;
+    --sage: #5A7A4F;
+    --text: #2A2520;
+    --text-soft: #6B6258;
+    --border: #E5DDD0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 60px 24px 80px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .brand-mark {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .brand-mark img {
+    max-width: 220px;
+    height: auto;
+  }
+  h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: 38px;
+    font-weight: 500;
+    margin: 0 0 8px;
+    text-align: center;
+    color: var(--text);
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--text-soft);
+    margin-bottom: 48px;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    transition: all 0.2s;
+  }
+  .card:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(199, 121, 102, 0.12);
+  }
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 16px;
+  }
+  .card-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+  }
+  .card-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--brand);
+    background: var(--brand-soft);
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .card-desc {
+    color: var(--text-soft);
+    font-size: 14px;
+    margin: 0;
+  }
+  .meta-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+  .meta-row span::before {
+    content: "→ ";
+    color: var(--brand);
+    font-weight: 600;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    color: var(--text-soft);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="brand-mark">
+  <img src="neera_logo.png" alt="Neera">
+</div>
+
+<h1>Internal Mockups</h1>
+<div class="subtitle">Design + architecture for review · Not public</div>
+
+<a href="static.html" class="card">
+  <div class="card-head">
+    <h2 class="card-title">Static screen overview</h2>
+    <span class="card-label">Static</span>
+  </div>
+  <p class="card-desc">Three phone mockups side-by-side: Chat (primary), Plan, Insights. Quick visual reference for the calm-design register.</p>
+  <div class="meta-row"><span>Visual calibration</span><span>3 screens</span></div>
+</a>
+
+<a href="interactive.html" class="card">
+  <div class="card-head">
+    <h2 class="card-title">Interactive app prototype</h2>
+    <span class="card-label">Interactive</span>
+  </div>
+  <p class="card-desc">Click-through prototype with bottom nav (Chat · Plan · Insights · You), top tabs per destination, recipe modal with YouTube embed, settings drawer, receipt detail, and the "Neera knows you" learning surface.</p>
+  <div class="meta-row"><span>Full navigation</span><span>Recipe + receipt modals</span><span>Settings drawer</span></div>
+</a>
+
+<a href="architecture.html" class="card">
+  <div class="card-head">
+    <h2 class="card-title">Phased architecture</h2>
+    <span class="card-label">Technical</span>
+  </div>
+  <p class="card-desc">Visual architecture across four phases (MVP through Year 2+). Shows surfaces, AI orchestration, tools, data layers, and agentic framework evolution from single agent to multi-agent mesh with MCP interop.</p>
+  <div class="meta-row"><span>4 phases</span><span>Agentic framework</span><span>Day-1 principles</span></div>
+</a>
+
+<div class="footer">
+  Internal use only · Neera is in research mode<br>
+  Questions: letsmeetneera@gmail.com
+</div>
+
+</div>
+</body>
+</html>
