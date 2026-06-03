@@ -164,6 +164,20 @@
     color: var(--text);
     border-color: var(--border);
   }
+  .carousel-arrow.carousel-arrow-advance {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(90, 122, 79, 0.25);
+    animation: pulse-arrow 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse-arrow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
   .carousel-dots {
     display: flex;
     justify-content: center;
@@ -798,12 +812,21 @@ function render() {
       }
       dots.forEach((d, di) => d.classList.toggle('active', di === idx));
       prevBtn.disabled = idx === 0;
-      nextBtn.disabled = idx === slides.length - 1;
-      // Show the prominent "Continue to next question" CTA only on the last slide
-      ctaBtn.classList.toggle('show', idx === slides.length - 1);
+      // On the last slide, right arrow becomes a brand-colored "next question" arrow
+      const isLast = idx === slides.length - 1;
+      nextBtn.disabled = false;
+      nextBtn.classList.toggle('carousel-arrow-advance', isLast);
+      nextBtn.setAttribute('aria-label', isLast ? 'Continue to next question' : 'Next slide');
+      ctaBtn.classList.toggle('show', isLast);
     }
     prevBtn.addEventListener('click', () => goTo(idx - 1));
-    nextBtn.addEventListener('click', () => goTo(idx + 1));
+    nextBtn.addEventListener('click', () => {
+      if (idx === slides.length - 1) {
+        handleNext();
+      } else {
+        goTo(idx + 1);
+      }
+    });
     dots.forEach(d => d.addEventListener('click', () => goTo(parseInt(d.dataset.idx, 10))));
     ctaBtn.addEventListener('click', () => handleNext());
     goTo(0);
