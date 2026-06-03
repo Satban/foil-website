@@ -60,6 +60,14 @@
     height: auto;
     margin: 28px auto 8px;
   }
+  .preview-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 20px auto 8px;
+    border: 1px solid var(--border);
+  }
   .progress {
     display: flex;
     align-items: center;
@@ -436,6 +444,11 @@ const steps = [
     required: true
   },
   {
+    type: "preview",
+    label: "A look at what we're building",
+    hint: "Take a quick look at the three core surfaces. Continue when ready."
+  },
+  {
     id: "trust_threshold",
     type: "single",
     label: "How much human involvement would you want?",
@@ -517,12 +530,12 @@ function visibleSteps() {
 }
 
 function totalDataSteps() {
-  return visibleSteps().filter(s => s.type !== "intro" && s.type !== "video").length;
+  return visibleSteps().filter(s => s.type !== "intro" && s.type !== "video" && s.type !== "preview").length;
 }
 
 function currentDataStepNumber() {
   const v = visibleSteps();
-  return v.slice(0, currentIndex + 1).filter(s => s.type !== "intro" && s.type !== "video").length;
+  return v.slice(0, currentIndex + 1).filter(s => s.type !== "intro" && s.type !== "video" && s.type !== "preview").length;
 }
 
 function render() {
@@ -561,6 +574,21 @@ function render() {
       <div class="nav-row">
         <button class="btn-secondary btn" id="back-btn">← Back</button>
         <button class="btn" id="next-btn" style="margin-left:auto;">I've watched it →</button>
+      </div>
+    `;
+  } else if (step.type === "preview") {
+    progress.style.display = "flex";
+    const total = totalDataSteps();
+    const num = currentDataStepNumber();
+    fill.style.width = `${(num / total) * 100}%`;
+    ptext.textContent = `${num} of ${total}`;
+    card.innerHTML = `
+      <div class="question-label">${step.label}</div>
+      <div class="question-hint">${step.hint}</div>
+      <img class="preview-img" src="preview.png" alt="Neera app — Chat, Plan, Insights">
+      <div class="nav-row">
+        <button class="btn-secondary btn" id="back-btn">← Back</button>
+        <button class="btn" id="next-btn" style="margin-left:auto;">Continue →</button>
       </div>
     `;
   } else if (step.type === "single") {
