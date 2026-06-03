@@ -818,18 +818,25 @@ async function submit() {
 
 function showSuccess() {
   document.getElementById("progress").style.display = "none";
+  const wantsZoom = answers.zoom_interview === "Yes, let's talk" || answers.zoom_interview === "Maybe, tell me more";
   document.getElementById("card").innerHTML = `
     <div class="success">
       <div class="success-divider"></div>
       <h2>Thank you so much</h2>
-      <p>${answers.zoom_interview === "Yes, let's talk" || answers.zoom_interview === "Maybe, tell me more"
-        ? "I'll reach out within 48 hours to set up the Zoom."
+      <p>${wantsZoom
+        ? "You said you'd be open to a 20-minute Zoom. Pick any time that works for you using the button below — I'll be there."
         : ""}
-      ${answers.beta_list === "Yes" ? "I'll keep you posted on early beta access." : ""}
-      Either way, I genuinely appreciate you taking the time.</p>
+      ${answers.beta_list === "Yes" ? " I'll keep you posted on early beta access." : ""}
+      ${!wantsZoom ? "I genuinely appreciate you taking the time." : ""}
+      </p>
+      ${wantsZoom ? `
+        <div style="margin-top:24px;">
+          <a class="btn" href="https://calendly.com/letsmeetneera" target="_blank" rel="noopener" style="text-decoration:none; display:inline-block;">Book a 20-min Zoom →</a>
+        </div>
+      ` : ''}
       <p style="margin-top:24px;">— Satyam</p>
       <div style="margin-top:32px;">
-        <button class="btn" onclick="navigator.clipboard.writeText('https://meetneera.com').then(() => alert('Link copied!'))">Share with someone on GLP-1</button>
+        <button class="btn" style="background:transparent; color:var(--accent); border:1.5px solid var(--accent);" onclick="navigator.clipboard.writeText('https://meetneera.com').then(() => alert('Link copied!'))">Share with someone managing nutrition</button>
       </div>
     </div>
   `;
