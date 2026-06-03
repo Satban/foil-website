@@ -552,7 +552,7 @@ function render() {
     card.innerHTML = `
       <h1>${step.title}</h1>
       ${step.body.map(b => `<p class="lede">${b}</p>`).join("")}
-      ${step.venn ? `<img class="intro-venn" src="assets/neera_venn.png" alt="Neera connects wearables, food and groceries, and insights">` : ""}
+      ${step.venn ? `<img class="intro-venn" src="assets/neera_venn.png" alt="Neera connects wearables, food and groceries, and goals + how you feel">` : ""}
       <div class="nav-row"><button class="btn" id="next-btn">${step.button}</button></div>
     `;
   } else if (step.type === "video") {
