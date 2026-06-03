@@ -118,6 +118,24 @@
     font-weight: 500;
   }
   .carousel-cta a:hover { text-decoration: underline; }
+  .carousel-cta-btn {
+    display: none;
+    margin: 18px auto 0;
+    padding: 14px 24px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 28px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    max-width: 360px;
+    transition: background 0.15s;
+  }
+  .carousel-cta-btn:hover { background: var(--accent-dark, #4a6840); }
+  .carousel-cta-btn.show { display: block; }
   .carousel-arrow {
     width: 36px;
     height: 36px;
@@ -718,6 +736,7 @@ function render() {
           ${slides.map((_, i) => `<button class="carousel-dot ${i === 0 ? 'active' : ''}" data-idx="${i}">${i + 1}</button>`).join('')}
         </div>
         <div class="carousel-counter" id="car-counter">1 of ${slides.length} · static screens</div>
+        <button class="carousel-cta-btn" id="car-cta-btn">Continue to next question →</button>
       </div>
       <div class="nav-row">
         <button class="btn-secondary btn" id="back-btn">← Back</button>
@@ -727,6 +746,7 @@ function render() {
     let idx = 0;
     const stageEl = document.getElementById('car-stage');
     const counterEl = document.getElementById('car-counter');
+    const ctaBtn = document.getElementById('car-cta-btn');
     const dots = document.querySelectorAll('.carousel-dot');
     const prevBtn = document.getElementById('car-prev');
     const nextBtn = document.getElementById('car-next');
@@ -744,10 +764,13 @@ function render() {
       dots.forEach((d, di) => d.classList.toggle('active', di === idx));
       prevBtn.disabled = idx === 0;
       nextBtn.disabled = idx === slides.length - 1;
+      // Show the prominent "Continue to next question" CTA only on the last slide
+      ctaBtn.classList.toggle('show', idx === slides.length - 1);
     }
     prevBtn.addEventListener('click', () => goTo(idx - 1));
     nextBtn.addEventListener('click', () => goTo(idx + 1));
     dots.forEach(d => d.addEventListener('click', () => goTo(parseInt(d.dataset.idx, 10))));
+    ctaBtn.addEventListener('click', () => handleNext());
     goTo(0);
   } else if (step.type === "single") {
     progress.style.display = "flex";
