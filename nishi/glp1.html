@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nishi: Your nutrition companion, built for life on GLP-1</title>
+  <meta name="description" content="Nishi is an AI nutrition companion built for life on GLP-1. It connects what's in your kitchen, what your wearables say, and how you feel, and helps you eat well, quietly, every day.">
+  <link rel="canonical" href="https://meetnishi.com/">
+  <meta property="og:title" content="Nishi: Your nutrition companion">
+  <meta property="og:description" content="Built for life on GLP-1. Knows your kitchen, your biology, and how you feel.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://meetnishi.com/">
+  <meta property="og:image" content="https://meetnishi.com/nishi/assets/nishi_logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #FAF7F0;
+      --bg-card: #FFFFFF;
+      --bg-warm: #F4EFE3;
+      --text: #2A2520;
+      --text-soft: #6B6258;
+      --text-muted: #94897C;
+      --accent: #DD6C59;
+      --accent-dark: #C75A48;
+      --accent-soft: #F5DDD5;
+      --accent-tint: #FAE7E0;
+      --border: #E8DFCF;
+      --shadow-sm: 0 2px 8px rgba(42, 37, 32, 0.05);
+      --shadow-md: 0 8px 28px rgba(42, 37, 32, 0.08);
+      --shadow-lg: 0 24px 60px rgba(42, 37, 32, 0.10);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-lg: 24px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --max-width: 1120px;
+      --max-prose: 680px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    p { color: var(--text-soft); }
+    img, video { max-width: 100%; display: block; }
+    a { color: var(--accent-dark); text-decoration: none; }
+    a:hover { color: var(--accent); }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+      padding: 56px 0 80px;
+      text-align: center;
+    }
+    .nav-mark {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+    .nav-mark img {
+      height: 56px;
+      width: auto;
+    }
+    .hero-content {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent-dark);
+      background: var(--accent-tint);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    h1.hero-headline {
+      font-size: clamp(40px, 6vw, 64px);
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: 19px;
+      color: var(--text-soft);
+      margin: 0 auto 36px;
+      max-width: 560px;
+    }
+    .waitlist {
+      display: flex;
+      gap: 8px;
+      max-width: 460px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      padding: 6px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .waitlist input {
+      flex: 1;
+      padding: 12px 18px;
+      border: 0;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      min-width: 0;
+    }
+    .waitlist input::placeholder { color: var(--text-muted); }
+    .waitlist button {
+      padding: 12px 22px;
+      border: 0;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background var(--ease) 0.2s, transform var(--ease) 0.2s;
+      white-space: nowrap;
+    }
+    .waitlist button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+    .waitlist-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ========== Video showcase ========== */
+    .showcase {
+      padding: 0 0 96px;
+    }
+    .video-frame {
+      max-width: 960px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .unmute-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      backdrop-filter: blur(10px);
+      transition: transform var(--ease) 0.2s;
+    }
+    .unmute-btn:hover { transform: scale(1.06); }
+    .unmute-btn svg { width: 22px; height: 22px; }
+    .unmute-btn .icon-on { display: none; }
+    .unmute-btn.unmuted .icon-off { display: none; }
+    .unmute-btn.unmuted .icon-on { display: block; }
+
+    @media (max-width: 700px) {
+      .hero { padding: 32px 0 56px; }
+      .nav-mark { margin-bottom: 36px; }
+      .nav-mark img { height: 44px; }
+      .showcase { padding-bottom: 64px; }
+    }
+
+    /* ========== What Nishi sees ========== */
+    .venn-block {
+      background: var(--bg-warm);
+      padding: 96px 0;
+    }
+    .section-header {
+      max-width: var(--max-prose);
+      margin: 0 auto 56px;
+      text-align: center;
+    }
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent-dark);
+      margin-bottom: 16px;
+    }
+    h2.section-title {
+      font-size: clamp(32px, 4vw, 44px);
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: 18px;
+      color: var(--text-soft);
+    }
+    .venn-img {
+      max-width: 560px;
+      margin: 0 auto 64px;
+      display: block;
+    }
+    .domains {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .domain h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .domain p {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+    .domain .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .domain.food .swatch { background: #6BA572; }
+    .domain.wearables .swatch { background: #E36C3F; }
+    .domain.feel .swatch { background: #4A9DD8; }
+
+    @media (max-width: 800px) {
+      .venn-block { padding: 64px 0; }
+      .venn-img { max-width: 100%; }
+      .domains {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 0 8px;
+      }
+    }
+
+    /* ========== Founder note ========== */
+    .section { padding: 96px 0; }
+    .founder {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 40px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+    .founder h2 {
+      font-size: clamp(28px, 3.5vw, 36px);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .founder p {
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .founder p:last-of-type { margin-bottom: 32px; }
+    .founder-sig {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--text-soft);
+      font-size: 16px;
+      text-align: right;
+    }
+
+    @media (max-width: 700px) {
+      .section { padding: 64px 0; }
+      .founder { padding: 40px 24px; }
+    }
+
+    /* ========== Trust ========== */
+    .trust {
+      max-width: var(--max-prose);
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 32px 96px;
+    }
+    .trust h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .trust p {
+      font-size: 16px;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    footer a { color: var(--text-soft); }
+    footer .footer-mark {
+      height: 28px;
+      width: auto;
+      margin: 0 auto 16px;
+      opacity: 0.85;
+    }
+    footer .footer-cta {
+      display: inline-block;
+      margin: 0 12px;
+      color: var(--accent-dark);
+      font-weight: 500;
+    }
+
+    /* ========== Reveal animations ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ Hero ============ -->
+  <header class="hero">
+    <div class="container">
+      <div class="nav-mark">
+        <img src="assets/nishi_logo.png" alt="Nishi, your nutrition companion">
+      </div>
+
+      <div class="hero-content">
+        <span class="eyebrow">Built for life on GLP-1</span>
+        <h1 class="hero-headline">Your nutrition companion.</h1>
+        <p class="hero-sub">Nishi connects what's in your kitchen, what your wearables say, and how you actually feel. It helps you eat well, quietly, every day.</p>
+
+        <form id="waitlist" class="waitlist" action="#" method="post" onsubmit="event.preventDefault(); alert('Wire this form to your provider (Formspree, Tally, etc.) before launch.');">
+          <input type="email" name="email" placeholder="Your email" required autocomplete="email">
+          <button type="submit">Join the waitlist</button>
+        </form>
+        <p class="waitlist-note">No spam. Updates only when there's something real to share.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ Video showcase ============ -->
+  <section class="showcase">
+    <div class="container">
+      <div class="video-frame reveal">
+        <video id="hero-video" autoplay muted loop playsinline>
+          <source src="videos/demo.mp4" type="video/mp4">
+        </video>
+        <button class="unmute-btn" id="unmute-btn" aria-label="Toggle sound">
+          <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ What Nishi sees (Venn) ============ -->
+  <section class="venn-block">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">What Nishi sees</div>
+        <h2 class="section-title">Three streams of context.</h2>
+        <p class="section-lead">Nishi reads your kitchen, your wearables, and how you feel. It connects them so nothing falls through the cracks.</p>
+      </div>
+
+      <img class="venn-img reveal" src="assets/nishi_venn.png" alt="Three input streams (food and groceries, wearables, and goals plus how you feel) converging on Nishi at the center.">
+
+      <div class="domains">
+        <div class="domain food reveal">
+          <div class="swatch"></div>
+          <h3>Food &amp; Groceries</h3>
+          <p>Nishi knows what's in your kitchen, what you've been eating, and what you want to cook. Track by voice, by photo, or by scanning your grocery receipt.</p>
+        </div>
+        <div class="domain wearables reveal">
+          <div class="swatch"></div>
+          <h3>Wearables</h3>
+          <p>Connect your watch, your CGM, your sleep tracker. Activity, sleep, heart rate, body metrics. Nishi reads them and uses them to shape what you eat and when.</p>
+        </div>
+        <div class="domain feel reveal">
+          <div class="swatch"></div>
+          <h3>Goals &amp; How You Feel</h3>
+          <p>Tell Nishi what matters: protein, A1C, weight, energy. And how you feel: nausea, mood, ease. Share medications and labs when you want. Nishi remembers everything, gently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Founder note ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="founder reveal">
+        <h2>Why Nishi exists</h2>
+        <p>I built Nishi after watching friends and family start GLP-1 medications and run into the same question with no good answer: <em>"What am I supposed to eat now?"</em></p>
+        <p>The old playbook doesn't fit anymore. Calorie counting, generic logging apps, "eat less of everything." None of it was built for the reality of GLP-1, where hunger changes, portions shrink, and some days food just sits differently.</p>
+        <p>Registered dietitians are great, but most people see one eight times a year. People need something that listens, learns, and shows up in the kitchen at 6:30, when they're standing in front of the open fridge wondering what to cook.</p>
+        <p>Nishi is exactly that. A companion that listens, learns, and helps you eat well, quietly, every day.</p>
+        <div class="founder-sig">Satyam, founder</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Trust ============ -->
+  <div class="trust reveal">
+    <h2>Built with care, not claims</h2>
+    <p>Nishi is a wellness companion, not a medical service. We don't diagnose or prescribe, we don't replace your doctor or dietitian, and we don't sell your individual health data. We work with a clinical advisory board.</p>
+  </div>
+
+  <!-- ============ Footer ============ -->
+  <footer>
+    <div class="container">
+      <img class="footer-mark" src="assets/nishi_logo.png" alt="Nishi">
+      <p>
+        &copy; 2026 Nishi.
+        <a class="footer-cta" href="#waitlist">Join the waitlist</a>
+        <a href="mailto:hello@meetnishi.com">hello@meetnishi.com</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Unmute toggle
+    (function() {
+      const video = document.getElementById('hero-video');
+      const btn = document.getElementById('unmute-btn');
+      if (!video || !btn) return;
+      btn.addEventListener('click', function() {
+        video.muted = !video.muted;
+        btn.classList.toggle('unmuted', !video.muted);
+      });
+    })();
+
+    // Scroll-reveal
+    (function() {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || reveals.length === 0) {
+        reveals.forEach(el => el.classList.add('visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => io.observe(el));
+    })();
+  </script>
+
+</body>
+</html>
