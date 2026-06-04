@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neera — Help shape an AI nutrition agent for GLP-1</title>
-<meta name="description" content="Help shape Neera, an AI nutrition agent built for the GLP-1 journey. 5-minute survey, your input shapes what gets built.">
-<meta property="og:title" content="Neera — An AI nutrition agent for life on GLP-1">
+<title>Neera — Help shape an AI nutrition companion</title>
+<meta name="description" content="Help shape Neera, an AI nutrition companion for people focused on weight, energy, and how they feel day-to-day. 5-minute survey, your input shapes what gets built.">
+<meta property="og:title" content="Neera — An AI nutrition companion">
 <meta property="og:description" content="Built with patients, not for them. Take the 5-min survey.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://meetneera.com">
@@ -293,6 +293,27 @@
     color: var(--text);
     font-size: 18px;
   }
+  .disclosure {
+    margin: 18px 0 4px;
+    padding: 14px 16px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .disclosure strong {
+    color: var(--text);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .disclosure a {
+    color: var(--brand-dark);
+    text-decoration: underline;
+  }
   .question-label {
     font-family: 'EB Garamond', Georgia, serif;
     font-size: 24px;
@@ -459,7 +480,7 @@
   </div>
 
   <div class="footer">
-    Currently in research mode. Your responses are private.
+    Currently in research mode. Your responses are private. <a href="privacy.html" style="color: var(--brand-dark); text-decoration: underline;">Privacy policy</a>
   </div>
 </div>
 
@@ -479,44 +500,42 @@ const steps = [
     type: "intro",
     title: "Help shape Neera",
     body: [
-      "Hi, I'm Satyam. I'm building Neera, an AI nutrition companion. Built first for people on GLP-1 medications, designed for anyone managing food and health more mindfully.",
+      "Hi — the founder here. I'm building Neera, an AI nutrition companion for people focused on weight, energy, and how they feel day-to-day.",
       "Neera brings together what you eat, what your wearables track, and the insights that help you stay on course.",
       "This 5-minute survey is private. Your responses shape what gets built."
     ],
     venn: true,
+    disclosure: `<strong>A note before you start</strong>This survey collects nutrition and health-related information, including details about medications, conditions, and habits if you choose to share them. Your responses are stored privately by the Neera team, are not sold or shared, and won't be used to contact you unless you opt in at the end. You can email <a href="mailto:letsmeetneera@gmail.com">letsmeetneera@gmail.com</a> any time to request deletion. By continuing, you consent to this collection. <a href="privacy.html" target="_blank">Privacy policy →</a>`,
     button: "Let's go"
   },
   {
-    id: "on_glp1",
-    type: "single",
-    label: "What best describes you?",
-    hint: "Neera is built first for GLP-1 users, but useful for anyone managing nutrition.",
-    options: ["I'm currently on a GLP-1 medication", "I was on a GLP-1 but stopped", "I'm considering a GLP-1", "I'm focused on weight or nutrition without medication", "I'm just curious about Neera"],
+    id: "main_focus",
+    type: "multi",
+    label: "What's your main focus right now?",
+    hint: "Select all that apply — up to 3.",
+    options: [
+      "Losing weight",
+      "Keeping weight off after losing it",
+      "Boosting energy / feeling better day-to-day",
+      "Managing a health condition (diabetes, BP, PCOS, etc.)",
+      "General curiosity about nutrition",
+      "Just exploring Neera"
+    ],
+    maxSelect: 3,
     required: true
   },
   {
-    id: "which_glp1",
-    type: "single",
-    label: "Which GLP-1 are you on (or were on most recently)?",
-    options: ["Ozempic (semaglutide)", "Wegovy (semaglutide)", "Mounjaro (tirzepatide)", "Zepbound (tirzepatide)", "Compounded semaglutide or tirzepatide"],
-    other: true,
-    required: true,
-    showIf: (a) => a.on_glp1 === "I'm currently on a GLP-1 medication" || a.on_glp1 === "I was on a GLP-1 but stopped"
-  },
-  {
-    id: "duration",
-    type: "single",
-    label: "How long have you been on it (or were on it)?",
-    options: ["Less than 1 month", "1–3 months", "3–6 months", "6–12 months", "1–2 years", "More than 2 years"],
-    required: true,
-    showIf: (a) => a.on_glp1 === "I'm currently on a GLP-1 medication" || a.on_glp1 === "I was on a GLP-1 but stopped"
-  },
-  {
-    id: "why_started",
-    type: "single",
-    label: "What's your main motivation?",
-    hint: "GLP-1 users: why did you start? Others: what brings you to mindful nutrition?",
-    options: ["Weight loss", "Diabetes / pre-diabetes management", "Cardiovascular health", "PCOS", "General wellness / healthy aging", "Other health condition"],
+    id: "approach",
+    type: "multi",
+    label: "How are you approaching it today?",
+    hint: "Select all that apply.",
+    options: [
+      "On my own (diet/exercise)",
+      "Working with a doctor or dietitian",
+      "Using a medication",
+      "A program (Noom, WW, Calibrate, etc.)",
+      "Nothing structured yet"
+    ],
     other: true,
     required: true
   },
@@ -526,18 +545,18 @@ const steps = [
     label: "What's been hardest about food and nutrition lately?",
     hint: "Select up to 3.",
     options: [
+      "Knowing what to eat day-to-day",
       "Getting enough protein",
       "Getting enough fiber",
-      "Managing nausea or other GLP-1 symptoms",
-      "Knowing what to eat",
-      "Planning meals",
+      "Eating enough overall (low appetite)",
+      "Planning meals ahead",
       "Grocery shopping decisions",
+      "Cost or time of healthy food",
       "Staying motivated to cook",
-      "Adapting to changing appetite",
-      "Worry about gaining weight back",
-      "Eating out / social meals",
       "Tracking nutrition consistently",
-      "Sticking with healthy habits"
+      "Staying consistent over time",
+      "Eating out / social meals",
+      "Worry about regaining weight"
     ],
     other: true,
     maxSelect: 3,
@@ -553,15 +572,24 @@ const steps = [
       "Cronometer",
       "Noom",
       "WeightWatchers",
+      "Lose It!",
       "Levels / continuous glucose monitor",
-      "Apple Health / Google Fit",
+      "Apple Health / Android Health Connect",
       "A registered dietitian",
       "A coach or program (Calibrate, Form Health, etc.)",
-      "A Facebook or Reddit GLP-1 community",
+      "An online community (Facebook, Reddit, Discord)",
       "None of the above"
     ],
     other: true,
     required: false
+  },
+  {
+    id: "success_3mo",
+    type: "text",
+    label: "What would \"winning\" at this look like in 3 months?",
+    hint: "Optional. Short answer is great — a sentence or two.",
+    required: false,
+    placeholder: "If things went well over the next 3 months..."
   },
   {
     type: "video",
@@ -623,6 +651,32 @@ const steps = [
     hint: "Take a quick look at the three core surfaces. Continue when ready."
   },
   {
+    id: "which_glp1",
+    type: "single",
+    label: "Which medication are you using (or used most recently)?",
+    hint: "A few quick questions on your situation so we can tailor what we build. You can skip with \"prefer not to say.\"",
+    options: [
+      "Ozempic (semaglutide)",
+      "Wegovy (semaglutide)",
+      "Mounjaro (tirzepatide)",
+      "Zepbound (tirzepatide)",
+      "Compounded semaglutide or tirzepatide",
+      "A different medication",
+      "Prefer not to say"
+    ],
+    other: true,
+    required: true,
+    showIf: (a) => Array.isArray(a.approach) && a.approach.includes("Using a medication")
+  },
+  {
+    id: "duration",
+    type: "single",
+    label: "How long have you been on it (or were on it)?",
+    options: ["Less than 1 month", "1–3 months", "3–6 months", "6–12 months", "1–2 years", "More than 2 years", "Prefer not to say"],
+    required: true,
+    showIf: (a) => Array.isArray(a.approach) && a.approach.includes("Using a medication")
+  },
+  {
     id: "trust_threshold",
     type: "single",
     label: "How much human involvement would you want?",
@@ -641,7 +695,7 @@ const steps = [
     label: "What would you be comfortable connecting?",
     hint: "Select all you'd be willing to share with Neera.",
     options: [
-      "Apple Health / Google Fit",
+      "Apple Health / Android Health Connect",
       "Grocery receipts (photos or email forwarding)",
       "Bank account or card transactions",
       "Wearables (Apple Watch, Oura, Whoop, etc.)",
@@ -655,13 +709,13 @@ const steps = [
     type: "multi",
     label: "If something like this existed today, what feels fair?",
     hint: "Select all that apply. Price and reimbursement preferences are both useful.",
-    options: ["$0 (free or ad-supported)", "Under $10/month", "$10–25/month", "$25–50/month", "$50–75/month", "More than $75/month", "I'd want to use HSA/FSA pre-tax dollars", "I'd want my insurance to cover it"],
+    options: ["$0 (free or ad-supported)", "Under $10/month", "$10–25/month", "$25–50/month", "I'd want to use HSA/FSA pre-tax dollars", "I'd want my insurance to cover it"],
     required: true
   },
   {
     id: "discovery",
     type: "multi",
-    label: "Where do you usually go for nutrition or GLP-1 information?",
+    label: "Where do you usually go for nutrition or health information?",
     hint: "Select all.",
     options: ["Reddit", "Facebook groups", "Instagram / TikTok creators", "My prescribing doctor / clinic", "Friends or family", "Podcasts", "General Google search"],
     other: true,
@@ -670,7 +724,7 @@ const steps = [
   {
     id: "wish",
     type: "text",
-    label: "If you could wave a wand and fix ONE thing about your nutrition on GLP-1, what would it be?",
+    label: "If you could wave a wand and fix ONE thing about your nutrition or eating habits, what would it be?",
     required: false,
     placeholder: "The one thing that would make this easier..."
   },
@@ -728,6 +782,7 @@ function render() {
       <h1>${step.title}</h1>
       ${step.body.map(b => `<p class="lede">${b}</p>`).join("")}
       ${step.venn ? `<img class="intro-venn" src="assets/neera_venn.png" alt="Neera connects wearables, food and groceries, and goals + how you feel">` : ""}
+      ${step.disclosure ? `<div class="disclosure">${step.disclosure}</div>` : ""}
       <div class="nav-row"><button class="btn" id="next-btn">${step.button}</button></div>
     `;
   } else if (step.type === "video") {
@@ -1057,7 +1112,7 @@ function showThankYouEarly() {
     <div class="success">
       <div class="success-divider"></div>
       <h2>Thanks for stopping by</h2>
-      <p>This survey is focused on people directly impacted by GLP-1s.</p>
+      <p>This survey is focused on people actively managing weight, energy, or a health condition through nutrition.</p>
       <p>If you know someone who is, please share this page with them. It would help a lot.</p>
       <button class="btn" onclick="navigator.clipboard.writeText('https://meetneera.com').then(() => alert('Link copied!'))">Copy link to share</button>
     </div>
@@ -1101,7 +1156,7 @@ function showSuccess() {
           <a class="btn" href="https://calendly.com/letsmeetneera" target="_blank" rel="noopener" style="text-decoration:none; display:inline-block;">Book a 20-min Zoom →</a>
         </div>
       ` : ''}
-      <p style="margin-top:24px;">— Satyam</p>
+      <p style="margin-top:24px;">— The founder</p>
       <div style="margin-top:32px;">
         <button class="btn" style="background:transparent; color:var(--accent); border:1.5px solid var(--accent);" onclick="navigator.clipboard.writeText('https://meetneera.com').then(() => alert('Link copied!'))">Share with someone managing nutrition</button>
       </div>
