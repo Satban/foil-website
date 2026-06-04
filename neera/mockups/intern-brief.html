@@ -528,6 +528,38 @@
   <li><strong>Mid-sprint check-in</strong> on Day 3–4 to course-correct if needed</li>
 </ul>
 
+<h2>13 · Beyond outreach — additional ways you can contribute</h2>
+<p class="lead">After (or alongside) the survey sprint, here are eight ringfenced tasks where you can add real value. None of these touch production code or live user data — fail-safe by design.</p>
+
+<h3>Research + analysis (highest leverage)</h3>
+<ul>
+  <li><strong>Survey response synthesis after June 12.</strong> Once 50–100 responses are in, tag and code the open-text fields (what's hardest, what felt unclear, the "wave a wand" wishes). Build pattern tables: top 5 challenges by segment, common phrasing of frustrations, surprise quotes worth surfacing. Hand polished synthesis back for the founder + Claude decision-day review.</li>
+  <li><strong>Competitive teardowns.</strong> Deep dives on Nourish, Form Health, Fay, Cleo, Noom, MyFitnessPal Premium, Calibrate. For each: pricing history (use Wayback Machine), recent App Store reviews (Apptopia, Sensor Tower if accessible — or manual), content strategy (their blog cadence + topics), social presence, partnership announcements. One Google Doc per competitor, all in a shared folder.</li>
+  <li><strong>Founder interview note-taking.</strong> For every Zoom interview booked from the survey: schedule, send Calendly confirmations, attend with camera off, transcribe (Otter.ai or similar), produce a 1-page summary within 24 hours covering: who they are, what hit, what missed, what they'd pay, quotable lines.</li>
+</ul>
+
+<h3>GTM + content</h3>
+<ul>
+  <li><strong>Landing page + ad creative variants.</strong> Draft 3–4 landing page variants targeting different wedge audiences (GLP-1 starters, post-bariatric, prediabetic, mainstream weight management). Plus social-ad copy: 5 hook variants per audience, 3 image concepts, 2 video script outlines. All drafts; founder reviews and approves before anything goes live.</li>
+  <li><strong>Content production drafts.</strong> Blog post drafts (2–3 per week), newsletter drafts, podcast guest research (find 20 nutrition/health/GLP-1 podcasts, research their hosts, draft pitch emails). Drafts only — founder edits and publishes.</li>
+  <li><strong>Brand asset organization.</strong> Catalog every existing Foil/Nishi asset (logos, screenshots, photos, video clips, press mentions, testimonials). Organize by usage rights (own/licensed/UGC), by use case (web/social/email/print), by aspect ratio. Build a one-page brand bible: typography, colors, voice rules, do's and don'ts.</li>
+  <li><strong>App Store listing prep.</strong> Build the App Store rename listing in advance: screenshots in all required sizes, copy variants (3 versions of the description), promotional text options, ASO keyword research (use Sensor Tower / App Annie if available, or manual competitor keyword analysis). Hand off to founder when ready to submit.</li>
+</ul>
+
+<h3>Outreach extension</h3>
+<ul>
+  <li><strong>Partnership prospecting.</strong> Identify and research 50+ potential partners: GLP-1 telehealth providers (Hims, Ro, Sequence, Found, Calibrate), independent dietitians with audience, employer benefit brokers, GLP-1-focused content creators. For each: name, contact, why-relevant, draft outreach email. Send only the ones the founder approves.</li>
+</ul>
+
+<h3>Optional engineering stretch (if you're hungry to build)</h3>
+<p>These are ringfenced engineering tasks — output is reviewable before causing any harm. Skip if not interested.</p>
+<ul>
+  <li><strong>Sample data generation.</strong> Build a small generator for realistic test data: 50 synthetic receipts (different grocery stores, varied item formats), 30 synthetic HealthKit weekly snapshots, 20 synthetic chat histories. Useful for dev/test work without touching real user data. Output is JSON files in a shared folder.</li>
+  <li><strong>LLM provider benchmarks.</strong> Run a fixed set of 20 Nishi prompts (nutrition recommendations, recipe generation, symptom interpretation) through OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, and Gemini 1.5 Pro. Score outputs on quality, latency, cost. Produce a comparison report. Founder uses this to inform the LLM provider abstraction layer decisions.</li>
+</ul>
+
+<div class="callout amber"><strong>Where the line is:</strong> you can draft anything, research anything, organize anything. You cannot push to the main branch, edit live landing pages, post unapproved content, or DM anyone the founder hasn't greenlit. When in doubt — draft, share, wait for approval.</div>
+
 <div class="footer">
   Welcome aboard. Let's go.<br>
   Internal use only · Neera is in research mode

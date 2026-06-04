@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neera Architecture — Phased Build-Out</title>
+<title>Nishi Architecture — Phased Build-Out</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -331,10 +331,12 @@
 <body>
 <div class="container">
 
-<h1>Neera Architecture</h1>
+<h1>Nishi Architecture</h1>
 <div class="subtitle">Phased build-out · MVP through Year 2+</div>
 <p class="lead">
-The architecture below is designed for evolution. Each phase adds capability without throwing away the previous foundation. Phase 1 ships fast; the seams for multi-agent, multi-tool, and multi-tenant are already in place but not operationalized until they're needed.
+The architecture below is designed for evolution. Each phase adds capability without throwing away the previous foundation. Phase 1 ships fast; the seams for internal module decomposition, multi-tool, and multi-tenant are already in place but not operationalized until they're needed.
+
+<strong>Core thesis:</strong> Nishi is positioned in the <em>observed world</em>, not the stated world. Most nutrition apps live on what users report (logged meals, claimed goals, chat statements). Nishi lives on what users <em>actually do</em> — receipts (what they bought), wearables (how the body responded), adherence (did they follow through). The stated-to-observed gap is where every health-app retention curve dies; closing it is the moat.
 </p>
 
 <div class="legend">
@@ -345,7 +347,7 @@ The architecture below is designed for evolution. Each phase adds capability wit
 
 <div class="toc">
   <a href="#phase1">Phase 1 — MVP</a>
-  <a href="#phase2">Phase 2 — Multi-Agent + Clinical</a>
+  <a href="#phase2">Phase 2 — Internal Modules + Clinical</a>
   <a href="#phase3">Phase 3 — Hardware + Insurance</a>
   <a href="#phase4">Phase 4 — Platform</a>
   <a href="#mesh">Agentic Framework Evolution</a>
@@ -356,45 +358,72 @@ The architecture below is designed for evolution. Each phase adds capability wit
 <!-- =============== PHASE 1 =============== -->
 <div class="phase-block" id="phase1">
   <span class="phase-label">Phase 1 · MVP</span>
-  <h3>Months 0–4.5 · Single agent · Pure software</h3>
-  <div class="phase-meta">Launch iOS with Starter ($9.99) + Pro ($19.99). One primary agent, deterministic tool use, structured memory. Ship.</div>
+  <h3>Months 0–4.5 · One agent (no modules) · Pure software</h3>
+  <div class="phase-meta">Launch <strong>iOS-only</strong> with Starter ($9.99) + Pro ($19.99). <strong>One agent. No internal modules exposed.</strong> Deterministic tool use, four-layer memory, mandatory guardrail safety pass, full cost controls. Apple Watch preserved for voice differentiation. Ship.</div>
 
   <div class="arch-grid">
 
     <div class="arch-layer">
-      <div class="arch-layer-head"><span class="arch-layer-title">Surfaces</span><span class="arch-layer-side">User-facing</span></div>
+      <div class="arch-layer-head"><span class="arch-layer-title">Surfaces</span><span class="arch-layer-side">iOS-only for MVP</span></div>
       <div class="arch-row">
         <span class="pill">Flutter iOS</span>
-        <span class="pill">Flutter Android</span>
-        <span class="pill">Apple Watch app</span>
-        <span class="pill">iOS widgets + Live Activities</span>
+        <span class="pill">Apple Watch app (preserved from Foil — voice differentiator)</span>
+        <span class="pill dim future">Flutter Android (Phase 1.5 / month 4–6)</span>
+        <span class="pill dim future">iOS widgets + Live Activities (Phase 2)</span>
       </div>
     </div>
 
     <div class="arrow">↓ WebSocket / SSE streaming ↓</div>
 
     <div class="arch-layer">
-      <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span><span class="arch-layer-side">Python service on Fly.io</span></div>
+      <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span><span class="arch-layer-side">Python service on Fly.io · hand-written loop</span></div>
       <div class="arch-row">
         <span class="pill new brand">Python FastAPI service</span>
-        <span class="pill new brand">Single Neera agent (custom loop)</span>
+        <span class="pill new brand">Single Nishi agent (custom loop, no framework)</span>
         <span class="pill new brand">Tool registry</span>
         <span class="pill new brand">LLM provider abstraction</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Guardrail safety pass</span><span class="arch-layer-side">Mandatory on every health-related response</span></div>
+      <div class="arch-row">
+        <span class="pill new brand">Medication dosing block</span>
+        <span class="pill new brand">Allergen warnings</span>
+        <span class="pill new brand">Crisis indicators</span>
+        <span class="pill new brand">Drug interactions</span>
+        <span class="pill new brand">Scope-of-practice enforcement</span>
+        <span class="pill new brand">Tone calibration</span>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-head"><span class="arch-layer-title">Cost controls</span><span class="arch-layer-side">5 safeguards from Day 1</span></div>
+      <div class="arch-row">
+        <span class="pill new brand">Per-user token budget ($0.50 Starter / $1.20 Pro daily ceiling)</span>
+        <span class="pill new brand">Provider fallback chain</span>
+        <span class="pill new brand">Rate limits (60 LLM calls/hr per user)</span>
+        <span class="pill new brand">Kill switch (global + per-user)</span>
+        <span class="pill new brand">Latency budget (TTFT &lt;800ms voice, &lt;2s full turn)</span>
       </div>
     </div>
 
     <div class="arrow">↓ Tool calls ↓</div>
 
     <div class="arch-layer">
-      <div class="arch-layer-head"><span class="arch-layer-title">Tools</span><span class="arch-layer-side">External integrations</span></div>
+      <div class="arch-layer-head"><span class="arch-layer-title">Tools</span><span class="arch-layer-side">External integrations · all through HealthDataProvider abstraction</span></div>
       <div class="arch-row">
-        <span class="pill">Apple HealthKit (native)</span>
-        <span class="pill">Google Health Connect</span>
+        <span class="pill">Apple HealthKit (native, wearables flow through here)</span>
         <span class="pill">Receipt parser (OpenAI Vision)</span>
+        <span class="pill">Photo / voice intake</span>
         <span class="pill">Meal planner (LLM)</span>
+        <span class="pill">Eating-out tracker (voice / photo)</span>
         <span class="pill">Instacart deeplink</span>
-        <span class="pill">Calendar (iCal / Google)</span>
-        <span class="pill">YouTube embed (video recipe)</span>
+        <span class="pill dim future">Android Health Connect — not Google Fit (Phase 1.5 with Android)</span>
+        <span class="pill dim future">Direct CGM (Dexcom/Stelo) — Phase 3 Metabolic tier required</span>
+        <span class="pill dim future">Direct Whoop / Oura / Garmin APIs (Phase 2-3)</span>
+        <span class="pill dim future">Calendar (Phase 2)</span>
+        <span class="pill dim future">YouTube embed (Phase 2)</span>
       </div>
     </div>
 
@@ -404,13 +433,14 @@ The architecture below is designed for evolution. Each phase adds capability wit
       <div class="arch-layer-head"><span class="arch-layer-title">Data + State</span><span class="arch-layer-side">Supabase</span></div>
       <div class="arch-row">
         <span class="pill">Postgres (existing schema)</span>
-        <span class="pill new brand">conversations + messages</span>
-        <span class="pill new brand">learned_facts</span>
-        <span class="pill new brand">nutrition_targets</span>
+        <span class="pill new brand">events</span>
+        <span class="pill new brand">user_profile</span>
+        <span class="pill new brand">user_patterns</span>
+        <span class="pill new brand">memory_summaries</span>
         <span class="pill new brand">pgvector embeddings</span>
         <span class="pill new brand">tool_calls_log (audit)</span>
         <span class="pill">RLS + auth (existing)</span>
-        <span class="pill new brand">Field-level encryption (PHI)</span>
+        <span class="pill new brand">Field-level encryption (health-sensitive data)</span>
       </div>
     </div>
 
@@ -429,7 +459,7 @@ The architecture below is designed for evolution. Each phase adds capability wit
       <div class="arch-row">
         <span class="pill new brand">Scheduled events (Supabase cron)</span>
         <span class="pill new brand">Wearable signal triggers</span>
-        <span class="pill new brand">Routed through Neera agent</span>
+        <span class="pill new brand">Routed through Nishi agent</span>
       </div>
     </div>
 
@@ -445,35 +475,38 @@ The architecture below is designed for evolution. Each phase adds capability wit
     <div class="arch-layer">
       <div class="arch-layer-head"><span class="arch-layer-title">Seams stubbed for later</span><span class="arch-layer-side">Future-proofing</span></div>
       <div class="arch-row">
-        <span class="pill dim future">Multi-agent orchestration</span>
+        <span class="pill dim future">Internal module decomposition (Phase 2)</span>
         <span class="pill dim future">Plaid · Gmail (post-CASA)</span>
-        <span class="pill dim future">RD scheduling</span>
+        <span class="pill dim future">RD scheduling (Phase 2)</span>
         <span class="pill dim future">Apple Health Records</span>
-        <span class="pill dim future">Hardware bundle ops</span>
-        <span class="pill dim future">HIPAA BAA</span>
+        <span class="pill dim future">Hardware bundle ops (Phase 3)</span>
+        <span class="pill dim future">HIPAA BAA + raw health data to LLM (when covered-entity status triggered)</span>
+        <span class="pill dim future">Truemed / HSA-FSA rail (Phase 1.5)</span>
       </div>
     </div>
 
   </div>
 
   <div class="note">
-    <strong>Day-1 architecture call:</strong> the Python AI service is a separate deployable from day 1, even if it has one agent in it. Doing agents inside Supabase edge functions hits a wall by Phase 2. Cost: $0/mo on Fly.io free tier.
+    <strong>Day-1 architecture call:</strong> the Python AI service is a separate deployable from day 1, even if it has one agent in it. Doing agents inside Supabase edge functions hits a wall by Phase 2. Cost: $0/mo on Fly.io free tier. <strong>Do NOT pre-build internal module boundaries — Phase 1 is one agent, full stop.</strong>
   </div>
 </div>
 
 
 <!-- =============== PHASE 2 =============== -->
 <div class="phase-block" id="phase2">
-  <span class="phase-label phase2">Phase 2 · Multi-Agent + Clinical</span>
-  <h3>Months 5–12 · Multi-agent mesh · Async RD layer · B2B2C pilots</h3>
-  <div class="phase-meta">$49 Premium tier launches with dietitian network. First telehealth partner pilots. LangGraph for cyclic agent flows.</div>
+  <span class="phase-label phase2">Phase 2 · Internal Modules + Clinical</span>
+  <h3>Months 5–12 · Five internal modules under one Nishi · Async RD layer · B2B2C pilots</h3>
+  <div class="phase-meta">$49 Premium tier launches with dietitian network (positioned for newly-diagnosed / medication-navigation users, not as a generic upgrade). First telehealth partner pilots. Internal modules firm up; user still sees one Nishi.</div>
 
   <div class="arch-grid">
 
     <div class="arch-layer">
       <div class="arch-layer-head"><span class="arch-layer-title">Surfaces</span></div>
       <div class="arch-row">
-        <span class="pill">iOS / Android / Watch</span>
+        <span class="pill">iOS / Watch (from Phase 1)</span>
+        <span class="pill new sage">Android (added in Phase 1.5)</span>
+        <span class="pill new sage">iOS widgets + Live Activities</span>
         <span class="pill new sage">Flutter Web (desktop view)</span>
         <span class="pill new sage">RD video consult (in-app)</span>
       </div>
@@ -482,9 +515,9 @@ The architecture below is designed for evolution. Each phase adds capability wit
     <div class="arrow">↓</div>
 
     <div class="arch-layer">
-      <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span><span class="arch-layer-side">Python + LangGraph</span></div>
+      <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span><span class="arch-layer-side">Python (hand-written loop · framework only if forced)</span></div>
       <div class="arch-row">
-        <span class="pill new sage">LangGraph (cyclic agent loops)</span>
+        <span class="pill new sage">Hand-written orchestrator (no framework)</span>
         <span class="pill new sage">Multi-agent mesh (see below)</span>
         <span class="pill new sage">Streaming + interrupts</span>
       </div>
@@ -549,7 +582,7 @@ The architecture below is designed for evolution. Each phase adds capability wit
   </div>
 
   <div class="note">
-    <strong>Migration note:</strong> Phase 1 → Phase 2 doesn't require any rewrite. LangGraph slots into the existing Python service; the single agent becomes one of multiple orchestrated agents. Tool registry expands. Memory schema unchanged.
+    <strong>Migration note:</strong> Phase 1 → Phase 2 doesn't require a rewrite. Internal module boundaries firm up inside the Python service; the user still talks to one Nishi. Tool registry expands. Memory schema unchanged. <strong>LangGraph is optional, not assumed</strong> — only adopt when cyclic agent flows are needed.
   </div>
 </div>
 
@@ -557,8 +590,8 @@ The architecture below is designed for evolution. Each phase adds capability wit
 <!-- =============== PHASE 3 =============== -->
 <div class="phase-block" id="phase3">
   <span class="phase-label phase3">Phase 3 · Hardware + Insurance</span>
-  <h3>Months 12–24 · CGM bundles · Insurance billing · Pharma adherence</h3>
-  <div class="phase-meta">Premium+ ($69) and Metabolic ($119) tiers with hardware. MNT billing via RD network. Pharma adherence deals.</div>
+  <h3>Months 12–24 · CGM bundles · Insurance billing · Anonymized outcomes</h3>
+  <div class="phase-meta">Premium+ ($59–69) and Metabolic ($149–179) tiers with hardware. MNT billing via RD network. Anonymized outcomes partnerships (consented, aggregated). Exact pricing validated post-launch via WTP data; ranges shown for now.</div>
 
   <div class="arch-grid">
 
@@ -575,10 +608,10 @@ The architecture below is designed for evolution. Each phase adds capability wit
     <div class="arch-layer">
       <div class="arch-layer-head"><span class="arch-layer-title">AI Orchestration</span></div>
       <div class="arch-row">
-        <span class="pill">(Phase 2 LangGraph mesh)</span>
+        <span class="pill">(Phase 2 internal modules)</span>
         <span class="pill new slate">Insurance billing agent</span>
         <span class="pill new slate">Hardware integration agent</span>
-        <span class="pill new slate">Pharma adherence reporting agent</span>
+        <span class="pill new slate">Anonymized outcomes reporting (consented, aggregated)</span>
       </div>
     </div>
 
@@ -586,11 +619,11 @@ The architecture below is designed for evolution. Each phase adds capability wit
       <div class="arch-layer-head"><span class="arch-layer-title">Tools</span></div>
       <div class="arch-row">
         <span class="pill">(Phase 2 tools)</span>
-        <span class="pill new slate">Stelo CGM direct API</span>
+        <span class="pill new slate">Stelo CGM direct API (required — Health Connect imposes 3hr delay)</span>
         <span class="pill new slate">Withings smart scale API</span>
         <span class="pill new slate">MNT billing (Claim.MD / Office Ally)</span>
         <span class="pill new slate">Pharmacy refill APIs</span>
-        <span class="pill new slate">Pharma adherence webhooks (Lilly / Novo)</span>
+        <span class="pill new slate">Anonymized outcomes webhooks (Lilly / Novo — consented, aggregated)</span>
       </div>
     </div>
 
@@ -634,7 +667,7 @@ The architecture below is designed for evolution. Each phase adds capability wit
 <div class="phase-block" id="phase4">
   <span class="phase-label phase4">Phase 4 · Platform</span>
   <h3>Year 2+ · Medicare Advantage · International · Glasses · Agent interop</h3>
-  <div class="phase-meta">Neera becomes infrastructure. MA supplemental benefit. International expansion. Ambient surfaces.</div>
+  <div class="phase-meta">Nishi becomes infrastructure. MA supplemental benefit. International expansion. Ambient surfaces.</div>
 
   <div class="arch-grid">
 
@@ -685,16 +718,18 @@ The architecture below is designed for evolution. Each phase adds capability wit
 
 <!-- =============== AGENTIC FRAMEWORK =============== -->
 <h2 id="mesh">Agentic Framework Evolution</h2>
-<p class="lead">How the agent layer morphs across phases. Phase 1 is intentionally simple. Each subsequent phase adds specialized sub-agents around the central orchestrator.</p>
+<p class="lead">How the agent layer morphs across phases. Phase 1 is intentionally simple — one agent, no internal modules exposed. From Phase 2 onward, internal reasoning modules firm up, but <strong>the user still sees a single Nishi</strong>. Modules are an engineering decomposition, not a multi-agent dance.</p>
+
+<div class="callout amber" style="margin-bottom: 24px;"><strong>Architectural principle (locked in 2026-06-04):</strong> single voice externally, modules internally. Reject multi-agent orchestration as user-visible architecture until forced by scale. The user never knows there are five modules under the hood; they just talk to Nishi.</div>
 
 <div class="phase-block">
   <span class="phase-label">Phase 1</span>
-  <h3 style="margin-top: 8px;">Single agent — direct tool calling</h3>
+  <h3 style="margin-top: 8px;">One agent. No internal modules.</h3>
   <div class="agent-mesh">
     <div class="agent-row">
       <div class="agent-box orchestrator">
-        <div class="agent-name">Neera (single orchestrator)</div>
-        <div class="agent-meta">Receives input, picks tools, returns response. Custom loop, no framework.</div>
+        <div class="agent-name">Nishi (single agent)</div>
+        <div class="agent-meta">Receives input, reasons across all concerns inline, picks tools, returns response. Custom loop, no framework. <strong>Do NOT pre-decompose into modules at MVP — premature.</strong></div>
       </div>
     </div>
     <div class="arrow">↓ calls tools directly ↓</div>
@@ -711,42 +746,42 @@ The architecture below is designed for evolution. Each phase adds capability wit
 
 <div class="phase-block">
   <span class="phase-label phase2">Phase 2</span>
-  <h3 style="margin-top: 8px;">Multi-agent mesh — LangGraph orchestration</h3>
+  <h3 style="margin-top: 8px;">Five reasoning modules. Still one Nishi voice.</h3>
   <div class="agent-mesh">
     <div class="agent-row">
       <div class="agent-box orchestrator">
-        <div class="agent-name">Orchestrator (LangGraph router)</div>
-        <div class="agent-meta">Determines user intent, delegates to sub-agents, runs cyclic loops, manages memory</div>
+        <div class="agent-name">Nishi (single user-facing agent)</div>
+        <div class="agent-meta">User experience is unchanged from Phase 1 — talk to Nishi. Internally, the orchestrator routes reasoning across five specialized modules.</div>
       </div>
     </div>
-    <div class="arrow">↓ delegates to ↓</div>
+    <div class="arrow">↓ internal modules (not visible to user) ↓</div>
     <div class="agent-row-fan">
       <div class="agent-box subagent">
-        <div class="agent-name">Nutrition Agent</div>
-        <div class="agent-meta">Analyzes macros, plans meals, adapts to GLP-1 needs</div>
+        <div class="agent-name">1. Nutrition</div>
+        <div class="agent-meta">What to eat. Macros, meal plans, recipe gen, pantry-aware suggestions. The conversational surface.</div>
       </div>
       <div class="agent-box subagent">
-        <div class="agent-name">Biometrics Agent</div>
-        <div class="agent-meta">Watches wearables, flags drops, surfaces patterns</div>
+        <div class="agent-name">2. Adherence</div>
+        <div class="agent-meta">Will you do it / did you do it. Meal skip detection, target miss, grocery not bought, drop-off prediction. Triggers RD escalation. <strong>Where value lives.</strong></div>
       </div>
       <div class="agent-box subagent">
-        <div class="agent-name">Commerce Agent</div>
-        <div class="agent-meta">Builds carts, swaps items, talks to Instacart</div>
+        <div class="agent-name">3. Biometrics</div>
+        <div class="agent-meta">How the body is responding. Wearables, labs, side effects, food→symptom correlations. The observed-world signal.</div>
       </div>
       <div class="agent-box subagent">
-        <div class="agent-name">Symptom Agent</div>
-        <div class="agent-meta">Tracks GLP-1 side effects, adjusts plans</div>
+        <div class="agent-name">4. Commerce</div>
+        <div class="agent-meta">What you actually bought / will buy. Receipts, Instacart, substitutions, shopping optimization. The behavioral closed loop.</div>
       </div>
       <div class="agent-box subagent">
-        <div class="agent-name">Memory Agent</div>
-        <div class="agent-meta">Writes structured facts, queries pgvector, surfaces patterns</div>
+        <div class="agent-name">5. Guardrails</div>
+        <div class="agent-meta">Safety floor. Medication interactions, allergens, scope-of-practice, tone calibration. Invisible to user; critical for regulators / payers.</div>
       </div>
     </div>
-    <div class="arrow">↓ all routed through ↓</div>
+    <div class="arrow">↓ memory layer (infrastructure, not an agent) ↓</div>
     <div class="agent-row">
-      <div class="agent-box guardrail">
-        <div class="agent-name">Guardrail Agent</div>
-        <div class="agent-meta">Medical safety: refuses dosing advice, escalates dangerous symptoms, enforces "consult your doctor" boundaries</div>
+      <div class="agent-box guardrail" style="background: #FBF7EE;">
+        <div class="agent-name">Four-layer memory: short-term session · rolling behavioral (the moat) · long-term profile · raw archive</div>
+        <div class="agent-meta">All five modules read from and write to the same memory layers. Per-user, RLS-scoped, field-level encryption on health-sensitive data. Every recommendation surfaces its "why" — source, date, confidence — to stay on the right side of useful vs. creepy.</div>
       </div>
     </div>
   </div>
@@ -764,8 +799,8 @@ The architecture below is designed for evolution. Each phase adds capability wit
     <div class="arrow">↓</div>
     <div class="agent-row-fan">
       <div class="agent-box subagent">
-        <div class="agent-name">Nutrition · Biometrics · Symptom</div>
-        <div class="agent-meta">(Phase 2 agents)</div>
+        <div class="agent-name">Nutrition · Adherence · Biometrics · Commerce</div>
+        <div class="agent-meta">(Phase 2 modules — still under one Nishi voice)</div>
       </div>
       <div class="agent-box subagent">
         <div class="agent-name">Hardware Agent</div>
@@ -776,7 +811,7 @@ The architecture below is designed for evolution. Each phase adds capability wit
         <div class="agent-meta">MNT codes, insurance claims, HSA/FSA receipts</div>
       </div>
       <div class="agent-box subagent">
-        <div class="agent-name">Pharma Adherence Agent</div>
+        <div class="agent-name">Anonymized Outcomes Module</div>
         <div class="agent-meta">Reports anonymized outcomes to drug manufacturers</div>
       </div>
       <div class="agent-box subagent">
@@ -844,15 +879,15 @@ The architecture below is designed for evolution. Each phase adds capability wit
     <p>Every external API is registered as a tool. Add new tools by registering them; the agent loop doesn't change.</p>
   </div>
   <div class="principle-card">
-    <h4>Three-layer memory</h4>
-    <p>In-context conversation + structured facts (Postgres) + semantic embeddings (pgvector). All from day 1.</p>
+    <h4>Four-layer memory</h4>
+    <p>Short-term session + rolling behavioral patterns + long-term profile + raw archive. All in Supabase (Postgres + pgvector + Storage). Pattern re-derivation runs weekly. Rolling behavioral is the moat.</p>
   </div>
   <div class="principle-card">
     <h4>Python AI service separate</h4>
     <p>Even with one agent, deploy the AI orchestration as its own service. Agents inside Supabase edge functions break by Phase 2.</p>
   </div>
   <div class="principle-card">
-    <h4>Field-level encryption on PHI</h4>
+    <h4>Field-level encryption on health-sensitive data</h4>
     <p>Medications, conditions, lab values encrypted at column level. Doesn't slow MVP; retrofitting is brutal.</p>
   </div>
   <div class="principle-card">
@@ -862,6 +897,18 @@ The architecture below is designed for evolution. Each phase adds capability wit
   <div class="principle-card">
     <h4>LLM telemetry from day 1</h4>
     <p>Helicone or Langfuse on every LLM call. You can't optimize what you don't measure.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Explainable memory</h4>
+    <p>Every memory-driven recommendation can surface its "why" (source, date, confidence). Keeps Nishi on the right side of the useful-vs-creepy line.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Cancel ≠ delete</h4>
+    <p>Subscription lifecycle preserves memory at ~$0.05/mo for cancelled users (30% return within 90 days). Hard delete only on user request. HIPAA-eligible data exempt from time-based deletion.</p>
+  </div>
+  <div class="principle-card">
+    <h4>Hand-rolled orchestration</h4>
+    <p>~50 lines of Python for Phase 1 and Phase 2. No framework. Adopt LangGraph / Agents SDK only when real pain forces it — probably Phase 3, possibly never.</p>
   </div>
   <div class="principle-card">
     <h4>Structural readiness without complexity</h4>
@@ -876,20 +923,20 @@ The architecture below is designed for evolution. Each phase adds capability wit
     <div class="tl-when">Phase 1 · Mo 0–4.5</div>
     <h5>MVP</h5>
     <ul>
-      <li>Single agent</li>
-      <li>Pure software</li>
-      <li>iOS launch</li>
+      <li>One agent (no modules)</li>
+      <li>iOS + Watch only</li>
+      <li>Guardrail + cost controls Day 1</li>
       <li>$9.99 / $19.99 tiers</li>
       <li>Direct-to-consumer</li>
     </ul>
   </div>
   <div class="tl-cell">
     <div class="tl-when">Phase 2 · Mo 5–12</div>
-    <h5>Multi-Agent + Clinical</h5>
+    <h5>Modules + Clinical</h5>
     <ul>
-      <li>LangGraph mesh</li>
+      <li>5 internal modules</li>
       <li>RD network</li>
-      <li>$49 Premium tier</li>
+      <li>$49 Premium (medical-acute)</li>
       <li>Telehealth pilots</li>
       <li>Employer benefits start</li>
     </ul>
@@ -901,8 +948,8 @@ The architecture below is designed for evolution. Each phase adds capability wit
       <li>CGM bundles</li>
       <li>Smart scale</li>
       <li>MNT billing live</li>
-      <li>Pharma adherence</li>
-      <li>$69 / $119 tiers</li>
+      <li>Anonymized outcomes partnerships</li>
+      <li>$59–69 / $149–179 tiers</li>
     </ul>
   </div>
   <div class="tl-cell">
@@ -917,6 +964,32 @@ The architecture below is designed for evolution. Each phase adds capability wit
     </ul>
   </div>
 </div>
+
+<h2 style="margin-top: 56px;">Pricing tier reference (full ladder)</h2>
+<p class="lead">Pricing across phases. Phase 1 tiers continue forever as the lowest-friction entry. Each higher tier targets a different psychographic, not just a more "premium" version of the same user.</p>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+  <thead>
+    <tr style="background: #FBF7EE; border-bottom: 2px solid #E5DDD0;">
+      <th style="text-align: left; padding: 12px 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #6B6258;">Tier</th>
+      <th style="text-align: left; padding: 12px 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #6B6258;">Price</th>
+      <th style="text-align: left; padding: 12px 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #6B6258;">Who it's for</th>
+      <th style="text-align: left; padding: 12px 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #6B6258;">Phase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #E5DDD0;"><td style="padding: 12px 14px;"><strong>Starter</strong></td><td style="padding: 12px 14px;">$9.99 / mo</td><td style="padding: 12px 14px;">Solo user — anyone exploring</td><td style="padding: 12px 14px;">1</td></tr>
+    <tr style="border-bottom: 1px solid #E5DDD0;"><td style="padding: 12px 14px;"><strong>Pro</strong></td><td style="padding: 12px 14px;">$19.99 / mo</td><td style="padding: 12px 14px;">Sandwich-gen households (cross-member reasoning)</td><td style="padding: 12px 14px;">1</td></tr>
+    <tr style="border-bottom: 1px solid #E5DDD0;"><td style="padding: 12px 14px;"><strong>Premium</strong></td><td style="padding: 12px 14px;">$49 / mo</td><td style="padding: 12px 14px;"><strong>Medical-acute only</strong> — newly diagnosed, new GLP-1, post-bariatric. NOT for mainstream wellness.</td><td style="padding: 12px 14px;">2</td></tr>
+    <tr style="border-bottom: 1px solid #E5DDD0;"><td style="padding: 12px 14px;"><strong>Premium+</strong></td><td style="padding: 12px 14px;">$59–69 / mo</td><td style="padding: 12px 14px;">Metric-driven user (Premium + smart scale)</td><td style="padding: 12px 14px;">3</td></tr>
+    <tr style="border-bottom: 1px solid #E5DDD0;"><td style="padding: 12px 14px;"><strong>Metabolic</strong></td><td style="padding: 12px 14px;">$149–179 / mo</td><td style="padding: 12px 14px;">Quantified-self / serious GLP-1 maintenance (Premium + CGM). Repriced up from $119 — bundle includes $99/mo Stelo + AI + RD, $20 markup was too thin.</td><td style="padding: 12px 14px;">3</td></tr>
+    <tr style="border-bottom: 1px solid #E5DDD0;"><td style="padding: 12px 14px;"><strong>Insurance-covered</strong></td><td style="padding: 12px 14px;">$0 to user</td><td style="padding: 12px 14px;">Patients where MNT codes are covered (Medicare, expanding Medicaid, commercial plans)</td><td style="padding: 12px 14px;">4</td></tr>
+    <tr style="border-bottom: 1px solid #E5DDD0;"><td style="padding: 12px 14px;"><strong>MA supplemental</strong></td><td style="padding: 12px 14px;">$0 to user</td><td style="padding: 12px 14px;">Seniors on Medicare Advantage plans that bundle Nishi as a supplemental benefit</td><td style="padding: 12px 14px;">4</td></tr>
+    <tr><td style="padding: 12px 14px;"><strong>Employer / payer</strong></td><td style="padding: 12px 14px;">$25–40 PEPM</td><td style="padding: 12px 14px;">Self-insured employers offering Pro tier to all employees + dependents</td><td style="padding: 12px 14px;">4</td></tr>
+  </tbody>
+</table>
+
+<div class="callout amber" style="margin-top: 18px;"><strong>Pricing principle:</strong> $9.99 Starter is the impulse-purchase anchor. Pro at $19.99 will likely become 70% of consumer revenue (cross-member reasoning is the moat). Premium ($49) is positioned for medical-acute users only — not as a generic upgrade. Phase 3+ tiers are validated post-launch via WTP survey data; ranges shown reflect current best-guess.</div>
 
 </div>
 </body>
