@@ -447,10 +447,10 @@ The architecture below is designed for evolution. Each phase adds capability wit
     <div class="arch-layer">
       <div class="arch-layer-head"><span class="arch-layer-title">LLM Providers</span><span class="arch-layer-side">Behind provider abstraction</span></div>
       <div class="arch-row">
-        <span class="pill">GPT-4o (orchestration)</span>
-        <span class="pill">GPT-4o-mini (classification)</span>
-        <span class="pill">OpenAI Realtime (voice)</span>
-        <span class="pill">ElevenLabs (TTS persona)</span>
+        <span class="pill">Frontier model (orchestration)</span>
+        <span class="pill">Cheap model (classification)</span>
+        <span class="pill">OpenAI Realtime (voice — end-to-end speech)</span>
+        <span class="pill dim future">ElevenLabs (persona TTS — deferred; revisit if interviews show voice identity matters)</span>
       </div>
     </div>
 
@@ -488,7 +488,7 @@ The architecture below is designed for evolution. Each phase adds capability wit
   </div>
 
   <div class="note">
-    <strong>Day-1 architecture call:</strong> the Python AI service is a separate deployable from day 1, even if it has one agent in it. Doing agents inside Supabase edge functions hits a wall by Phase 2. Cost: $0/mo on Fly.io free tier. <strong>Do NOT pre-build internal module boundaries — Phase 1 is one agent, full stop.</strong>
+    <strong>Day-1 architecture call:</strong> the Python AI service is a separate deployable from day 1, even if it has one agent in it. Doing agents inside Supabase edge functions hits a wall by Phase 2. Cost: ~$2/mo always-on shared-cpu-1x machine (Fly removed free tier in Oct 2024; pay-as-you-go from start, ~$7-10/mo with dedicated IP + storage). <strong>Do NOT pre-build internal module boundaries — Phase 1 is one agent, full stop.</strong>
   </div>
 </div>
 
@@ -554,7 +554,7 @@ The architecture below is designed for evolution. Each phase adds capability wit
       <div class="arch-layer-head"><span class="arch-layer-title">LLM Providers</span></div>
       <div class="arch-row">
         <span class="pill">(Phase 1 providers)</span>
-        <span class="pill new sage">Claude 3.5 Sonnet (nuanced conversation)</span>
+        <span class="pill new sage">Second frontier model via abstraction (nuanced conversation)</span>
         <span class="pill new sage">On-device LLMs for symptoms (Apple Intelligence)</span>
       </div>
     </div>
