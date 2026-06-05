@@ -84,6 +84,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://getfoilapp.com/blog/posts/professional-kitchen-tips-for-home-cooks.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://getfoilapp.com/blog/posts/reduce-food-waste-at-home.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
