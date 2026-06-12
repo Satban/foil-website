@@ -44,6 +44,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://getfoilapp.com/blog/posts/fresh-to-finished-food-timeline.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://getfoilapp.com/blog/posts/fridge-feng-shui-organization-tips.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
